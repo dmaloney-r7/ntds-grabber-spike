@@ -148,6 +148,24 @@ JET_ERR get_column_info(jetState *ntdsState, ntdsColumns *accountColumns){
 	return JET_errSuccess;
 }
 
+JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns){
+	JET_ERR cursorStatus;
+
+	cursorStatus = JetMove(ntdsState->jetSession, ntdsState->jetTable, JET_MoveFirst, NULL);
+	if (cursorStatus != JET_errSuccess){
+		puts("Unable to set the cursor to the first index!");
+		return cursorStatus;
+	}
+	do{
+
+		cursorStatus = JetMove(ntdsState->jetSession, ntdsState->jetTable, JET_MoveNext, NULL);
+	} while (cursorStatus == JET_errSuccess);
+	if (cursorStatus != JET_errNoCurrentRecord){
+		puts("An error occured while moving the database cursor");
+		return cursorStatus;
+	}
+}
+
 int _tmain(int argc, TCHAR* argv[])
 {
 	// Create our state structure to track the various info we need
@@ -202,6 +220,8 @@ int _tmain(int argc, TCHAR* argv[])
 		puts("could not retrieve data on one or more columns!");
 		exit(columnStatus);
 	}
+
+	read_table(ntdsState, accountColumns);
 
 	return 0;
 }
