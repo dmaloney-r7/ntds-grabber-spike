@@ -68,11 +68,19 @@ JET_ERR open_database(jetState *ntdsState){
 	return JET_errSuccess;
 }
 
+JET_ERR get_column_info(jetState *ntdsState, ntdsColumns *accountColumns){
+	
+}
+
 int _tmain(int argc, TCHAR* argv[])
 {
 	// Create our state structure to track the various info we need
 	jetState *ntdsState = malloc(sizeof(jetState));
 	memset(ntdsState, 0, sizeof(jetState));
+	// Create the structure for holding all of the Column Definitions we need
+	ntdsColumns *accountColumns = malloc(sizeof(ntdsColumns));
+	memset(accountColumns, 0, sizeof(ntdsColumns));
+
 	// Exit if we weren't given an argument
 	if (argc < 2){
 		puts("A path to the NTDS.dit file was not supplied!");
@@ -105,6 +113,12 @@ int _tmain(int argc, TCHAR* argv[])
 	if (openStatus != JET_errSuccess){
 		puts("Unable to work with this database file. Exiting..");
 		exit(openStatus);
+	}
+
+	JET_ERR tableStatus = JetOpenTable(ntdsState->jetSession, ntdsState->jetDatabase, "datatable", NULL, 0, JET_bitTableReadOnly | JET_bitTableSequential, &ntdsState->jetTable);
+	if (tableStatus != JET_errSuccess){
+		puts("Unable to access the 'datatable' table!");
+		exit(tableStatus);
 	}
 
 	return 0;
