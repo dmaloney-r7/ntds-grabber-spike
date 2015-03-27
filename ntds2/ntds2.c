@@ -22,9 +22,12 @@ typedef struct {
 	JET_COLUMNDEF accountName;
 	JET_COLUMNDEF accountSID;
 	JET_COLUMNDEF accountType;
+	JET_COLUMNDEF accountExpiry;
 	JET_COLUMNDEF encryptionKey;
+	JET_COLUMNDEF lastLogon;
 	JET_COLUMNDEF lmHash;
 	JET_COLUMNDEF lmHistory;
+	JET_COLUMNDEF logonCount;
 	JET_COLUMNDEF ntHash;
 	JET_COLUMNDEF ntHistory;
 }ntdsColumns;
@@ -69,7 +72,80 @@ JET_ERR open_database(jetState *ntdsState){
 }
 
 JET_ERR get_column_info(jetState *ntdsState, ntdsColumns *accountColumns){
-	
+	JET_ERR columnError;
+
+	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTm590045", &accountColumns->accountName, sizeof(JET_COLUMNDEF), JET_ColInfo);
+	if (columnError != JET_errSuccess){
+		puts("Error getting Column Definition for the samAccountName");
+		return columnError;
+	}
+
+	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTr589970", &accountColumns->accountSID, sizeof(JET_COLUMNDEF), JET_ColInfo);
+	if (columnError != JET_errSuccess){
+		puts("Error getting Column Definition for the SID");
+		return columnError;
+	}
+
+	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTj590126", &accountColumns->accountType, sizeof(JET_COLUMNDEF), JET_ColInfo);
+	if (columnError != JET_errSuccess){
+		puts("Error getting Column Definition for the Account Type");
+		return columnError;
+	}
+
+	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTq589983", &accountColumns->accountExpiry, sizeof(JET_COLUMNDEF), JET_ColInfo);
+	if (columnError != JET_errSuccess){
+		puts("Error getting Column Definition for the Account Expiration Date");
+		return columnError;
+	}
+
+	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTq589983", &accountColumns->accountExpiry, sizeof(JET_COLUMNDEF), JET_ColInfo);
+	if (columnError != JET_errSuccess){
+		puts("Error getting Column Definition for the Account Expiration Date");
+		return columnError;
+	}
+
+	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTk590689", &accountColumns->encryptionKey, sizeof(JET_COLUMNDEF), JET_ColInfo);
+	if (columnError != JET_errSuccess){
+		puts("Error getting Column Definition for the Password Encryption Key");
+		return columnError;
+	}
+
+	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTq589876", &accountColumns->lastLogon, sizeof(JET_COLUMNDEF), JET_ColInfo);
+	if (columnError != JET_errSuccess){
+		puts("Error getting Column Definition for the Last Logon Time");
+		return columnError;
+	}
+
+	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTk589879", &accountColumns->lmHash, sizeof(JET_COLUMNDEF), JET_ColInfo);
+	if (columnError != JET_errSuccess){
+		puts("Error getting Column Definition for the current LM hash");
+		return columnError;
+	}
+
+	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTk589984", &accountColumns->lmHistory, sizeof(JET_COLUMNDEF), JET_ColInfo);
+	if (columnError != JET_errSuccess){
+		puts("Error getting Column Definition for the LM hash history");
+		return columnError;
+	}
+
+	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTj589993", &accountColumns->logonCount, sizeof(JET_COLUMNDEF), JET_ColInfo);
+	if (columnError != JET_errSuccess){
+		puts("Error getting Column Definition for the logon count");
+		return columnError;
+	}
+
+	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTk589914", &accountColumns->ntHash, sizeof(JET_COLUMNDEF), JET_ColInfo);
+	if (columnError != JET_errSuccess){
+		puts("Error getting Column Definition for the current NT Hash");
+		return columnError;
+	}
+
+	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTk589918", &accountColumns->ntHistory, sizeof(JET_COLUMNDEF), JET_ColInfo);
+	if (columnError != JET_errSuccess){
+		puts("Error getting Column Definition for the NT Hash history");
+		return columnError;
+	}
+	return JET_errSuccess;
 }
 
 int _tmain(int argc, TCHAR* argv[])
@@ -119,6 +195,12 @@ int _tmain(int argc, TCHAR* argv[])
 	if (tableStatus != JET_errSuccess){
 		puts("Unable to access the 'datatable' table!");
 		exit(tableStatus);
+	}
+
+	JET_ERR columnStatus = get_column_info(ntdsState, accountColumns);
+	if (columnStatus != JET_errSuccess){
+		puts("could not retrieve data on one or more columns!");
+		exit(columnStatus);
 	}
 
 	return 0;
