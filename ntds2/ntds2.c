@@ -150,6 +150,7 @@ JET_ERR get_column_info(jetState *ntdsState, ntdsColumns *accountColumns){
 
 JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns){
 	JET_ERR cursorStatus;
+	JET_ERR readStatus;
 
 	cursorStatus = JetMove(ntdsState->jetSession, ntdsState->jetTable, JET_MoveFirst, NULL);
 	if (cursorStatus != JET_errSuccess){
@@ -157,7 +158,23 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns){
 		return cursorStatus;
 	}
 	do{
-
+		unsigned char accountName[255];
+		unsigned char accountSID[255];
+		DWORD accountType = 0;
+		unsigned char accountExpiry[255];
+		unsigned char encryptionKey[255];
+		unsigned char lastLogon[255];
+		unsigned char lmHash[255];
+		unsigned char lmHistory[255];
+		unsigned char logonCount[255];
+		unsigned char ntHash[255];
+		unsigned char ntHistory[255];
+		unsigned long columnSize = 0;
+		readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->accountType.columnid, &accountType, sizeof(accountType),columnSize,0,NULL);
+		if (readStatus == JET_wrnColumnNull || accountType != 0x30000000){
+			cursorStatus = JetMove(ntdsState->jetSession, ntdsState->jetTable, JET_MoveNext, NULL);
+			continue;
+		}
 		cursorStatus = JetMove(ntdsState->jetSession, ntdsState->jetTable, JET_MoveNext, NULL);
 	} while (cursorStatus == JET_errSuccess);
 	if (cursorStatus != JET_errNoCurrentRecord){
