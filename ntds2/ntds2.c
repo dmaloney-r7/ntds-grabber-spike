@@ -158,7 +158,10 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns){
 		SYSTEMTIME accountExpiry2;
 		char expiryDate[255];
 		unsigned char encryptionKey[255];
-		unsigned char lastLogon[255];
+		FILETIME lastLogon;
+		SYSTEMTIME lastLogon2;
+		char logonDate[255];
+		char logonTime[255];
 		unsigned char lmHash[255];
 		unsigned char lmHistory[255];
 		unsigned char logonCount[255];
@@ -196,6 +199,23 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns){
 		// Getting Human Readable will fail if account never expires. Just set the expiryDate string to 'never'
 		if (dateResult == 0){
 			strcpy(&expiryDate, "Never");
+		}
+		// Grab the last logon date and time
+		readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->lastLogon.columnid, &lastLogon, sizeof(lastLogon), &columnSize, 0, NULL);
+		if (readStatus != JET_errSuccess){
+			puts("An error has occured reading the column");
+			exit(readStatus);
+		}
+		//Convert the FILETIME to a SYSTEMTIME so we can get a human readable date
+		FileTimeToSystemTime(&lastLogon, &lastLogon2);
+		dateResult = GetDateFormat(LOCALE_SYSTEM_DEFAULT, DATE_LONGDATE, &lastLogon2, NULL, logonDate, 255);
+		// Getting Human Readable will fail if account has never logged in, much like the expiry date
+		if (dateResult == 0){
+			strcpy(&logonDate, "Never");
+		}
+		dateResult = GetTimeFormat(LOCALE_SYSTEM_DEFAULT, 0, &lastLogon2, NULL, logonTime, 255);
+		if (dateResult == 0){
+			strcpy(&logonTime, "Never");
 		}
 		cursorStatus = JetMove(ntdsState->jetSession, ntdsState->jetTable, JET_MoveNext, NULL);
 	} while (cursorStatus == JET_errSuccess);
