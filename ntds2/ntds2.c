@@ -158,7 +158,8 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns){
 		return cursorStatus;
 	}
 	do{
-		unsigned char accountName[255];
+		//Set up our column values here
+		wchar_t accountName[255];
 		unsigned char accountSID[255];
 		DWORD accountType = 0;
 		unsigned char accountExpiry[255];
@@ -170,10 +171,24 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns){
 		unsigned char ntHash[255];
 		unsigned char ntHistory[255];
 		unsigned long columnSize = 0;
+
+		//Retrieve the account type for this row
 		readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->accountType.columnid, &accountType, sizeof(accountType),columnSize,0,NULL);
+		// Unless this is a User Account, then we skip it
 		if (readStatus == JET_wrnColumnNull || accountType != 0x30000000){
 			cursorStatus = JetMove(ntdsState->jetSession, ntdsState->jetTable, JET_MoveNext, NULL);
 			continue;
+		}
+		// If any other error has occured we've screwed up and need to fix it for now
+		if (readStatus != JET_errSuccess){
+			puts("An error has occured reading the column");
+			exit(readStatus);
+		}
+		// Grab the samAccountName here
+		readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->accountName.columnid, &accountName, sizeof(accountName), &columnSize, 0, NULL);
+		if (readStatus != JET_errSuccess){
+			puts("An error has occured reading the column");
+			exit(readStatus);
 		}
 		cursorStatus = JetMove(ntdsState->jetSession, ntdsState->jetTable, JET_MoveNext, NULL);
 	} while (cursorStatus == JET_errSuccess);
