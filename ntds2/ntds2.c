@@ -20,7 +20,6 @@ typedef struct {
 
 typedef struct {
 	JET_COLUMNDEF accountName;
-	JET_COLUMNDEF accountSID;
 	JET_COLUMNDEF accountType;
 	JET_COLUMNDEF accountExpiry;
 	JET_COLUMNDEF encryptionKey;
@@ -77,12 +76,6 @@ JET_ERR get_column_info(jetState *ntdsState, ntdsColumns *accountColumns){
 	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTm590045", &accountColumns->accountName, sizeof(JET_COLUMNDEF), JET_ColInfo);
 	if (columnError != JET_errSuccess){
 		puts("Error getting Column Definition for the samAccountName");
-		return columnError;
-	}
-
-	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTr589970", &accountColumns->accountSID, sizeof(JET_COLUMNDEF), JET_ColInfo);
-	if (columnError != JET_errSuccess){
-		puts("Error getting Column Definition for the SID");
 		return columnError;
 	}
 
@@ -160,7 +153,6 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns){
 	do{
 		//Set up our column values here
 		wchar_t accountName[255];
-		unsigned char accountSID[255];
 		DWORD accountType = 0;
 		unsigned char accountExpiry[255];
 		unsigned char encryptionKey[255];
