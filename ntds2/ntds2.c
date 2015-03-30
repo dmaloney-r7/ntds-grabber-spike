@@ -302,6 +302,12 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns){
 		if (accountControl & NTDS_ACCOUNT_PASS_NO_EXPIRE){
 			passNoExpire = TRUE;
 		}
+		// Grab the Logon Count here
+		readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->logonCount.columnid, &logonCount, sizeof(logonCount), &columnSize, 0, NULL);
+		if (readStatus != JET_errSuccess){
+			puts("An error has occured reading the column");
+			exit(readStatus);
+		}
 		cursorStatus = JetMove(ntdsState->jetSession, ntdsState->jetTable, JET_MoveNext, NULL);
 	} while (cursorStatus == JET_errSuccess);
 	if (cursorStatus != JET_errNoCurrentRecord){
