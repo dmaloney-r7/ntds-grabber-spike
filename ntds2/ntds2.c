@@ -154,7 +154,9 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns){
 		//Set up our column values here
 		wchar_t accountName[255];
 		DWORD accountType = 0;
-		unsigned char accountExpiry[255];
+		FILETIME accountExpiry;
+		SYSTEMTIME accountExpiry2;
+		char expiryDate[255];
 		unsigned char encryptionKey[255];
 		unsigned char lastLogon[255];
 		unsigned char lmHash[255];
@@ -181,6 +183,19 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns){
 		if (readStatus != JET_errSuccess){
 			puts("An error has occured reading the column");
 			exit(readStatus);
+		}
+		// Grab the account expiration date/time here
+		readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->accountExpiry.columnid, &accountExpiry, sizeof(accountExpiry), &columnSize, 0, NULL);
+		if (readStatus != JET_errSuccess){
+			puts("An error has occured reading the column");
+			exit(readStatus);
+		}
+		//Convert the FILETIME to a SYSTEMTIME so we can get a human readable date
+		FileTimeToSystemTime(&accountExpiry, &accountExpiry2);
+		int dateResult = GetDateFormat(LOCALE_SYSTEM_DEFAULT, DATE_LONGDATE, &accountExpiry2, NULL, expiryDate, 255);
+		// Getting Human Readable will fail if account never expires. Just set the expiryDate string to 'never'
+		if (dateResult == 0){
+			strcpy(&expiryDate, "Never");
 		}
 		cursorStatus = JetMove(ntdsState->jetSession, ntdsState->jetTable, JET_MoveNext, NULL);
 	} while (cursorStatus == JET_errSuccess);

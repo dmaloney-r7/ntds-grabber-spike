@@ -1,4 +1,4 @@
-﻿Build started 3/30/2015 1:41:15 PM.
+﻿Build started 3/30/2015 3:39:04 PM.
 Project "C:\ntds\ntds2\ntds2\ntds2.vcxproj" on node 2 (Build target(s)).
 ClCompile:
   C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt ntds2.c
@@ -7,23 +7,27 @@ c:\ntds\ntds2\ntds2\ntds2.c(47): warning C4047: 'function' : 'JET_API_PTR' diffe
 c:\ntds\ntds2\ntds2\ntds2.c(47): warning C4024: 'JetSetSystemParameterA' : different types for formal and actual parameter 4
 c:\ntds\ntds2\ntds2\ntds2.c(148): warning C4047: 'function' : 'JET_GRBIT' differs in levels of indirection from 'void *'
 c:\ntds\ntds2\ntds2\ntds2.c(148): warning C4024: 'JetMove' : different types for formal and actual parameter 4
-c:\ntds\ntds2\ntds2\ntds2.c(168): warning C4047: 'function' : 'unsigned long *' differs in levels of indirection from 'unsigned long'
-c:\ntds\ntds2\ntds2\ntds2.c(168): warning C4024: 'JetRetrieveColumn' : different types for formal and actual parameter 6
-c:\ntds\ntds2\ntds2\ntds2.c(171): warning C4047: 'function' : 'JET_GRBIT' differs in levels of indirection from 'void *'
-c:\ntds\ntds2\ntds2\ntds2.c(171): warning C4024: 'JetMove' : different types for formal and actual parameter 4
-c:\ntds\ntds2\ntds2\ntds2.c(185): warning C4047: 'function' : 'JET_GRBIT' differs in levels of indirection from 'void *'
-c:\ntds\ntds2\ntds2\ntds2.c(185): warning C4024: 'JetMove' : different types for formal and actual parameter 4
-c:\ntds\ntds2\ntds2\ntds2.c(160): warning C4101: 'lmHash' : unreferenced local variable
-c:\ntds\ntds2\ntds2\ntds2.c(161): warning C4101: 'lmHistory' : unreferenced local variable
-c:\ntds\ntds2\ntds2\ntds2.c(162): warning C4101: 'logonCount' : unreferenced local variable
-c:\ntds\ntds2\ntds2\ntds2.c(163): warning C4101: 'ntHash' : unreferenced local variable
-c:\ntds\ntds2\ntds2\ntds2.c(158): warning C4101: 'encryptionKey' : unreferenced local variable
-c:\ntds\ntds2\ntds2\ntds2.c(164): warning C4101: 'ntHistory' : unreferenced local variable
-c:\ntds\ntds2\ntds2\ntds2.c(159): warning C4101: 'lastLogon' : unreferenced local variable
-c:\ntds\ntds2\ntds2\ntds2.c(157): warning C4101: 'accountExpiry' : unreferenced local variable
-c:\ntds\ntds2\ntds2\ntds2.c(214): warning C4996: '_tcsncat': This function or variable may be unsafe. Consider using _tcsncat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\ntds\ntds2\ntds2\ntds2.c(171): warning C4047: 'function' : 'unsigned long *' differs in levels of indirection from 'unsigned long'
+c:\ntds\ntds2\ntds2\ntds2.c(171): warning C4024: 'JetRetrieveColumn' : different types for formal and actual parameter 6
+c:\ntds\ntds2\ntds2\ntds2.c(174): warning C4047: 'function' : 'JET_GRBIT' differs in levels of indirection from 'void *'
+c:\ntds\ntds2\ntds2\ntds2.c(174): warning C4024: 'JetMove' : different types for formal and actual parameter 4
+c:\ntds\ntds2\ntds2\ntds2.c(197): warning C4047: 'function' : 'char *' differs in levels of indirection from 'char (*)[255]'
+c:\ntds\ntds2\ntds2\ntds2.c(197): warning C4024: 'strcpy' : different types for formal and actual parameter 1
+c:\ntds\ntds2\ntds2\ntds2.c(197): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(112) : see declaration of 'strcpy'
+c:\ntds\ntds2\ntds2\ntds2.c(199): warning C4047: 'function' : 'JET_GRBIT' differs in levels of indirection from 'void *'
+c:\ntds\ntds2\ntds2\ntds2.c(199): warning C4024: 'JetMove' : different types for formal and actual parameter 4
+c:\ntds\ntds2\ntds2\ntds2.c(163): warning C4101: 'lmHash' : unreferenced local variable
+c:\ntds\ntds2\ntds2\ntds2.c(164): warning C4101: 'lmHistory' : unreferenced local variable
+c:\ntds\ntds2\ntds2\ntds2.c(165): warning C4101: 'logonCount' : unreferenced local variable
+c:\ntds\ntds2\ntds2\ntds2.c(166): warning C4101: 'ntHash' : unreferenced local variable
+c:\ntds\ntds2\ntds2\ntds2.c(161): warning C4101: 'encryptionKey' : unreferenced local variable
+c:\ntds\ntds2\ntds2\ntds2.c(167): warning C4101: 'ntHistory' : unreferenced local variable
+c:\ntds\ntds2\ntds2\ntds2.c(160): warning C4101: 'expiryTime' : unreferenced local variable
+c:\ntds\ntds2\ntds2\ntds2.c(162): warning C4101: 'lastLogon' : unreferenced local variable
+c:\ntds\ntds2\ntds2\ntds2.c(228): warning C4996: '_tcsncat': This function or variable may be unsafe. Consider using _tcsncat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
           c:\program files (x86)\microsoft visual studio 12.0\vc\include\tchar.h(1553) : see declaration of '_tcsncat'
-c:\ntds\ntds2\ntds2\ntds2.c(191): warning C4715: 'read_table' : not all control paths return a value
+c:\ntds\ntds2\ntds2\ntds2.c(205): warning C4715: 'read_table' : not all control paths return a value
 Link:
   C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\ntds\ntds2\Debug\ntds2.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\ntds\ntds2\Debug\ntds2.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\ntds\ntds2\Debug\ntds2.lib" /MACHINE:X86 Debug\ntds2.obj
   Debug\stdafx.obj
@@ -32,4 +36,4 @@ Done Building Project "C:\ntds\ntds2\ntds2\ntds2.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.64
+Time Elapsed 00:00:01.19

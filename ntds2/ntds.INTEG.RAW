@@ -6726,3 +6726,3123 @@ Integrity check successful.
 
 ***** Eseutil completed in 0 seconds
 
+***** Repair of database 'c:\ntds\ntds.dit' started [ESENT version 06.01.7601.0000, (RETAIL RTM MBCS)]
+
+search for 'ERROR:' to find errors
+search for 'WARNING:' to find warnings
+trying for 110660 buffers
+checking database header
+database file "c:\ntds\ntds.dit" is 16793600 bytes
+Creating 4 threads
+checking SystemRoot
+SystemRoot (OE)
+SystemRoot (AE)
+checking system tables
+MSysObjects 
+MSysObjectsShadow 
+MSysObjects Name
+MSysObjects RootObjects
+rebuilding and comparing indexes
+checking logical consistency of system tables
+MSysObjects
+MSysObjectsShadow
+WARNING: Repair is not allowed on this database due to its specific content
+datatable:	4048:	checking table "datatable" (8)
+datatable:	4048:	checking long value tree (91)
+datatable:	4048:	checking data
+datatable:	4048:	checking index "INDEX_00090092" (90)
+datatable:	4048:	checking index "NC_Acc_Type_Sid" (89)
+datatable:	4048:	checking index "INDEX_00090002" (88)
+datatable:	4048:	checking index "deltime_index" (87)
+datatable:	4048:	checking index "DRA_USN_CREATED_index" (86)
+datatable:	4048:	checking index "Ancestors_index" (85)
+datatable:	4048:	checking index "PDNT_index" (84)
+datatable:	4048:	checking index "NC_Acc_Type_Name" (83)
+datatable:	4048:	checking index "nc_guid_Index" (82)
+datatable:	4048:	checking index "clean_index" (81)
+datatable:	4048:	checking index "DRA_USN_index" (80)
+datatable:	4048:	checking index "DRA_USN_CRITICAL_index" (79)
+datatable:	4048:	checking index "LCL_ABVIEW_index00000409" (78)
+datatable:	4048:	checking index "INDEX_00000004" (77)
+datatable:	4048:	checking index "INDEX_0000002A" (76)
+datatable:	4048:	checking index "INDEX_0002000D" (75)
+datatable:	4048:	checking index "INDEX_00020030" (74)
+datatable:	4048:	checking index "INDEX_00020073" (73)
+datatable:	4048:	checking index "INDEX_00020078" (72)
+datatable:	4048:	checking index "INDEX_000200D2" (71)
+datatable:	4048:	checking index "INDEX_000201CC" (70)
+datatable:	4048:	checking index "INDEX_00090001" (69)
+datatable:	4048:	checking index "INDEX_00090008" (68)
+datatable:	4048:	checking index "INDEX_0009001C" (67)
+datatable:	4048:	checking index "INDEX_00090057" (66)
+datatable:	4048:	checking index "INDEX_00090062" (65)
+datatable:	4048:	checking index "INDEX_00090085" (64)
+datatable:	4048:	checking index "INDEX_000900DD" (63)
+datatable:	4048:	checking index "INDEX_0009012E" (62)
+datatable:	4048:	checking index "INDEX_00090171" (61)
+datatable:	4048:	checking index "INDEX_000901FF" (60)
+datatable:	4048:	checking index "INDEX_00090261" (59)
+datatable:	4048:	checking index "INDEX_0009028F" (58)
+datatable:	4048:	checking index "INDEX_00090290" (57)
+datatable:	4048:	checking index "INDEX_000902EE" (56)
+datatable:	4048:	checking index "INDEX_00090303" (55)
+datatable:	4048:	checking index "INDEX_0009030E" (54)
+datatable:	4048:	checking index "INDEX_00090363" (53)
+datatable:	4048:	checking index "INDEX_000904E1" (52)
+datatable:	4048:	checking index "INDEX_00090582" (51)
+datatable:	4048:	checking index "INDEX_000906B6" (50)
+datatable:	4048:	checking index "INDEX_000901FD" (49)
+datatable:	4048:	checking index "INDEX_000901F6" (48)
+datatable:	4048:	checking index "INDEX_000201D5" (47)
+datatable:	4048:	checking index "INDEX_000903B4" (46)
+datatable:	4048:	checking index "INDEX_000905A3" (45)
+datatable:	4048:	checking index "INDEX_000905A2" (44)
+datatable:	4048:	checking index "INDEX_0009039D" (43)
+datatable:	4048:	checking index "INDEX_0009039A" (42)
+datatable:	4048:	checking index "INDEX_00090395" (41)
+datatable:	4048:	checking index "INDEX_00090587" (40)
+datatable:	4048:	checking index "INDEX_00090586" (39)
+datatable:	4048:	checking index "INDEX_00090573" (38)
+datatable:	4048:	checking index "INDEX_00090571" (37)
+datatable:	4048:	checking index "INDEX_0009056C" (36)
+datatable:	4048:	checking index "INDEX_00090167" (35)
+datatable:	4048:	checking index "INDEX_00090553" (34)
+datatable:	4048:	checking index "INDEX_0009014E" (33)
+datatable:	4048:	checking index "INDEX_0009014D" (32)
+datatable:	4048:	checking index "INDEX_0009014C" (31)
+datatable:	4048:	checking index "INDEX_00090147" (30)
+datatable:	4048:	checking index "INDEX_00090141" (29)
+datatable:	4048:	checking index "INDEX_00090140" (28)
+datatable:	4048:	checking index "INDEX_0009013A" (27)
+datatable:	4048:	checking index "INDEX_00090138" (26)
+datatable:	4048:	checking index "INDEX_00090330" (25)
+datatable:	4048:	checking index "INDEX_000900DE" (24)
+datatable:	4048:	checking index "INDEX_000902BB" (23)
+datatable:	4048:	checking index "INDEX_000200A9" (22)
+datatable:	4048:	checking index "INDEX_00090098" (21)
+datatable:	4048:	checking index "INDEX_00090089" (20)
+datatable:	4048:	checking index "INDEX_00090073" (19)
+datatable:	4048:	checking index "INDEX_00090656" (18)
+datatable:	4048:	checking index "INDEX_00090030" (17)
+datatable:	4048:	checking index "INDEX_00020013" (16)
+datatable:	4048:	checking index "INDEX_00090013" (15)
+datatable:	4048:	checking index "INDEX_00000013" (14)
+datatable:	4048:	checking index "INDEX_0000000B" (13)
+datatable:	4048:	checking index "INDEX_00000007" (12)
+datatable:	4048:	checking index "INDEX_00000003" (11)
+datatable:	4048:	checking index "INDEX_00150003" (10)
+datatable:	4048:	checking index "INDEX_00090202" (9)
+datatable:	4048:	checking LV refcounts
+datatable:	4048:	rebuilding and comparing indexes
+datatable:	4048:	integrity-check of table "datatable" (8) finishes with error 0 (0x0) after 0 seconds
+hiddentable:	4048:	checking table "hiddentable" (92)
+hiddentable:	4048:	checking data
+hiddentable:	4048:	integrity-check of table "hiddentable" (92) finishes with error 0 (0x0) after 0 seconds
+link_table:	4048:	checking table "link_table" (93)
+link_table:	4048:	checking data
+link_table:	4048:	checking index "backlink_index" (100)
+link_table:	4048:	checking index "link_present_index" (99)
+link_table:	4048:	checking index "backlink_present_index" (98)
+link_table:	4048:	checking index "link_del_index" (97)
+link_table:	4048:	checking index "link_DRA_USN_index" (96)
+link_table:	4048:	checking index "link_legacy_index" (95)
+link_table:	4048:	checking index "link_attr_USN_index" (94)
+link_table:	4048:	rebuilding and comparing indexes
+link_table:	4048:	integrity-check of table "link_table" (93) finishes with error 0 (0x0) after 0 seconds
+MSysUnicodeFixupVer2:	4048:	checking table "MSysUnicodeFixupVer2" (6)
+MSysUnicodeFixupVer2:	4048:	checking data
+MSysUnicodeFixupVer2:	4048:	checking index "secondary" (7)
+MSysUnicodeFixupVer2:	4048:	rebuilding and comparing indexes
+MSysUnicodeFixupVer2:	4048:	integrity-check of table "MSysUnicodeFixupVer2" (6) finishes with error 0 (0x0) after 0 seconds
+quota_rebuild_progress_table:	4048:	checking table "quota_rebuild_progress_table" (101)
+quota_rebuild_progress_table:	4048:	checking data
+quota_rebuild_progress_table:	4048:	integrity-check of table "quota_rebuild_progress_table" (101) finishes with error 0 (0x0) after 0 seconds
+quota_table:	4048:	checking table "quota_table" (102)
+quota_table:	4048:	checking data
+quota_table:	4048:	integrity-check of table "quota_table" (102) finishes with error 0 (0x0) after 0 seconds
+sdproptable:	4048:	checking table "sdproptable" (103)
+sdproptable:	4048:	checking data
+sdproptable:	4048:	checking index "trim_index" (105)
+sdproptable:	4048:	checking index "clientid_index" (104)
+sdproptable:	4048:	rebuilding and comparing indexes
+sdproptable:	4048:	integrity-check of table "sdproptable" (103) finishes with error 0 (0x0) after 0 seconds
+sd_table:	4048:	checking table "sd_table" (106)
+sd_table:	4048:	checking long value tree (108)
+sd_table:	4048:	checking data
+sd_table:	4048:	checking index "sd_hash_index" (107)
+sd_table:	4048:	checking LV refcounts
+sd_table:	4048:	rebuilding and comparing indexes
+sd_table:	4048:	integrity-check of table "sd_table" (106) finishes with error 0 (0x0) after 0 seconds
+WARNING: Database file is too big (expected 1792 pages, file is 2048 pages)
+checking unicode fixup table
+
+Integrity check successful.
+
+
+
+***** Eseutil completed in 0 seconds
+
+***** Repair of database 'c:\ntds\ntds.dit' started [ESENT version 06.01.7601.0000, (RETAIL RTM MBCS)]
+
+search for 'ERROR:' to find errors
+search for 'WARNING:' to find warnings
+trying for 110467 buffers
+checking database header
+database file "c:\ntds\ntds.dit" is 16793600 bytes
+Creating 4 threads
+checking SystemRoot
+SystemRoot (OE)
+SystemRoot (AE)
+checking system tables
+MSysObjects 
+MSysObjectsShadow 
+MSysObjects Name
+MSysObjects RootObjects
+rebuilding and comparing indexes
+checking logical consistency of system tables
+MSysObjects
+MSysObjectsShadow
+WARNING: Repair is not allowed on this database due to its specific content
+datatable:	1844:	checking table "datatable" (8)
+datatable:	1844:	checking long value tree (91)
+datatable:	1844:	checking data
+datatable:	1844:	checking index "INDEX_00090092" (90)
+datatable:	1844:	checking index "NC_Acc_Type_Sid" (89)
+datatable:	1844:	checking index "INDEX_00090002" (88)
+datatable:	1844:	checking index "deltime_index" (87)
+datatable:	1844:	checking index "DRA_USN_CREATED_index" (86)
+datatable:	1844:	checking index "Ancestors_index" (85)
+datatable:	1844:	checking index "PDNT_index" (84)
+datatable:	1844:	checking index "NC_Acc_Type_Name" (83)
+datatable:	1844:	checking index "nc_guid_Index" (82)
+datatable:	1844:	checking index "clean_index" (81)
+datatable:	1844:	checking index "DRA_USN_index" (80)
+datatable:	1844:	checking index "DRA_USN_CRITICAL_index" (79)
+datatable:	1844:	checking index "LCL_ABVIEW_index00000409" (78)
+datatable:	1844:	checking index "INDEX_00000004" (77)
+datatable:	1844:	checking index "INDEX_0000002A" (76)
+datatable:	1844:	checking index "INDEX_0002000D" (75)
+datatable:	1844:	checking index "INDEX_00020030" (74)
+datatable:	1844:	checking index "INDEX_00020073" (73)
+datatable:	1844:	checking index "INDEX_00020078" (72)
+datatable:	1844:	checking index "INDEX_000200D2" (71)
+datatable:	1844:	checking index "INDEX_000201CC" (70)
+datatable:	1844:	checking index "INDEX_00090001" (69)
+datatable:	1844:	checking index "INDEX_00090008" (68)
+datatable:	1844:	checking index "INDEX_0009001C" (67)
+datatable:	1844:	checking index "INDEX_00090057" (66)
+datatable:	1844:	checking index "INDEX_00090062" (65)
+datatable:	1844:	checking index "INDEX_00090085" (64)
+datatable:	1844:	checking index "INDEX_000900DD" (63)
+datatable:	1844:	checking index "INDEX_0009012E" (62)
+datatable:	1844:	checking index "INDEX_00090171" (61)
+datatable:	1844:	checking index "INDEX_000901FF" (60)
+datatable:	1844:	checking index "INDEX_00090261" (59)
+datatable:	1844:	checking index "INDEX_0009028F" (58)
+datatable:	1844:	checking index "INDEX_00090290" (57)
+datatable:	1844:	checking index "INDEX_000902EE" (56)
+datatable:	1844:	checking index "INDEX_00090303" (55)
+datatable:	1844:	checking index "INDEX_0009030E" (54)
+datatable:	1844:	checking index "INDEX_00090363" (53)
+datatable:	1844:	checking index "INDEX_000904E1" (52)
+datatable:	1844:	checking index "INDEX_00090582" (51)
+datatable:	1844:	checking index "INDEX_000906B6" (50)
+datatable:	1844:	checking index "INDEX_000901FD" (49)
+datatable:	1844:	checking index "INDEX_000901F6" (48)
+datatable:	1844:	checking index "INDEX_000201D5" (47)
+datatable:	1844:	checking index "INDEX_000903B4" (46)
+datatable:	1844:	checking index "INDEX_000905A3" (45)
+datatable:	1844:	checking index "INDEX_000905A2" (44)
+datatable:	1844:	checking index "INDEX_0009039D" (43)
+datatable:	1844:	checking index "INDEX_0009039A" (42)
+datatable:	1844:	checking index "INDEX_00090395" (41)
+datatable:	1844:	checking index "INDEX_00090587" (40)
+datatable:	1844:	checking index "INDEX_00090586" (39)
+datatable:	1844:	checking index "INDEX_00090573" (38)
+datatable:	1844:	checking index "INDEX_00090571" (37)
+datatable:	1844:	checking index "INDEX_0009056C" (36)
+datatable:	1844:	checking index "INDEX_00090167" (35)
+datatable:	1844:	checking index "INDEX_00090553" (34)
+datatable:	1844:	checking index "INDEX_0009014E" (33)
+datatable:	1844:	checking index "INDEX_0009014D" (32)
+datatable:	1844:	checking index "INDEX_0009014C" (31)
+datatable:	1844:	checking index "INDEX_00090147" (30)
+datatable:	1844:	checking index "INDEX_00090141" (29)
+datatable:	1844:	checking index "INDEX_00090140" (28)
+datatable:	1844:	checking index "INDEX_0009013A" (27)
+datatable:	1844:	checking index "INDEX_00090138" (26)
+datatable:	1844:	checking index "INDEX_00090330" (25)
+datatable:	1844:	checking index "INDEX_000900DE" (24)
+datatable:	1844:	checking index "INDEX_000902BB" (23)
+datatable:	1844:	checking index "INDEX_000200A9" (22)
+datatable:	1844:	checking index "INDEX_00090098" (21)
+datatable:	1844:	checking index "INDEX_00090089" (20)
+datatable:	1844:	checking index "INDEX_00090073" (19)
+datatable:	1844:	checking index "INDEX_00090656" (18)
+datatable:	1844:	checking index "INDEX_00090030" (17)
+datatable:	1844:	checking index "INDEX_00020013" (16)
+datatable:	1844:	checking index "INDEX_00090013" (15)
+datatable:	1844:	checking index "INDEX_00000013" (14)
+datatable:	1844:	checking index "INDEX_0000000B" (13)
+datatable:	1844:	checking index "INDEX_00000007" (12)
+datatable:	1844:	checking index "INDEX_00000003" (11)
+datatable:	1844:	checking index "INDEX_00150003" (10)
+datatable:	1844:	checking index "INDEX_00090202" (9)
+datatable:	1844:	checking LV refcounts
+datatable:	1844:	rebuilding and comparing indexes
+datatable:	1844:	integrity-check of table "datatable" (8) finishes with error 0 (0x0) after 0 seconds
+hiddentable:	1844:	checking table "hiddentable" (92)
+hiddentable:	1844:	checking data
+hiddentable:	1844:	integrity-check of table "hiddentable" (92) finishes with error 0 (0x0) after 0 seconds
+link_table:	1844:	checking table "link_table" (93)
+link_table:	1844:	checking data
+link_table:	1844:	checking index "backlink_index" (100)
+link_table:	1844:	checking index "link_present_index" (99)
+link_table:	1844:	checking index "backlink_present_index" (98)
+link_table:	1844:	checking index "link_del_index" (97)
+link_table:	1844:	checking index "link_DRA_USN_index" (96)
+link_table:	1844:	checking index "link_legacy_index" (95)
+link_table:	1844:	checking index "link_attr_USN_index" (94)
+link_table:	1844:	rebuilding and comparing indexes
+link_table:	1844:	integrity-check of table "link_table" (93) finishes with error 0 (0x0) after 0 seconds
+MSysUnicodeFixupVer2:	1844:	checking table "MSysUnicodeFixupVer2" (6)
+MSysUnicodeFixupVer2:	1844:	checking data
+MSysUnicodeFixupVer2:	1844:	checking index "secondary" (7)
+MSysUnicodeFixupVer2:	1844:	rebuilding and comparing indexes
+MSysUnicodeFixupVer2:	1844:	integrity-check of table "MSysUnicodeFixupVer2" (6) finishes with error 0 (0x0) after 0 seconds
+quota_rebuild_progress_table:	1844:	checking table "quota_rebuild_progress_table" (101)
+quota_rebuild_progress_table:	1844:	checking data
+quota_rebuild_progress_table:	1844:	integrity-check of table "quota_rebuild_progress_table" (101) finishes with error 0 (0x0) after 0 seconds
+quota_table:	1844:	checking table "quota_table" (102)
+quota_table:	1844:	checking data
+quota_table:	1844:	integrity-check of table "quota_table" (102) finishes with error 0 (0x0) after 0 seconds
+sdproptable:	1844:	checking table "sdproptable" (103)
+sdproptable:	1844:	checking data
+sdproptable:	1844:	checking index "trim_index" (105)
+sdproptable:	1844:	checking index "clientid_index" (104)
+sdproptable:	1844:	rebuilding and comparing indexes
+sdproptable:	1844:	integrity-check of table "sdproptable" (103) finishes with error 0 (0x0) after 0 seconds
+sd_table:	1844:	checking table "sd_table" (106)
+sd_table:	1844:	checking long value tree (108)
+sd_table:	1844:	checking data
+sd_table:	1844:	checking index "sd_hash_index" (107)
+sd_table:	1844:	checking LV refcounts
+sd_table:	1844:	rebuilding and comparing indexes
+sd_table:	1844:	integrity-check of table "sd_table" (106) finishes with error 0 (0x0) after 0 seconds
+WARNING: Database file is too big (expected 1792 pages, file is 2048 pages)
+checking unicode fixup table
+
+Integrity check successful.
+
+
+
+***** Eseutil completed in 0 seconds
+
+***** Repair of database 'c:\ntds\ntds.dit' started [ESENT version 06.01.7601.0000, (RETAIL RTM MBCS)]
+
+search for 'ERROR:' to find errors
+search for 'WARNING:' to find warnings
+trying for 110313 buffers
+checking database header
+database file "c:\ntds\ntds.dit" is 16793600 bytes
+Creating 4 threads
+checking SystemRoot
+SystemRoot (OE)
+SystemRoot (AE)
+checking system tables
+MSysObjects 
+MSysObjectsShadow 
+MSysObjects Name
+MSysObjects RootObjects
+rebuilding and comparing indexes
+checking logical consistency of system tables
+MSysObjects
+MSysObjectsShadow
+WARNING: Repair is not allowed on this database due to its specific content
+datatable:	1276:	checking table "datatable" (8)
+datatable:	1276:	checking long value tree (91)
+datatable:	1276:	checking data
+datatable:	1276:	checking index "INDEX_00090092" (90)
+datatable:	1276:	checking index "NC_Acc_Type_Sid" (89)
+datatable:	1276:	checking index "INDEX_00090002" (88)
+datatable:	1276:	checking index "deltime_index" (87)
+datatable:	1276:	checking index "DRA_USN_CREATED_index" (86)
+datatable:	1276:	checking index "Ancestors_index" (85)
+datatable:	1276:	checking index "PDNT_index" (84)
+datatable:	1276:	checking index "NC_Acc_Type_Name" (83)
+datatable:	1276:	checking index "nc_guid_Index" (82)
+datatable:	1276:	checking index "clean_index" (81)
+datatable:	1276:	checking index "DRA_USN_index" (80)
+datatable:	1276:	checking index "DRA_USN_CRITICAL_index" (79)
+datatable:	1276:	checking index "LCL_ABVIEW_index00000409" (78)
+datatable:	1276:	checking index "INDEX_00000004" (77)
+datatable:	1276:	checking index "INDEX_0000002A" (76)
+datatable:	1276:	checking index "INDEX_0002000D" (75)
+datatable:	1276:	checking index "INDEX_00020030" (74)
+datatable:	1276:	checking index "INDEX_00020073" (73)
+datatable:	1276:	checking index "INDEX_00020078" (72)
+datatable:	1276:	checking index "INDEX_000200D2" (71)
+datatable:	1276:	checking index "INDEX_000201CC" (70)
+datatable:	1276:	checking index "INDEX_00090001" (69)
+datatable:	1276:	checking index "INDEX_00090008" (68)
+datatable:	1276:	checking index "INDEX_0009001C" (67)
+datatable:	1276:	checking index "INDEX_00090057" (66)
+datatable:	1276:	checking index "INDEX_00090062" (65)
+datatable:	1276:	checking index "INDEX_00090085" (64)
+datatable:	1276:	checking index "INDEX_000900DD" (63)
+datatable:	1276:	checking index "INDEX_0009012E" (62)
+datatable:	1276:	checking index "INDEX_00090171" (61)
+datatable:	1276:	checking index "INDEX_000901FF" (60)
+datatable:	1276:	checking index "INDEX_00090261" (59)
+datatable:	1276:	checking index "INDEX_0009028F" (58)
+datatable:	1276:	checking index "INDEX_00090290" (57)
+datatable:	1276:	checking index "INDEX_000902EE" (56)
+datatable:	1276:	checking index "INDEX_00090303" (55)
+datatable:	1276:	checking index "INDEX_0009030E" (54)
+datatable:	1276:	checking index "INDEX_00090363" (53)
+datatable:	1276:	checking index "INDEX_000904E1" (52)
+datatable:	1276:	checking index "INDEX_00090582" (51)
+datatable:	1276:	checking index "INDEX_000906B6" (50)
+datatable:	1276:	checking index "INDEX_000901FD" (49)
+datatable:	1276:	checking index "INDEX_000901F6" (48)
+datatable:	1276:	checking index "INDEX_000201D5" (47)
+datatable:	1276:	checking index "INDEX_000903B4" (46)
+datatable:	1276:	checking index "INDEX_000905A3" (45)
+datatable:	1276:	checking index "INDEX_000905A2" (44)
+datatable:	1276:	checking index "INDEX_0009039D" (43)
+datatable:	1276:	checking index "INDEX_0009039A" (42)
+datatable:	1276:	checking index "INDEX_00090395" (41)
+datatable:	1276:	checking index "INDEX_00090587" (40)
+datatable:	1276:	checking index "INDEX_00090586" (39)
+datatable:	1276:	checking index "INDEX_00090573" (38)
+datatable:	1276:	checking index "INDEX_00090571" (37)
+datatable:	1276:	checking index "INDEX_0009056C" (36)
+datatable:	1276:	checking index "INDEX_00090167" (35)
+datatable:	1276:	checking index "INDEX_00090553" (34)
+datatable:	1276:	checking index "INDEX_0009014E" (33)
+datatable:	1276:	checking index "INDEX_0009014D" (32)
+datatable:	1276:	checking index "INDEX_0009014C" (31)
+datatable:	1276:	checking index "INDEX_00090147" (30)
+datatable:	1276:	checking index "INDEX_00090141" (29)
+datatable:	1276:	checking index "INDEX_00090140" (28)
+datatable:	1276:	checking index "INDEX_0009013A" (27)
+datatable:	1276:	checking index "INDEX_00090138" (26)
+datatable:	1276:	checking index "INDEX_00090330" (25)
+datatable:	1276:	checking index "INDEX_000900DE" (24)
+datatable:	1276:	checking index "INDEX_000902BB" (23)
+datatable:	1276:	checking index "INDEX_000200A9" (22)
+datatable:	1276:	checking index "INDEX_00090098" (21)
+datatable:	1276:	checking index "INDEX_00090089" (20)
+datatable:	1276:	checking index "INDEX_00090073" (19)
+datatable:	1276:	checking index "INDEX_00090656" (18)
+datatable:	1276:	checking index "INDEX_00090030" (17)
+datatable:	1276:	checking index "INDEX_00020013" (16)
+datatable:	1276:	checking index "INDEX_00090013" (15)
+datatable:	1276:	checking index "INDEX_00000013" (14)
+datatable:	1276:	checking index "INDEX_0000000B" (13)
+datatable:	1276:	checking index "INDEX_00000007" (12)
+datatable:	1276:	checking index "INDEX_00000003" (11)
+datatable:	1276:	checking index "INDEX_00150003" (10)
+datatable:	1276:	checking index "INDEX_00090202" (9)
+datatable:	1276:	checking LV refcounts
+datatable:	1276:	rebuilding and comparing indexes
+datatable:	1276:	integrity-check of table "datatable" (8) finishes with error 0 (0x0) after 0 seconds
+hiddentable:	1276:	checking table "hiddentable" (92)
+hiddentable:	1276:	checking data
+hiddentable:	1276:	integrity-check of table "hiddentable" (92) finishes with error 0 (0x0) after 0 seconds
+link_table:	1276:	checking table "link_table" (93)
+link_table:	1276:	checking data
+link_table:	1276:	checking index "backlink_index" (100)
+link_table:	1276:	checking index "link_present_index" (99)
+link_table:	1276:	checking index "backlink_present_index" (98)
+link_table:	1276:	checking index "link_del_index" (97)
+link_table:	1276:	checking index "link_DRA_USN_index" (96)
+link_table:	1276:	checking index "link_legacy_index" (95)
+link_table:	1276:	checking index "link_attr_USN_index" (94)
+link_table:	1276:	rebuilding and comparing indexes
+link_table:	1276:	integrity-check of table "link_table" (93) finishes with error 0 (0x0) after 0 seconds
+MSysUnicodeFixupVer2:	1276:	checking table "MSysUnicodeFixupVer2" (6)
+MSysUnicodeFixupVer2:	1276:	checking data
+MSysUnicodeFixupVer2:	1276:	checking index "secondary" (7)
+MSysUnicodeFixupVer2:	1276:	rebuilding and comparing indexes
+MSysUnicodeFixupVer2:	1276:	integrity-check of table "MSysUnicodeFixupVer2" (6) finishes with error 0 (0x0) after 0 seconds
+quota_rebuild_progress_table:	1276:	checking table "quota_rebuild_progress_table" (101)
+quota_rebuild_progress_table:	1276:	checking data
+quota_rebuild_progress_table:	1276:	integrity-check of table "quota_rebuild_progress_table" (101) finishes with error 0 (0x0) after 0 seconds
+quota_table:	1276:	checking table "quota_table" (102)
+quota_table:	1276:	checking data
+quota_table:	1276:	integrity-check of table "quota_table" (102) finishes with error 0 (0x0) after 0 seconds
+sdproptable:	1276:	checking table "sdproptable" (103)
+sdproptable:	1276:	checking data
+sdproptable:	1276:	checking index "trim_index" (105)
+sdproptable:	1276:	checking index "clientid_index" (104)
+sdproptable:	1276:	rebuilding and comparing indexes
+sdproptable:	1276:	integrity-check of table "sdproptable" (103) finishes with error 0 (0x0) after 0 seconds
+sd_table:	1276:	checking table "sd_table" (106)
+sd_table:	1276:	checking long value tree (108)
+sd_table:	1276:	checking data
+sd_table:	1276:	checking index "sd_hash_index" (107)
+sd_table:	1276:	checking LV refcounts
+sd_table:	1276:	rebuilding and comparing indexes
+sd_table:	1276:	integrity-check of table "sd_table" (106) finishes with error 0 (0x0) after 0 seconds
+WARNING: Database file is too big (expected 1792 pages, file is 2048 pages)
+checking unicode fixup table
+
+Integrity check successful.
+
+
+
+***** Eseutil completed in 0 seconds
+
+***** Repair of database 'c:\ntds\ntds.dit' started [ESENT version 06.01.7601.0000, (RETAIL RTM MBCS)]
+
+search for 'ERROR:' to find errors
+search for 'WARNING:' to find warnings
+trying for 110103 buffers
+checking database header
+database file "c:\ntds\ntds.dit" is 16793600 bytes
+Creating 4 threads
+checking SystemRoot
+SystemRoot (OE)
+SystemRoot (AE)
+checking system tables
+MSysObjects 
+MSysObjectsShadow 
+MSysObjects Name
+MSysObjects RootObjects
+rebuilding and comparing indexes
+checking logical consistency of system tables
+MSysObjects
+MSysObjectsShadow
+WARNING: Repair is not allowed on this database due to its specific content
+datatable:	2608:	checking table "datatable" (8)
+datatable:	2608:	checking long value tree (91)
+datatable:	2608:	checking data
+datatable:	2608:	checking index "INDEX_00090092" (90)
+datatable:	2608:	checking index "NC_Acc_Type_Sid" (89)
+datatable:	2608:	checking index "INDEX_00090002" (88)
+datatable:	2608:	checking index "deltime_index" (87)
+datatable:	2608:	checking index "DRA_USN_CREATED_index" (86)
+datatable:	2608:	checking index "Ancestors_index" (85)
+datatable:	2608:	checking index "PDNT_index" (84)
+datatable:	2608:	checking index "NC_Acc_Type_Name" (83)
+datatable:	2608:	checking index "nc_guid_Index" (82)
+datatable:	2608:	checking index "clean_index" (81)
+datatable:	2608:	checking index "DRA_USN_index" (80)
+datatable:	2608:	checking index "DRA_USN_CRITICAL_index" (79)
+datatable:	2608:	checking index "LCL_ABVIEW_index00000409" (78)
+datatable:	2608:	checking index "INDEX_00000004" (77)
+datatable:	2608:	checking index "INDEX_0000002A" (76)
+datatable:	2608:	checking index "INDEX_0002000D" (75)
+datatable:	2608:	checking index "INDEX_00020030" (74)
+datatable:	2608:	checking index "INDEX_00020073" (73)
+datatable:	2608:	checking index "INDEX_00020078" (72)
+datatable:	2608:	checking index "INDEX_000200D2" (71)
+datatable:	2608:	checking index "INDEX_000201CC" (70)
+datatable:	2608:	checking index "INDEX_00090001" (69)
+datatable:	2608:	checking index "INDEX_00090008" (68)
+datatable:	2608:	checking index "INDEX_0009001C" (67)
+datatable:	2608:	checking index "INDEX_00090057" (66)
+datatable:	2608:	checking index "INDEX_00090062" (65)
+datatable:	2608:	checking index "INDEX_00090085" (64)
+datatable:	2608:	checking index "INDEX_000900DD" (63)
+datatable:	2608:	checking index "INDEX_0009012E" (62)
+datatable:	2608:	checking index "INDEX_00090171" (61)
+datatable:	2608:	checking index "INDEX_000901FF" (60)
+datatable:	2608:	checking index "INDEX_00090261" (59)
+datatable:	2608:	checking index "INDEX_0009028F" (58)
+datatable:	2608:	checking index "INDEX_00090290" (57)
+datatable:	2608:	checking index "INDEX_000902EE" (56)
+datatable:	2608:	checking index "INDEX_00090303" (55)
+datatable:	2608:	checking index "INDEX_0009030E" (54)
+datatable:	2608:	checking index "INDEX_00090363" (53)
+datatable:	2608:	checking index "INDEX_000904E1" (52)
+datatable:	2608:	checking index "INDEX_00090582" (51)
+datatable:	2608:	checking index "INDEX_000906B6" (50)
+datatable:	2608:	checking index "INDEX_000901FD" (49)
+datatable:	2608:	checking index "INDEX_000901F6" (48)
+datatable:	2608:	checking index "INDEX_000201D5" (47)
+datatable:	2608:	checking index "INDEX_000903B4" (46)
+datatable:	2608:	checking index "INDEX_000905A3" (45)
+datatable:	2608:	checking index "INDEX_000905A2" (44)
+datatable:	2608:	checking index "INDEX_0009039D" (43)
+datatable:	2608:	checking index "INDEX_0009039A" (42)
+datatable:	2608:	checking index "INDEX_00090395" (41)
+datatable:	2608:	checking index "INDEX_00090587" (40)
+datatable:	2608:	checking index "INDEX_00090586" (39)
+datatable:	2608:	checking index "INDEX_00090573" (38)
+datatable:	2608:	checking index "INDEX_00090571" (37)
+datatable:	2608:	checking index "INDEX_0009056C" (36)
+datatable:	2608:	checking index "INDEX_00090167" (35)
+datatable:	2608:	checking index "INDEX_00090553" (34)
+datatable:	2608:	checking index "INDEX_0009014E" (33)
+datatable:	2608:	checking index "INDEX_0009014D" (32)
+datatable:	2608:	checking index "INDEX_0009014C" (31)
+datatable:	2608:	checking index "INDEX_00090147" (30)
+datatable:	2608:	checking index "INDEX_00090141" (29)
+datatable:	2608:	checking index "INDEX_00090140" (28)
+datatable:	2608:	checking index "INDEX_0009013A" (27)
+datatable:	2608:	checking index "INDEX_00090138" (26)
+datatable:	2608:	checking index "INDEX_00090330" (25)
+datatable:	2608:	checking index "INDEX_000900DE" (24)
+datatable:	2608:	checking index "INDEX_000902BB" (23)
+datatable:	2608:	checking index "INDEX_000200A9" (22)
+datatable:	2608:	checking index "INDEX_00090098" (21)
+datatable:	2608:	checking index "INDEX_00090089" (20)
+datatable:	2608:	checking index "INDEX_00090073" (19)
+datatable:	2608:	checking index "INDEX_00090656" (18)
+datatable:	2608:	checking index "INDEX_00090030" (17)
+datatable:	2608:	checking index "INDEX_00020013" (16)
+datatable:	2608:	checking index "INDEX_00090013" (15)
+datatable:	2608:	checking index "INDEX_00000013" (14)
+datatable:	2608:	checking index "INDEX_0000000B" (13)
+datatable:	2608:	checking index "INDEX_00000007" (12)
+datatable:	2608:	checking index "INDEX_00000003" (11)
+datatable:	2608:	checking index "INDEX_00150003" (10)
+datatable:	2608:	checking index "INDEX_00090202" (9)
+datatable:	2608:	checking LV refcounts
+datatable:	2608:	rebuilding and comparing indexes
+datatable:	2608:	integrity-check of table "datatable" (8) finishes with error 0 (0x0) after 0 seconds
+hiddentable:	2608:	checking table "hiddentable" (92)
+hiddentable:	2608:	checking data
+hiddentable:	2608:	integrity-check of table "hiddentable" (92) finishes with error 0 (0x0) after 0 seconds
+link_table:	2608:	checking table "link_table" (93)
+link_table:	2608:	checking data
+link_table:	2608:	checking index "backlink_index" (100)
+link_table:	2608:	checking index "link_present_index" (99)
+link_table:	2608:	checking index "backlink_present_index" (98)
+link_table:	2608:	checking index "link_del_index" (97)
+link_table:	2608:	checking index "link_DRA_USN_index" (96)
+link_table:	2608:	checking index "link_legacy_index" (95)
+link_table:	2608:	checking index "link_attr_USN_index" (94)
+link_table:	2608:	rebuilding and comparing indexes
+link_table:	2608:	integrity-check of table "link_table" (93) finishes with error 0 (0x0) after 0 seconds
+MSysUnicodeFixupVer2:	2608:	checking table "MSysUnicodeFixupVer2" (6)
+MSysUnicodeFixupVer2:	2608:	checking data
+MSysUnicodeFixupVer2:	2608:	checking index "secondary" (7)
+MSysUnicodeFixupVer2:	2608:	rebuilding and comparing indexes
+MSysUnicodeFixupVer2:	2608:	integrity-check of table "MSysUnicodeFixupVer2" (6) finishes with error 0 (0x0) after 0 seconds
+quota_rebuild_progress_table:	2608:	checking table "quota_rebuild_progress_table" (101)
+quota_rebuild_progress_table:	2608:	checking data
+quota_rebuild_progress_table:	2608:	integrity-check of table "quota_rebuild_progress_table" (101) finishes with error 0 (0x0) after 0 seconds
+quota_table:	2608:	checking table "quota_table" (102)
+quota_table:	2608:	checking data
+quota_table:	2608:	integrity-check of table "quota_table" (102) finishes with error 0 (0x0) after 0 seconds
+sdproptable:	2608:	checking table "sdproptable" (103)
+sdproptable:	2608:	checking data
+sdproptable:	2608:	checking index "trim_index" (105)
+sdproptable:	2608:	checking index "clientid_index" (104)
+sdproptable:	2608:	rebuilding and comparing indexes
+sdproptable:	2608:	integrity-check of table "sdproptable" (103) finishes with error 0 (0x0) after 0 seconds
+sd_table:	2608:	checking table "sd_table" (106)
+sd_table:	2608:	checking long value tree (108)
+sd_table:	2608:	checking data
+sd_table:	2608:	checking index "sd_hash_index" (107)
+sd_table:	2608:	checking LV refcounts
+sd_table:	2608:	rebuilding and comparing indexes
+sd_table:	2608:	integrity-check of table "sd_table" (106) finishes with error 0 (0x0) after 0 seconds
+WARNING: Database file is too big (expected 1792 pages, file is 2048 pages)
+checking unicode fixup table
+
+Integrity check successful.
+
+
+
+***** Eseutil completed in 0 seconds
+
+***** Repair of database 'c:\ntds\ntds.dit' started [ESENT version 06.01.7601.0000, (RETAIL RTM MBCS)]
+
+search for 'ERROR:' to find errors
+search for 'WARNING:' to find warnings
+trying for 108978 buffers
+checking database header
+database file "c:\ntds\ntds.dit" is 16793600 bytes
+Creating 4 threads
+checking SystemRoot
+SystemRoot (OE)
+SystemRoot (AE)
+checking system tables
+MSysObjects 
+MSysObjectsShadow 
+MSysObjects Name
+MSysObjects RootObjects
+rebuilding and comparing indexes
+checking logical consistency of system tables
+MSysObjects
+MSysObjectsShadow
+WARNING: Repair is not allowed on this database due to its specific content
+datatable:	2740:	checking table "datatable" (8)
+datatable:	2740:	checking long value tree (91)
+datatable:	2740:	checking data
+datatable:	2740:	checking index "INDEX_00090092" (90)
+datatable:	2740:	checking index "NC_Acc_Type_Sid" (89)
+datatable:	2740:	checking index "INDEX_00090002" (88)
+datatable:	2740:	checking index "deltime_index" (87)
+datatable:	2740:	checking index "DRA_USN_CREATED_index" (86)
+datatable:	2740:	checking index "Ancestors_index" (85)
+datatable:	2740:	checking index "PDNT_index" (84)
+datatable:	2740:	checking index "NC_Acc_Type_Name" (83)
+datatable:	2740:	checking index "nc_guid_Index" (82)
+datatable:	2740:	checking index "clean_index" (81)
+datatable:	2740:	checking index "DRA_USN_index" (80)
+datatable:	2740:	checking index "DRA_USN_CRITICAL_index" (79)
+datatable:	2740:	checking index "LCL_ABVIEW_index00000409" (78)
+datatable:	2740:	checking index "INDEX_00000004" (77)
+datatable:	2740:	checking index "INDEX_0000002A" (76)
+datatable:	2740:	checking index "INDEX_0002000D" (75)
+datatable:	2740:	checking index "INDEX_00020030" (74)
+datatable:	2740:	checking index "INDEX_00020073" (73)
+datatable:	2740:	checking index "INDEX_00020078" (72)
+datatable:	2740:	checking index "INDEX_000200D2" (71)
+datatable:	2740:	checking index "INDEX_000201CC" (70)
+datatable:	2740:	checking index "INDEX_00090001" (69)
+datatable:	2740:	checking index "INDEX_00090008" (68)
+datatable:	2740:	checking index "INDEX_0009001C" (67)
+datatable:	2740:	checking index "INDEX_00090057" (66)
+datatable:	2740:	checking index "INDEX_00090062" (65)
+datatable:	2740:	checking index "INDEX_00090085" (64)
+datatable:	2740:	checking index "INDEX_000900DD" (63)
+datatable:	2740:	checking index "INDEX_0009012E" (62)
+datatable:	2740:	checking index "INDEX_00090171" (61)
+datatable:	2740:	checking index "INDEX_000901FF" (60)
+datatable:	2740:	checking index "INDEX_00090261" (59)
+datatable:	2740:	checking index "INDEX_0009028F" (58)
+datatable:	2740:	checking index "INDEX_00090290" (57)
+datatable:	2740:	checking index "INDEX_000902EE" (56)
+datatable:	2740:	checking index "INDEX_00090303" (55)
+datatable:	2740:	checking index "INDEX_0009030E" (54)
+datatable:	2740:	checking index "INDEX_00090363" (53)
+datatable:	2740:	checking index "INDEX_000904E1" (52)
+datatable:	2740:	checking index "INDEX_00090582" (51)
+datatable:	2740:	checking index "INDEX_000906B6" (50)
+datatable:	2740:	checking index "INDEX_000901FD" (49)
+datatable:	2740:	checking index "INDEX_000901F6" (48)
+datatable:	2740:	checking index "INDEX_000201D5" (47)
+datatable:	2740:	checking index "INDEX_000903B4" (46)
+datatable:	2740:	checking index "INDEX_000905A3" (45)
+datatable:	2740:	checking index "INDEX_000905A2" (44)
+datatable:	2740:	checking index "INDEX_0009039D" (43)
+datatable:	2740:	checking index "INDEX_0009039A" (42)
+datatable:	2740:	checking index "INDEX_00090395" (41)
+datatable:	2740:	checking index "INDEX_00090587" (40)
+datatable:	2740:	checking index "INDEX_00090586" (39)
+datatable:	2740:	checking index "INDEX_00090573" (38)
+datatable:	2740:	checking index "INDEX_00090571" (37)
+datatable:	2740:	checking index "INDEX_0009056C" (36)
+datatable:	2740:	checking index "INDEX_00090167" (35)
+datatable:	2740:	checking index "INDEX_00090553" (34)
+datatable:	2740:	checking index "INDEX_0009014E" (33)
+datatable:	2740:	checking index "INDEX_0009014D" (32)
+datatable:	2740:	checking index "INDEX_0009014C" (31)
+datatable:	2740:	checking index "INDEX_00090147" (30)
+datatable:	2740:	checking index "INDEX_00090141" (29)
+datatable:	2740:	checking index "INDEX_00090140" (28)
+datatable:	2740:	checking index "INDEX_0009013A" (27)
+datatable:	2740:	checking index "INDEX_00090138" (26)
+datatable:	2740:	checking index "INDEX_00090330" (25)
+datatable:	2740:	checking index "INDEX_000900DE" (24)
+datatable:	2740:	checking index "INDEX_000902BB" (23)
+datatable:	2740:	checking index "INDEX_000200A9" (22)
+datatable:	2740:	checking index "INDEX_00090098" (21)
+datatable:	2740:	checking index "INDEX_00090089" (20)
+datatable:	2740:	checking index "INDEX_00090073" (19)
+datatable:	2740:	checking index "INDEX_00090656" (18)
+datatable:	2740:	checking index "INDEX_00090030" (17)
+datatable:	2740:	checking index "INDEX_00020013" (16)
+datatable:	2740:	checking index "INDEX_00090013" (15)
+datatable:	2740:	checking index "INDEX_00000013" (14)
+datatable:	2740:	checking index "INDEX_0000000B" (13)
+datatable:	2740:	checking index "INDEX_00000007" (12)
+datatable:	2740:	checking index "INDEX_00000003" (11)
+datatable:	2740:	checking index "INDEX_00150003" (10)
+datatable:	2740:	checking index "INDEX_00090202" (9)
+datatable:	2740:	checking LV refcounts
+datatable:	2740:	rebuilding and comparing indexes
+datatable:	2740:	integrity-check of table "datatable" (8) finishes with error 0 (0x0) after 0 seconds
+hiddentable:	2740:	checking table "hiddentable" (92)
+hiddentable:	2740:	checking data
+hiddentable:	2740:	integrity-check of table "hiddentable" (92) finishes with error 0 (0x0) after 0 seconds
+link_table:	2740:	checking table "link_table" (93)
+link_table:	2740:	checking data
+link_table:	2740:	checking index "backlink_index" (100)
+link_table:	2740:	checking index "link_present_index" (99)
+link_table:	2740:	checking index "backlink_present_index" (98)
+link_table:	2740:	checking index "link_del_index" (97)
+link_table:	2740:	checking index "link_DRA_USN_index" (96)
+link_table:	2740:	checking index "link_legacy_index" (95)
+link_table:	2740:	checking index "link_attr_USN_index" (94)
+link_table:	2740:	rebuilding and comparing indexes
+link_table:	2740:	integrity-check of table "link_table" (93) finishes with error 0 (0x0) after 0 seconds
+MSysUnicodeFixupVer2:	2740:	checking table "MSysUnicodeFixupVer2" (6)
+MSysUnicodeFixupVer2:	2740:	checking data
+MSysUnicodeFixupVer2:	2740:	checking index "secondary" (7)
+MSysUnicodeFixupVer2:	2740:	rebuilding and comparing indexes
+MSysUnicodeFixupVer2:	2740:	integrity-check of table "MSysUnicodeFixupVer2" (6) finishes with error 0 (0x0) after 0 seconds
+quota_rebuild_progress_table:	2740:	checking table "quota_rebuild_progress_table" (101)
+quota_rebuild_progress_table:	2740:	checking data
+quota_rebuild_progress_table:	2740:	integrity-check of table "quota_rebuild_progress_table" (101) finishes with error 0 (0x0) after 0 seconds
+quota_table:	2740:	checking table "quota_table" (102)
+quota_table:	2740:	checking data
+quota_table:	2740:	integrity-check of table "quota_table" (102) finishes with error 0 (0x0) after 0 seconds
+sdproptable:	2740:	checking table "sdproptable" (103)
+sdproptable:	2740:	checking data
+sdproptable:	2740:	checking index "trim_index" (105)
+sdproptable:	2740:	checking index "clientid_index" (104)
+sdproptable:	2740:	rebuilding and comparing indexes
+sdproptable:	2740:	integrity-check of table "sdproptable" (103) finishes with error 0 (0x0) after 0 seconds
+sd_table:	2740:	checking table "sd_table" (106)
+sd_table:	2740:	checking long value tree (108)
+sd_table:	2740:	checking data
+sd_table:	2740:	checking index "sd_hash_index" (107)
+sd_table:	2740:	checking LV refcounts
+sd_table:	2740:	rebuilding and comparing indexes
+sd_table:	2740:	integrity-check of table "sd_table" (106) finishes with error 0 (0x0) after 0 seconds
+WARNING: Database file is too big (expected 1792 pages, file is 2048 pages)
+checking unicode fixup table
+
+Integrity check successful.
+
+
+
+***** Eseutil completed in 0 seconds
+
+***** Repair of database 'c:\ntds\ntds.dit' started [ESENT version 06.01.7601.0000, (RETAIL RTM MBCS)]
+
+search for 'ERROR:' to find errors
+search for 'WARNING:' to find warnings
+trying for 109777 buffers
+checking database header
+database file "c:\ntds\ntds.dit" is 16793600 bytes
+Creating 4 threads
+checking SystemRoot
+SystemRoot (OE)
+SystemRoot (AE)
+checking system tables
+MSysObjects 
+MSysObjectsShadow 
+MSysObjects Name
+MSysObjects RootObjects
+rebuilding and comparing indexes
+checking logical consistency of system tables
+MSysObjects
+MSysObjectsShadow
+WARNING: Repair is not allowed on this database due to its specific content
+datatable:	2864:	checking table "datatable" (8)
+datatable:	2864:	checking long value tree (91)
+datatable:	2864:	checking data
+datatable:	2864:	checking index "INDEX_00090092" (90)
+datatable:	2864:	checking index "NC_Acc_Type_Sid" (89)
+datatable:	2864:	checking index "INDEX_00090002" (88)
+datatable:	2864:	checking index "deltime_index" (87)
+datatable:	2864:	checking index "DRA_USN_CREATED_index" (86)
+datatable:	2864:	checking index "Ancestors_index" (85)
+datatable:	2864:	checking index "PDNT_index" (84)
+datatable:	2864:	checking index "NC_Acc_Type_Name" (83)
+datatable:	2864:	checking index "nc_guid_Index" (82)
+datatable:	2864:	checking index "clean_index" (81)
+datatable:	2864:	checking index "DRA_USN_index" (80)
+datatable:	2864:	checking index "DRA_USN_CRITICAL_index" (79)
+datatable:	2864:	checking index "LCL_ABVIEW_index00000409" (78)
+datatable:	2864:	checking index "INDEX_00000004" (77)
+datatable:	2864:	checking index "INDEX_0000002A" (76)
+datatable:	2864:	checking index "INDEX_0002000D" (75)
+datatable:	2864:	checking index "INDEX_00020030" (74)
+datatable:	2864:	checking index "INDEX_00020073" (73)
+datatable:	2864:	checking index "INDEX_00020078" (72)
+datatable:	2864:	checking index "INDEX_000200D2" (71)
+datatable:	2864:	checking index "INDEX_000201CC" (70)
+datatable:	2864:	checking index "INDEX_00090001" (69)
+datatable:	2864:	checking index "INDEX_00090008" (68)
+datatable:	2864:	checking index "INDEX_0009001C" (67)
+datatable:	2864:	checking index "INDEX_00090057" (66)
+datatable:	2864:	checking index "INDEX_00090062" (65)
+datatable:	2864:	checking index "INDEX_00090085" (64)
+datatable:	2864:	checking index "INDEX_000900DD" (63)
+datatable:	2864:	checking index "INDEX_0009012E" (62)
+datatable:	2864:	checking index "INDEX_00090171" (61)
+datatable:	2864:	checking index "INDEX_000901FF" (60)
+datatable:	2864:	checking index "INDEX_00090261" (59)
+datatable:	2864:	checking index "INDEX_0009028F" (58)
+datatable:	2864:	checking index "INDEX_00090290" (57)
+datatable:	2864:	checking index "INDEX_000902EE" (56)
+datatable:	2864:	checking index "INDEX_00090303" (55)
+datatable:	2864:	checking index "INDEX_0009030E" (54)
+datatable:	2864:	checking index "INDEX_00090363" (53)
+datatable:	2864:	checking index "INDEX_000904E1" (52)
+datatable:	2864:	checking index "INDEX_00090582" (51)
+datatable:	2864:	checking index "INDEX_000906B6" (50)
+datatable:	2864:	checking index "INDEX_000901FD" (49)
+datatable:	2864:	checking index "INDEX_000901F6" (48)
+datatable:	2864:	checking index "INDEX_000201D5" (47)
+datatable:	2864:	checking index "INDEX_000903B4" (46)
+datatable:	2864:	checking index "INDEX_000905A3" (45)
+datatable:	2864:	checking index "INDEX_000905A2" (44)
+datatable:	2864:	checking index "INDEX_0009039D" (43)
+datatable:	2864:	checking index "INDEX_0009039A" (42)
+datatable:	2864:	checking index "INDEX_00090395" (41)
+datatable:	2864:	checking index "INDEX_00090587" (40)
+datatable:	2864:	checking index "INDEX_00090586" (39)
+datatable:	2864:	checking index "INDEX_00090573" (38)
+datatable:	2864:	checking index "INDEX_00090571" (37)
+datatable:	2864:	checking index "INDEX_0009056C" (36)
+datatable:	2864:	checking index "INDEX_00090167" (35)
+datatable:	2864:	checking index "INDEX_00090553" (34)
+datatable:	2864:	checking index "INDEX_0009014E" (33)
+datatable:	2864:	checking index "INDEX_0009014D" (32)
+datatable:	2864:	checking index "INDEX_0009014C" (31)
+datatable:	2864:	checking index "INDEX_00090147" (30)
+datatable:	2864:	checking index "INDEX_00090141" (29)
+datatable:	2864:	checking index "INDEX_00090140" (28)
+datatable:	2864:	checking index "INDEX_0009013A" (27)
+datatable:	2864:	checking index "INDEX_00090138" (26)
+datatable:	2864:	checking index "INDEX_00090330" (25)
+datatable:	2864:	checking index "INDEX_000900DE" (24)
+datatable:	2864:	checking index "INDEX_000902BB" (23)
+datatable:	2864:	checking index "INDEX_000200A9" (22)
+datatable:	2864:	checking index "INDEX_00090098" (21)
+datatable:	2864:	checking index "INDEX_00090089" (20)
+datatable:	2864:	checking index "INDEX_00090073" (19)
+datatable:	2864:	checking index "INDEX_00090656" (18)
+datatable:	2864:	checking index "INDEX_00090030" (17)
+datatable:	2864:	checking index "INDEX_00020013" (16)
+datatable:	2864:	checking index "INDEX_00090013" (15)
+datatable:	2864:	checking index "INDEX_00000013" (14)
+datatable:	2864:	checking index "INDEX_0000000B" (13)
+datatable:	2864:	checking index "INDEX_00000007" (12)
+datatable:	2864:	checking index "INDEX_00000003" (11)
+datatable:	2864:	checking index "INDEX_00150003" (10)
+datatable:	2864:	checking index "INDEX_00090202" (9)
+datatable:	2864:	checking LV refcounts
+datatable:	2864:	rebuilding and comparing indexes
+datatable:	2864:	integrity-check of table "datatable" (8) finishes with error 0 (0x0) after 0 seconds
+hiddentable:	2864:	checking table "hiddentable" (92)
+hiddentable:	2864:	checking data
+hiddentable:	2864:	integrity-check of table "hiddentable" (92) finishes with error 0 (0x0) after 0 seconds
+link_table:	2864:	checking table "link_table" (93)
+link_table:	2864:	checking data
+link_table:	2864:	checking index "backlink_index" (100)
+link_table:	2864:	checking index "link_present_index" (99)
+link_table:	2864:	checking index "backlink_present_index" (98)
+link_table:	2864:	checking index "link_del_index" (97)
+link_table:	2864:	checking index "link_DRA_USN_index" (96)
+link_table:	2864:	checking index "link_legacy_index" (95)
+link_table:	2864:	checking index "link_attr_USN_index" (94)
+link_table:	2864:	rebuilding and comparing indexes
+link_table:	2864:	integrity-check of table "link_table" (93) finishes with error 0 (0x0) after 0 seconds
+MSysUnicodeFixupVer2:	2864:	checking table "MSysUnicodeFixupVer2" (6)
+MSysUnicodeFixupVer2:	2864:	checking data
+MSysUnicodeFixupVer2:	2864:	checking index "secondary" (7)
+MSysUnicodeFixupVer2:	2864:	rebuilding and comparing indexes
+MSysUnicodeFixupVer2:	2864:	integrity-check of table "MSysUnicodeFixupVer2" (6) finishes with error 0 (0x0) after 0 seconds
+quota_rebuild_progress_table:	2864:	checking table "quota_rebuild_progress_table" (101)
+quota_rebuild_progress_table:	2864:	checking data
+quota_rebuild_progress_table:	2864:	integrity-check of table "quota_rebuild_progress_table" (101) finishes with error 0 (0x0) after 0 seconds
+quota_table:	2864:	checking table "quota_table" (102)
+quota_table:	2864:	checking data
+quota_table:	2864:	integrity-check of table "quota_table" (102) finishes with error 0 (0x0) after 0 seconds
+sdproptable:	2864:	checking table "sdproptable" (103)
+sdproptable:	2864:	checking data
+sdproptable:	2864:	checking index "trim_index" (105)
+sdproptable:	2864:	checking index "clientid_index" (104)
+sdproptable:	2864:	rebuilding and comparing indexes
+sdproptable:	2864:	integrity-check of table "sdproptable" (103) finishes with error 0 (0x0) after 0 seconds
+sd_table:	2864:	checking table "sd_table" (106)
+sd_table:	2864:	checking long value tree (108)
+sd_table:	2864:	checking data
+sd_table:	2864:	checking index "sd_hash_index" (107)
+sd_table:	2864:	checking LV refcounts
+sd_table:	2864:	rebuilding and comparing indexes
+sd_table:	2864:	integrity-check of table "sd_table" (106) finishes with error 0 (0x0) after 0 seconds
+WARNING: Database file is too big (expected 1792 pages, file is 2048 pages)
+checking unicode fixup table
+
+Integrity check successful.
+
+
+
+***** Eseutil completed in 0 seconds
+
+***** Repair of database 'c:\ntds\ntds.dit' started [ESENT version 06.01.7601.0000, (RETAIL RTM MBCS)]
+
+search for 'ERROR:' to find errors
+search for 'WARNING:' to find warnings
+trying for 109388 buffers
+checking database header
+database file "c:\ntds\ntds.dit" is 16793600 bytes
+Creating 4 threads
+checking SystemRoot
+SystemRoot (OE)
+SystemRoot (AE)
+checking system tables
+MSysObjects 
+MSysObjectsShadow 
+MSysObjects Name
+MSysObjects RootObjects
+rebuilding and comparing indexes
+checking logical consistency of system tables
+MSysObjects
+MSysObjectsShadow
+WARNING: Repair is not allowed on this database due to its specific content
+datatable:	3480:	checking table "datatable" (8)
+datatable:	3480:	checking long value tree (91)
+datatable:	3480:	checking data
+datatable:	3480:	checking index "INDEX_00090092" (90)
+datatable:	3480:	checking index "NC_Acc_Type_Sid" (89)
+datatable:	3480:	checking index "INDEX_00090002" (88)
+datatable:	3480:	checking index "deltime_index" (87)
+datatable:	3480:	checking index "DRA_USN_CREATED_index" (86)
+datatable:	3480:	checking index "Ancestors_index" (85)
+datatable:	3480:	checking index "PDNT_index" (84)
+datatable:	3480:	checking index "NC_Acc_Type_Name" (83)
+datatable:	3480:	checking index "nc_guid_Index" (82)
+datatable:	3480:	checking index "clean_index" (81)
+datatable:	3480:	checking index "DRA_USN_index" (80)
+datatable:	3480:	checking index "DRA_USN_CRITICAL_index" (79)
+datatable:	3480:	checking index "LCL_ABVIEW_index00000409" (78)
+datatable:	3480:	checking index "INDEX_00000004" (77)
+datatable:	3480:	checking index "INDEX_0000002A" (76)
+datatable:	3480:	checking index "INDEX_0002000D" (75)
+datatable:	3480:	checking index "INDEX_00020030" (74)
+datatable:	3480:	checking index "INDEX_00020073" (73)
+datatable:	3480:	checking index "INDEX_00020078" (72)
+datatable:	3480:	checking index "INDEX_000200D2" (71)
+datatable:	3480:	checking index "INDEX_000201CC" (70)
+datatable:	3480:	checking index "INDEX_00090001" (69)
+datatable:	3480:	checking index "INDEX_00090008" (68)
+datatable:	3480:	checking index "INDEX_0009001C" (67)
+datatable:	3480:	checking index "INDEX_00090057" (66)
+datatable:	3480:	checking index "INDEX_00090062" (65)
+datatable:	3480:	checking index "INDEX_00090085" (64)
+datatable:	3480:	checking index "INDEX_000900DD" (63)
+datatable:	3480:	checking index "INDEX_0009012E" (62)
+datatable:	3480:	checking index "INDEX_00090171" (61)
+datatable:	3480:	checking index "INDEX_000901FF" (60)
+datatable:	3480:	checking index "INDEX_00090261" (59)
+datatable:	3480:	checking index "INDEX_0009028F" (58)
+datatable:	3480:	checking index "INDEX_00090290" (57)
+datatable:	3480:	checking index "INDEX_000902EE" (56)
+datatable:	3480:	checking index "INDEX_00090303" (55)
+datatable:	3480:	checking index "INDEX_0009030E" (54)
+datatable:	3480:	checking index "INDEX_00090363" (53)
+datatable:	3480:	checking index "INDEX_000904E1" (52)
+datatable:	3480:	checking index "INDEX_00090582" (51)
+datatable:	3480:	checking index "INDEX_000906B6" (50)
+datatable:	3480:	checking index "INDEX_000901FD" (49)
+datatable:	3480:	checking index "INDEX_000901F6" (48)
+datatable:	3480:	checking index "INDEX_000201D5" (47)
+datatable:	3480:	checking index "INDEX_000903B4" (46)
+datatable:	3480:	checking index "INDEX_000905A3" (45)
+datatable:	3480:	checking index "INDEX_000905A2" (44)
+datatable:	3480:	checking index "INDEX_0009039D" (43)
+datatable:	3480:	checking index "INDEX_0009039A" (42)
+datatable:	3480:	checking index "INDEX_00090395" (41)
+datatable:	3480:	checking index "INDEX_00090587" (40)
+datatable:	3480:	checking index "INDEX_00090586" (39)
+datatable:	3480:	checking index "INDEX_00090573" (38)
+datatable:	3480:	checking index "INDEX_00090571" (37)
+datatable:	3480:	checking index "INDEX_0009056C" (36)
+datatable:	3480:	checking index "INDEX_00090167" (35)
+datatable:	3480:	checking index "INDEX_00090553" (34)
+datatable:	3480:	checking index "INDEX_0009014E" (33)
+datatable:	3480:	checking index "INDEX_0009014D" (32)
+datatable:	3480:	checking index "INDEX_0009014C" (31)
+datatable:	3480:	checking index "INDEX_00090147" (30)
+datatable:	3480:	checking index "INDEX_00090141" (29)
+datatable:	3480:	checking index "INDEX_00090140" (28)
+datatable:	3480:	checking index "INDEX_0009013A" (27)
+datatable:	3480:	checking index "INDEX_00090138" (26)
+datatable:	3480:	checking index "INDEX_00090330" (25)
+datatable:	3480:	checking index "INDEX_000900DE" (24)
+datatable:	3480:	checking index "INDEX_000902BB" (23)
+datatable:	3480:	checking index "INDEX_000200A9" (22)
+datatable:	3480:	checking index "INDEX_00090098" (21)
+datatable:	3480:	checking index "INDEX_00090089" (20)
+datatable:	3480:	checking index "INDEX_00090073" (19)
+datatable:	3480:	checking index "INDEX_00090656" (18)
+datatable:	3480:	checking index "INDEX_00090030" (17)
+datatable:	3480:	checking index "INDEX_00020013" (16)
+datatable:	3480:	checking index "INDEX_00090013" (15)
+datatable:	3480:	checking index "INDEX_00000013" (14)
+datatable:	3480:	checking index "INDEX_0000000B" (13)
+datatable:	3480:	checking index "INDEX_00000007" (12)
+datatable:	3480:	checking index "INDEX_00000003" (11)
+datatable:	3480:	checking index "INDEX_00150003" (10)
+datatable:	3480:	checking index "INDEX_00090202" (9)
+datatable:	3480:	checking LV refcounts
+datatable:	3480:	rebuilding and comparing indexes
+datatable:	3480:	integrity-check of table "datatable" (8) finishes with error 0 (0x0) after 0 seconds
+hiddentable:	3480:	checking table "hiddentable" (92)
+hiddentable:	3480:	checking data
+hiddentable:	3480:	integrity-check of table "hiddentable" (92) finishes with error 0 (0x0) after 0 seconds
+link_table:	3480:	checking table "link_table" (93)
+link_table:	3480:	checking data
+link_table:	3480:	checking index "backlink_index" (100)
+link_table:	3480:	checking index "link_present_index" (99)
+link_table:	3480:	checking index "backlink_present_index" (98)
+link_table:	3480:	checking index "link_del_index" (97)
+link_table:	3480:	checking index "link_DRA_USN_index" (96)
+link_table:	3480:	checking index "link_legacy_index" (95)
+link_table:	3480:	checking index "link_attr_USN_index" (94)
+link_table:	3480:	rebuilding and comparing indexes
+link_table:	3480:	integrity-check of table "link_table" (93) finishes with error 0 (0x0) after 0 seconds
+MSysUnicodeFixupVer2:	3480:	checking table "MSysUnicodeFixupVer2" (6)
+MSysUnicodeFixupVer2:	3480:	checking data
+MSysUnicodeFixupVer2:	3480:	checking index "secondary" (7)
+MSysUnicodeFixupVer2:	3480:	rebuilding and comparing indexes
+MSysUnicodeFixupVer2:	3480:	integrity-check of table "MSysUnicodeFixupVer2" (6) finishes with error 0 (0x0) after 0 seconds
+quota_rebuild_progress_table:	3480:	checking table "quota_rebuild_progress_table" (101)
+quota_rebuild_progress_table:	3480:	checking data
+quota_rebuild_progress_table:	3480:	integrity-check of table "quota_rebuild_progress_table" (101) finishes with error 0 (0x0) after 0 seconds
+quota_table:	3480:	checking table "quota_table" (102)
+quota_table:	3480:	checking data
+quota_table:	3480:	integrity-check of table "quota_table" (102) finishes with error 0 (0x0) after 0 seconds
+sdproptable:	3480:	checking table "sdproptable" (103)
+sdproptable:	3480:	checking data
+sdproptable:	3480:	checking index "trim_index" (105)
+sdproptable:	3480:	checking index "clientid_index" (104)
+sdproptable:	3480:	rebuilding and comparing indexes
+sdproptable:	3480:	integrity-check of table "sdproptable" (103) finishes with error 0 (0x0) after 0 seconds
+sd_table:	3480:	checking table "sd_table" (106)
+sd_table:	3480:	checking long value tree (108)
+sd_table:	3480:	checking data
+sd_table:	3480:	checking index "sd_hash_index" (107)
+sd_table:	3480:	checking LV refcounts
+sd_table:	3480:	rebuilding and comparing indexes
+sd_table:	3480:	integrity-check of table "sd_table" (106) finishes with error 0 (0x0) after 0 seconds
+WARNING: Database file is too big (expected 1792 pages, file is 2048 pages)
+checking unicode fixup table
+
+Integrity check successful.
+
+
+
+***** Eseutil completed in 0 seconds
+
+***** Repair of database 'c:\ntds\ntds.dit' started [ESENT version 06.01.7601.0000, (RETAIL RTM MBCS)]
+
+search for 'ERROR:' to find errors
+search for 'WARNING:' to find warnings
+trying for 109114 buffers
+checking database header
+database file "c:\ntds\ntds.dit" is 16793600 bytes
+Creating 4 threads
+checking SystemRoot
+SystemRoot (OE)
+SystemRoot (AE)
+checking system tables
+MSysObjects 
+MSysObjectsShadow 
+MSysObjects Name
+MSysObjects RootObjects
+rebuilding and comparing indexes
+checking logical consistency of system tables
+MSysObjects
+MSysObjectsShadow
+WARNING: Repair is not allowed on this database due to its specific content
+datatable:	3104:	checking table "datatable" (8)
+datatable:	3104:	checking long value tree (91)
+datatable:	3104:	checking data
+datatable:	3104:	checking index "INDEX_00090092" (90)
+datatable:	3104:	checking index "NC_Acc_Type_Sid" (89)
+datatable:	3104:	checking index "INDEX_00090002" (88)
+datatable:	3104:	checking index "deltime_index" (87)
+datatable:	3104:	checking index "DRA_USN_CREATED_index" (86)
+datatable:	3104:	checking index "Ancestors_index" (85)
+datatable:	3104:	checking index "PDNT_index" (84)
+datatable:	3104:	checking index "NC_Acc_Type_Name" (83)
+datatable:	3104:	checking index "nc_guid_Index" (82)
+datatable:	3104:	checking index "clean_index" (81)
+datatable:	3104:	checking index "DRA_USN_index" (80)
+datatable:	3104:	checking index "DRA_USN_CRITICAL_index" (79)
+datatable:	3104:	checking index "LCL_ABVIEW_index00000409" (78)
+datatable:	3104:	checking index "INDEX_00000004" (77)
+datatable:	3104:	checking index "INDEX_0000002A" (76)
+datatable:	3104:	checking index "INDEX_0002000D" (75)
+datatable:	3104:	checking index "INDEX_00020030" (74)
+datatable:	3104:	checking index "INDEX_00020073" (73)
+datatable:	3104:	checking index "INDEX_00020078" (72)
+datatable:	3104:	checking index "INDEX_000200D2" (71)
+datatable:	3104:	checking index "INDEX_000201CC" (70)
+datatable:	3104:	checking index "INDEX_00090001" (69)
+datatable:	3104:	checking index "INDEX_00090008" (68)
+datatable:	3104:	checking index "INDEX_0009001C" (67)
+datatable:	3104:	checking index "INDEX_00090057" (66)
+datatable:	3104:	checking index "INDEX_00090062" (65)
+datatable:	3104:	checking index "INDEX_00090085" (64)
+datatable:	3104:	checking index "INDEX_000900DD" (63)
+datatable:	3104:	checking index "INDEX_0009012E" (62)
+datatable:	3104:	checking index "INDEX_00090171" (61)
+datatable:	3104:	checking index "INDEX_000901FF" (60)
+datatable:	3104:	checking index "INDEX_00090261" (59)
+datatable:	3104:	checking index "INDEX_0009028F" (58)
+datatable:	3104:	checking index "INDEX_00090290" (57)
+datatable:	3104:	checking index "INDEX_000902EE" (56)
+datatable:	3104:	checking index "INDEX_00090303" (55)
+datatable:	3104:	checking index "INDEX_0009030E" (54)
+datatable:	3104:	checking index "INDEX_00090363" (53)
+datatable:	3104:	checking index "INDEX_000904E1" (52)
+datatable:	3104:	checking index "INDEX_00090582" (51)
+datatable:	3104:	checking index "INDEX_000906B6" (50)
+datatable:	3104:	checking index "INDEX_000901FD" (49)
+datatable:	3104:	checking index "INDEX_000901F6" (48)
+datatable:	3104:	checking index "INDEX_000201D5" (47)
+datatable:	3104:	checking index "INDEX_000903B4" (46)
+datatable:	3104:	checking index "INDEX_000905A3" (45)
+datatable:	3104:	checking index "INDEX_000905A2" (44)
+datatable:	3104:	checking index "INDEX_0009039D" (43)
+datatable:	3104:	checking index "INDEX_0009039A" (42)
+datatable:	3104:	checking index "INDEX_00090395" (41)
+datatable:	3104:	checking index "INDEX_00090587" (40)
+datatable:	3104:	checking index "INDEX_00090586" (39)
+datatable:	3104:	checking index "INDEX_00090573" (38)
+datatable:	3104:	checking index "INDEX_00090571" (37)
+datatable:	3104:	checking index "INDEX_0009056C" (36)
+datatable:	3104:	checking index "INDEX_00090167" (35)
+datatable:	3104:	checking index "INDEX_00090553" (34)
+datatable:	3104:	checking index "INDEX_0009014E" (33)
+datatable:	3104:	checking index "INDEX_0009014D" (32)
+datatable:	3104:	checking index "INDEX_0009014C" (31)
+datatable:	3104:	checking index "INDEX_00090147" (30)
+datatable:	3104:	checking index "INDEX_00090141" (29)
+datatable:	3104:	checking index "INDEX_00090140" (28)
+datatable:	3104:	checking index "INDEX_0009013A" (27)
+datatable:	3104:	checking index "INDEX_00090138" (26)
+datatable:	3104:	checking index "INDEX_00090330" (25)
+datatable:	3104:	checking index "INDEX_000900DE" (24)
+datatable:	3104:	checking index "INDEX_000902BB" (23)
+datatable:	3104:	checking index "INDEX_000200A9" (22)
+datatable:	3104:	checking index "INDEX_00090098" (21)
+datatable:	3104:	checking index "INDEX_00090089" (20)
+datatable:	3104:	checking index "INDEX_00090073" (19)
+datatable:	3104:	checking index "INDEX_00090656" (18)
+datatable:	3104:	checking index "INDEX_00090030" (17)
+datatable:	3104:	checking index "INDEX_00020013" (16)
+datatable:	3104:	checking index "INDEX_00090013" (15)
+datatable:	3104:	checking index "INDEX_00000013" (14)
+datatable:	3104:	checking index "INDEX_0000000B" (13)
+datatable:	3104:	checking index "INDEX_00000007" (12)
+datatable:	3104:	checking index "INDEX_00000003" (11)
+datatable:	3104:	checking index "INDEX_00150003" (10)
+datatable:	3104:	checking index "INDEX_00090202" (9)
+datatable:	3104:	checking LV refcounts
+datatable:	3104:	rebuilding and comparing indexes
+datatable:	3104:	integrity-check of table "datatable" (8) finishes with error 0 (0x0) after 0 seconds
+hiddentable:	3104:	checking table "hiddentable" (92)
+hiddentable:	3104:	checking data
+hiddentable:	3104:	integrity-check of table "hiddentable" (92) finishes with error 0 (0x0) after 0 seconds
+link_table:	3104:	checking table "link_table" (93)
+link_table:	3104:	checking data
+link_table:	3104:	checking index "backlink_index" (100)
+link_table:	3104:	checking index "link_present_index" (99)
+link_table:	3104:	checking index "backlink_present_index" (98)
+link_table:	3104:	checking index "link_del_index" (97)
+link_table:	3104:	checking index "link_DRA_USN_index" (96)
+link_table:	3104:	checking index "link_legacy_index" (95)
+link_table:	3104:	checking index "link_attr_USN_index" (94)
+link_table:	3104:	rebuilding and comparing indexes
+link_table:	3104:	integrity-check of table "link_table" (93) finishes with error 0 (0x0) after 0 seconds
+MSysUnicodeFixupVer2:	3104:	checking table "MSysUnicodeFixupVer2" (6)
+MSysUnicodeFixupVer2:	3104:	checking data
+MSysUnicodeFixupVer2:	3104:	checking index "secondary" (7)
+MSysUnicodeFixupVer2:	3104:	rebuilding and comparing indexes
+MSysUnicodeFixupVer2:	3104:	integrity-check of table "MSysUnicodeFixupVer2" (6) finishes with error 0 (0x0) after 0 seconds
+quota_rebuild_progress_table:	3104:	checking table "quota_rebuild_progress_table" (101)
+quota_rebuild_progress_table:	3104:	checking data
+quota_rebuild_progress_table:	3104:	integrity-check of table "quota_rebuild_progress_table" (101) finishes with error 0 (0x0) after 0 seconds
+quota_table:	3104:	checking table "quota_table" (102)
+quota_table:	3104:	checking data
+quota_table:	3104:	integrity-check of table "quota_table" (102) finishes with error 0 (0x0) after 0 seconds
+sdproptable:	3104:	checking table "sdproptable" (103)
+sdproptable:	3104:	checking data
+sdproptable:	3104:	checking index "trim_index" (105)
+sdproptable:	3104:	checking index "clientid_index" (104)
+sdproptable:	3104:	rebuilding and comparing indexes
+sdproptable:	3104:	integrity-check of table "sdproptable" (103) finishes with error 0 (0x0) after 0 seconds
+sd_table:	3104:	checking table "sd_table" (106)
+sd_table:	3104:	checking long value tree (108)
+sd_table:	3104:	checking data
+sd_table:	3104:	checking index "sd_hash_index" (107)
+sd_table:	3104:	checking LV refcounts
+sd_table:	3104:	rebuilding and comparing indexes
+sd_table:	3104:	integrity-check of table "sd_table" (106) finishes with error 0 (0x0) after 0 seconds
+WARNING: Database file is too big (expected 1792 pages, file is 2048 pages)
+checking unicode fixup table
+
+Integrity check successful.
+
+
+
+***** Eseutil completed in 0 seconds
+
+***** Repair of database 'c:\ntds\ntds.dit' started [ESENT version 06.01.7601.0000, (RETAIL RTM MBCS)]
+
+search for 'ERROR:' to find errors
+search for 'WARNING:' to find warnings
+trying for 109271 buffers
+checking database header
+database file "c:\ntds\ntds.dit" is 16793600 bytes
+Creating 4 threads
+checking SystemRoot
+SystemRoot (OE)
+SystemRoot (AE)
+checking system tables
+MSysObjects 
+MSysObjectsShadow 
+MSysObjects Name
+MSysObjects RootObjects
+rebuilding and comparing indexes
+checking logical consistency of system tables
+MSysObjects
+MSysObjectsShadow
+WARNING: Repair is not allowed on this database due to its specific content
+datatable:	3428:	checking table "datatable" (8)
+datatable:	3428:	checking long value tree (91)
+datatable:	3428:	checking data
+datatable:	3428:	checking index "INDEX_00090092" (90)
+datatable:	3428:	checking index "NC_Acc_Type_Sid" (89)
+datatable:	3428:	checking index "INDEX_00090002" (88)
+datatable:	3428:	checking index "deltime_index" (87)
+datatable:	3428:	checking index "DRA_USN_CREATED_index" (86)
+datatable:	3428:	checking index "Ancestors_index" (85)
+datatable:	3428:	checking index "PDNT_index" (84)
+datatable:	3428:	checking index "NC_Acc_Type_Name" (83)
+datatable:	3428:	checking index "nc_guid_Index" (82)
+datatable:	3428:	checking index "clean_index" (81)
+datatable:	3428:	checking index "DRA_USN_index" (80)
+datatable:	3428:	checking index "DRA_USN_CRITICAL_index" (79)
+datatable:	3428:	checking index "LCL_ABVIEW_index00000409" (78)
+datatable:	3428:	checking index "INDEX_00000004" (77)
+datatable:	3428:	checking index "INDEX_0000002A" (76)
+datatable:	3428:	checking index "INDEX_0002000D" (75)
+datatable:	3428:	checking index "INDEX_00020030" (74)
+datatable:	3428:	checking index "INDEX_00020073" (73)
+datatable:	3428:	checking index "INDEX_00020078" (72)
+datatable:	3428:	checking index "INDEX_000200D2" (71)
+datatable:	3428:	checking index "INDEX_000201CC" (70)
+datatable:	3428:	checking index "INDEX_00090001" (69)
+datatable:	3428:	checking index "INDEX_00090008" (68)
+datatable:	3428:	checking index "INDEX_0009001C" (67)
+datatable:	3428:	checking index "INDEX_00090057" (66)
+datatable:	3428:	checking index "INDEX_00090062" (65)
+datatable:	3428:	checking index "INDEX_00090085" (64)
+datatable:	3428:	checking index "INDEX_000900DD" (63)
+datatable:	3428:	checking index "INDEX_0009012E" (62)
+datatable:	3428:	checking index "INDEX_00090171" (61)
+datatable:	3428:	checking index "INDEX_000901FF" (60)
+datatable:	3428:	checking index "INDEX_00090261" (59)
+datatable:	3428:	checking index "INDEX_0009028F" (58)
+datatable:	3428:	checking index "INDEX_00090290" (57)
+datatable:	3428:	checking index "INDEX_000902EE" (56)
+datatable:	3428:	checking index "INDEX_00090303" (55)
+datatable:	3428:	checking index "INDEX_0009030E" (54)
+datatable:	3428:	checking index "INDEX_00090363" (53)
+datatable:	3428:	checking index "INDEX_000904E1" (52)
+datatable:	3428:	checking index "INDEX_00090582" (51)
+datatable:	3428:	checking index "INDEX_000906B6" (50)
+datatable:	3428:	checking index "INDEX_000901FD" (49)
+datatable:	3428:	checking index "INDEX_000901F6" (48)
+datatable:	3428:	checking index "INDEX_000201D5" (47)
+datatable:	3428:	checking index "INDEX_000903B4" (46)
+datatable:	3428:	checking index "INDEX_000905A3" (45)
+datatable:	3428:	checking index "INDEX_000905A2" (44)
+datatable:	3428:	checking index "INDEX_0009039D" (43)
+datatable:	3428:	checking index "INDEX_0009039A" (42)
+datatable:	3428:	checking index "INDEX_00090395" (41)
+datatable:	3428:	checking index "INDEX_00090587" (40)
+datatable:	3428:	checking index "INDEX_00090586" (39)
+datatable:	3428:	checking index "INDEX_00090573" (38)
+datatable:	3428:	checking index "INDEX_00090571" (37)
+datatable:	3428:	checking index "INDEX_0009056C" (36)
+datatable:	3428:	checking index "INDEX_00090167" (35)
+datatable:	3428:	checking index "INDEX_00090553" (34)
+datatable:	3428:	checking index "INDEX_0009014E" (33)
+datatable:	3428:	checking index "INDEX_0009014D" (32)
+datatable:	3428:	checking index "INDEX_0009014C" (31)
+datatable:	3428:	checking index "INDEX_00090147" (30)
+datatable:	3428:	checking index "INDEX_00090141" (29)
+datatable:	3428:	checking index "INDEX_00090140" (28)
+datatable:	3428:	checking index "INDEX_0009013A" (27)
+datatable:	3428:	checking index "INDEX_00090138" (26)
+datatable:	3428:	checking index "INDEX_00090330" (25)
+datatable:	3428:	checking index "INDEX_000900DE" (24)
+datatable:	3428:	checking index "INDEX_000902BB" (23)
+datatable:	3428:	checking index "INDEX_000200A9" (22)
+datatable:	3428:	checking index "INDEX_00090098" (21)
+datatable:	3428:	checking index "INDEX_00090089" (20)
+datatable:	3428:	checking index "INDEX_00090073" (19)
+datatable:	3428:	checking index "INDEX_00090656" (18)
+datatable:	3428:	checking index "INDEX_00090030" (17)
+datatable:	3428:	checking index "INDEX_00020013" (16)
+datatable:	3428:	checking index "INDEX_00090013" (15)
+datatable:	3428:	checking index "INDEX_00000013" (14)
+datatable:	3428:	checking index "INDEX_0000000B" (13)
+datatable:	3428:	checking index "INDEX_00000007" (12)
+datatable:	3428:	checking index "INDEX_00000003" (11)
+datatable:	3428:	checking index "INDEX_00150003" (10)
+datatable:	3428:	checking index "INDEX_00090202" (9)
+datatable:	3428:	checking LV refcounts
+datatable:	3428:	rebuilding and comparing indexes
+datatable:	3428:	integrity-check of table "datatable" (8) finishes with error 0 (0x0) after 0 seconds
+hiddentable:	3428:	checking table "hiddentable" (92)
+hiddentable:	3428:	checking data
+hiddentable:	3428:	integrity-check of table "hiddentable" (92) finishes with error 0 (0x0) after 0 seconds
+link_table:	3428:	checking table "link_table" (93)
+link_table:	3428:	checking data
+link_table:	3428:	checking index "backlink_index" (100)
+link_table:	3428:	checking index "link_present_index" (99)
+link_table:	3428:	checking index "backlink_present_index" (98)
+link_table:	3428:	checking index "link_del_index" (97)
+link_table:	3428:	checking index "link_DRA_USN_index" (96)
+link_table:	3428:	checking index "link_legacy_index" (95)
+link_table:	3428:	checking index "link_attr_USN_index" (94)
+link_table:	3428:	rebuilding and comparing indexes
+link_table:	3428:	integrity-check of table "link_table" (93) finishes with error 0 (0x0) after 0 seconds
+MSysUnicodeFixupVer2:	3428:	checking table "MSysUnicodeFixupVer2" (6)
+MSysUnicodeFixupVer2:	3428:	checking data
+MSysUnicodeFixupVer2:	3428:	checking index "secondary" (7)
+MSysUnicodeFixupVer2:	3428:	rebuilding and comparing indexes
+MSysUnicodeFixupVer2:	3428:	integrity-check of table "MSysUnicodeFixupVer2" (6) finishes with error 0 (0x0) after 0 seconds
+quota_rebuild_progress_table:	3428:	checking table "quota_rebuild_progress_table" (101)
+quota_rebuild_progress_table:	3428:	checking data
+quota_rebuild_progress_table:	3428:	integrity-check of table "quota_rebuild_progress_table" (101) finishes with error 0 (0x0) after 0 seconds
+quota_table:	3428:	checking table "quota_table" (102)
+quota_table:	3428:	checking data
+quota_table:	3428:	integrity-check of table "quota_table" (102) finishes with error 0 (0x0) after 0 seconds
+sdproptable:	3428:	checking table "sdproptable" (103)
+sdproptable:	3428:	checking data
+sdproptable:	3428:	checking index "trim_index" (105)
+sdproptable:	3428:	checking index "clientid_index" (104)
+sdproptable:	3428:	rebuilding and comparing indexes
+sdproptable:	3428:	integrity-check of table "sdproptable" (103) finishes with error 0 (0x0) after 0 seconds
+sd_table:	3428:	checking table "sd_table" (106)
+sd_table:	3428:	checking long value tree (108)
+sd_table:	3428:	checking data
+sd_table:	3428:	checking index "sd_hash_index" (107)
+sd_table:	3428:	checking LV refcounts
+sd_table:	3428:	rebuilding and comparing indexes
+sd_table:	3428:	integrity-check of table "sd_table" (106) finishes with error 0 (0x0) after 0 seconds
+WARNING: Database file is too big (expected 1792 pages, file is 2048 pages)
+checking unicode fixup table
+
+Integrity check successful.
+
+
+
+***** Eseutil completed in 0 seconds
+
+***** Repair of database 'c:\ntds\ntds.dit' started [ESENT version 06.01.7601.0000, (RETAIL RTM MBCS)]
+
+search for 'ERROR:' to find errors
+search for 'WARNING:' to find warnings
+trying for 109328 buffers
+checking database header
+database file "c:\ntds\ntds.dit" is 16793600 bytes
+Creating 4 threads
+checking SystemRoot
+SystemRoot (OE)
+SystemRoot (AE)
+checking system tables
+MSysObjects 
+MSysObjectsShadow 
+MSysObjects Name
+MSysObjects RootObjects
+rebuilding and comparing indexes
+checking logical consistency of system tables
+MSysObjects
+MSysObjectsShadow
+WARNING: Repair is not allowed on this database due to its specific content
+datatable:	3080:	checking table "datatable" (8)
+datatable:	3080:	checking long value tree (91)
+datatable:	3080:	checking data
+datatable:	3080:	checking index "INDEX_00090092" (90)
+datatable:	3080:	checking index "NC_Acc_Type_Sid" (89)
+datatable:	3080:	checking index "INDEX_00090002" (88)
+datatable:	3080:	checking index "deltime_index" (87)
+datatable:	3080:	checking index "DRA_USN_CREATED_index" (86)
+datatable:	3080:	checking index "Ancestors_index" (85)
+datatable:	3080:	checking index "PDNT_index" (84)
+datatable:	3080:	checking index "NC_Acc_Type_Name" (83)
+datatable:	3080:	checking index "nc_guid_Index" (82)
+datatable:	3080:	checking index "clean_index" (81)
+datatable:	3080:	checking index "DRA_USN_index" (80)
+datatable:	3080:	checking index "DRA_USN_CRITICAL_index" (79)
+datatable:	3080:	checking index "LCL_ABVIEW_index00000409" (78)
+datatable:	3080:	checking index "INDEX_00000004" (77)
+datatable:	3080:	checking index "INDEX_0000002A" (76)
+datatable:	3080:	checking index "INDEX_0002000D" (75)
+datatable:	3080:	checking index "INDEX_00020030" (74)
+datatable:	3080:	checking index "INDEX_00020073" (73)
+datatable:	3080:	checking index "INDEX_00020078" (72)
+datatable:	3080:	checking index "INDEX_000200D2" (71)
+datatable:	3080:	checking index "INDEX_000201CC" (70)
+datatable:	3080:	checking index "INDEX_00090001" (69)
+datatable:	3080:	checking index "INDEX_00090008" (68)
+datatable:	3080:	checking index "INDEX_0009001C" (67)
+datatable:	3080:	checking index "INDEX_00090057" (66)
+datatable:	3080:	checking index "INDEX_00090062" (65)
+datatable:	3080:	checking index "INDEX_00090085" (64)
+datatable:	3080:	checking index "INDEX_000900DD" (63)
+datatable:	3080:	checking index "INDEX_0009012E" (62)
+datatable:	3080:	checking index "INDEX_00090171" (61)
+datatable:	3080:	checking index "INDEX_000901FF" (60)
+datatable:	3080:	checking index "INDEX_00090261" (59)
+datatable:	3080:	checking index "INDEX_0009028F" (58)
+datatable:	3080:	checking index "INDEX_00090290" (57)
+datatable:	3080:	checking index "INDEX_000902EE" (56)
+datatable:	3080:	checking index "INDEX_00090303" (55)
+datatable:	3080:	checking index "INDEX_0009030E" (54)
+datatable:	3080:	checking index "INDEX_00090363" (53)
+datatable:	3080:	checking index "INDEX_000904E1" (52)
+datatable:	3080:	checking index "INDEX_00090582" (51)
+datatable:	3080:	checking index "INDEX_000906B6" (50)
+datatable:	3080:	checking index "INDEX_000901FD" (49)
+datatable:	3080:	checking index "INDEX_000901F6" (48)
+datatable:	3080:	checking index "INDEX_000201D5" (47)
+datatable:	3080:	checking index "INDEX_000903B4" (46)
+datatable:	3080:	checking index "INDEX_000905A3" (45)
+datatable:	3080:	checking index "INDEX_000905A2" (44)
+datatable:	3080:	checking index "INDEX_0009039D" (43)
+datatable:	3080:	checking index "INDEX_0009039A" (42)
+datatable:	3080:	checking index "INDEX_00090395" (41)
+datatable:	3080:	checking index "INDEX_00090587" (40)
+datatable:	3080:	checking index "INDEX_00090586" (39)
+datatable:	3080:	checking index "INDEX_00090573" (38)
+datatable:	3080:	checking index "INDEX_00090571" (37)
+datatable:	3080:	checking index "INDEX_0009056C" (36)
+datatable:	3080:	checking index "INDEX_00090167" (35)
+datatable:	3080:	checking index "INDEX_00090553" (34)
+datatable:	3080:	checking index "INDEX_0009014E" (33)
+datatable:	3080:	checking index "INDEX_0009014D" (32)
+datatable:	3080:	checking index "INDEX_0009014C" (31)
+datatable:	3080:	checking index "INDEX_00090147" (30)
+datatable:	3080:	checking index "INDEX_00090141" (29)
+datatable:	3080:	checking index "INDEX_00090140" (28)
+datatable:	3080:	checking index "INDEX_0009013A" (27)
+datatable:	3080:	checking index "INDEX_00090138" (26)
+datatable:	3080:	checking index "INDEX_00090330" (25)
+datatable:	3080:	checking index "INDEX_000900DE" (24)
+datatable:	3080:	checking index "INDEX_000902BB" (23)
+datatable:	3080:	checking index "INDEX_000200A9" (22)
+datatable:	3080:	checking index "INDEX_00090098" (21)
+datatable:	3080:	checking index "INDEX_00090089" (20)
+datatable:	3080:	checking index "INDEX_00090073" (19)
+datatable:	3080:	checking index "INDEX_00090656" (18)
+datatable:	3080:	checking index "INDEX_00090030" (17)
+datatable:	3080:	checking index "INDEX_00020013" (16)
+datatable:	3080:	checking index "INDEX_00090013" (15)
+datatable:	3080:	checking index "INDEX_00000013" (14)
+datatable:	3080:	checking index "INDEX_0000000B" (13)
+datatable:	3080:	checking index "INDEX_00000007" (12)
+datatable:	3080:	checking index "INDEX_00000003" (11)
+datatable:	3080:	checking index "INDEX_00150003" (10)
+datatable:	3080:	checking index "INDEX_00090202" (9)
+datatable:	3080:	checking LV refcounts
+datatable:	3080:	rebuilding and comparing indexes
+datatable:	3080:	integrity-check of table "datatable" (8) finishes with error 0 (0x0) after 0 seconds
+hiddentable:	3080:	checking table "hiddentable" (92)
+hiddentable:	3080:	checking data
+hiddentable:	3080:	integrity-check of table "hiddentable" (92) finishes with error 0 (0x0) after 0 seconds
+link_table:	3080:	checking table "link_table" (93)
+link_table:	3080:	checking data
+link_table:	3080:	checking index "backlink_index" (100)
+link_table:	3080:	checking index "link_present_index" (99)
+link_table:	3080:	checking index "backlink_present_index" (98)
+link_table:	3080:	checking index "link_del_index" (97)
+link_table:	3080:	checking index "link_DRA_USN_index" (96)
+link_table:	3080:	checking index "link_legacy_index" (95)
+link_table:	3080:	checking index "link_attr_USN_index" (94)
+link_table:	3080:	rebuilding and comparing indexes
+link_table:	3080:	integrity-check of table "link_table" (93) finishes with error 0 (0x0) after 0 seconds
+MSysUnicodeFixupVer2:	3080:	checking table "MSysUnicodeFixupVer2" (6)
+MSysUnicodeFixupVer2:	3080:	checking data
+MSysUnicodeFixupVer2:	3080:	checking index "secondary" (7)
+MSysUnicodeFixupVer2:	3080:	rebuilding and comparing indexes
+MSysUnicodeFixupVer2:	3080:	integrity-check of table "MSysUnicodeFixupVer2" (6) finishes with error 0 (0x0) after 0 seconds
+quota_rebuild_progress_table:	3080:	checking table "quota_rebuild_progress_table" (101)
+quota_rebuild_progress_table:	3080:	checking data
+quota_rebuild_progress_table:	3080:	integrity-check of table "quota_rebuild_progress_table" (101) finishes with error 0 (0x0) after 0 seconds
+quota_table:	3080:	checking table "quota_table" (102)
+quota_table:	3080:	checking data
+quota_table:	3080:	integrity-check of table "quota_table" (102) finishes with error 0 (0x0) after 0 seconds
+sdproptable:	3080:	checking table "sdproptable" (103)
+sdproptable:	3080:	checking data
+sdproptable:	3080:	checking index "trim_index" (105)
+sdproptable:	3080:	checking index "clientid_index" (104)
+sdproptable:	3080:	rebuilding and comparing indexes
+sdproptable:	3080:	integrity-check of table "sdproptable" (103) finishes with error 0 (0x0) after 0 seconds
+sd_table:	3080:	checking table "sd_table" (106)
+sd_table:	3080:	checking long value tree (108)
+sd_table:	3080:	checking data
+sd_table:	3080:	checking index "sd_hash_index" (107)
+sd_table:	3080:	checking LV refcounts
+sd_table:	3080:	rebuilding and comparing indexes
+sd_table:	3080:	integrity-check of table "sd_table" (106) finishes with error 0 (0x0) after 0 seconds
+WARNING: Database file is too big (expected 1792 pages, file is 2048 pages)
+checking unicode fixup table
+
+Integrity check successful.
+
+
+
+***** Eseutil completed in 0 seconds
+
+***** Repair of database 'c:\ntds\ntds.dit' started [ESENT version 06.01.7601.0000, (RETAIL RTM MBCS)]
+
+search for 'ERROR:' to find errors
+search for 'WARNING:' to find warnings
+trying for 109077 buffers
+checking database header
+database file "c:\ntds\ntds.dit" is 16793600 bytes
+Creating 4 threads
+checking SystemRoot
+SystemRoot (OE)
+SystemRoot (AE)
+checking system tables
+MSysObjects 
+MSysObjectsShadow 
+MSysObjects Name
+MSysObjects RootObjects
+rebuilding and comparing indexes
+checking logical consistency of system tables
+MSysObjects
+MSysObjectsShadow
+WARNING: Repair is not allowed on this database due to its specific content
+datatable:	3384:	checking table "datatable" (8)
+datatable:	3384:	checking long value tree (91)
+datatable:	3384:	checking data
+datatable:	3384:	checking index "INDEX_00090092" (90)
+datatable:	3384:	checking index "NC_Acc_Type_Sid" (89)
+datatable:	3384:	checking index "INDEX_00090002" (88)
+datatable:	3384:	checking index "deltime_index" (87)
+datatable:	3384:	checking index "DRA_USN_CREATED_index" (86)
+datatable:	3384:	checking index "Ancestors_index" (85)
+datatable:	3384:	checking index "PDNT_index" (84)
+datatable:	3384:	checking index "NC_Acc_Type_Name" (83)
+datatable:	3384:	checking index "nc_guid_Index" (82)
+datatable:	3384:	checking index "clean_index" (81)
+datatable:	3384:	checking index "DRA_USN_index" (80)
+datatable:	3384:	checking index "DRA_USN_CRITICAL_index" (79)
+datatable:	3384:	checking index "LCL_ABVIEW_index00000409" (78)
+datatable:	3384:	checking index "INDEX_00000004" (77)
+datatable:	3384:	checking index "INDEX_0000002A" (76)
+datatable:	3384:	checking index "INDEX_0002000D" (75)
+datatable:	3384:	checking index "INDEX_00020030" (74)
+datatable:	3384:	checking index "INDEX_00020073" (73)
+datatable:	3384:	checking index "INDEX_00020078" (72)
+datatable:	3384:	checking index "INDEX_000200D2" (71)
+datatable:	3384:	checking index "INDEX_000201CC" (70)
+datatable:	3384:	checking index "INDEX_00090001" (69)
+datatable:	3384:	checking index "INDEX_00090008" (68)
+datatable:	3384:	checking index "INDEX_0009001C" (67)
+datatable:	3384:	checking index "INDEX_00090057" (66)
+datatable:	3384:	checking index "INDEX_00090062" (65)
+datatable:	3384:	checking index "INDEX_00090085" (64)
+datatable:	3384:	checking index "INDEX_000900DD" (63)
+datatable:	3384:	checking index "INDEX_0009012E" (62)
+datatable:	3384:	checking index "INDEX_00090171" (61)
+datatable:	3384:	checking index "INDEX_000901FF" (60)
+datatable:	3384:	checking index "INDEX_00090261" (59)
+datatable:	3384:	checking index "INDEX_0009028F" (58)
+datatable:	3384:	checking index "INDEX_00090290" (57)
+datatable:	3384:	checking index "INDEX_000902EE" (56)
+datatable:	3384:	checking index "INDEX_00090303" (55)
+datatable:	3384:	checking index "INDEX_0009030E" (54)
+datatable:	3384:	checking index "INDEX_00090363" (53)
+datatable:	3384:	checking index "INDEX_000904E1" (52)
+datatable:	3384:	checking index "INDEX_00090582" (51)
+datatable:	3384:	checking index "INDEX_000906B6" (50)
+datatable:	3384:	checking index "INDEX_000901FD" (49)
+datatable:	3384:	checking index "INDEX_000901F6" (48)
+datatable:	3384:	checking index "INDEX_000201D5" (47)
+datatable:	3384:	checking index "INDEX_000903B4" (46)
+datatable:	3384:	checking index "INDEX_000905A3" (45)
+datatable:	3384:	checking index "INDEX_000905A2" (44)
+datatable:	3384:	checking index "INDEX_0009039D" (43)
+datatable:	3384:	checking index "INDEX_0009039A" (42)
+datatable:	3384:	checking index "INDEX_00090395" (41)
+datatable:	3384:	checking index "INDEX_00090587" (40)
+datatable:	3384:	checking index "INDEX_00090586" (39)
+datatable:	3384:	checking index "INDEX_00090573" (38)
+datatable:	3384:	checking index "INDEX_00090571" (37)
+datatable:	3384:	checking index "INDEX_0009056C" (36)
+datatable:	3384:	checking index "INDEX_00090167" (35)
+datatable:	3384:	checking index "INDEX_00090553" (34)
+datatable:	3384:	checking index "INDEX_0009014E" (33)
+datatable:	3384:	checking index "INDEX_0009014D" (32)
+datatable:	3384:	checking index "INDEX_0009014C" (31)
+datatable:	3384:	checking index "INDEX_00090147" (30)
+datatable:	3384:	checking index "INDEX_00090141" (29)
+datatable:	3384:	checking index "INDEX_00090140" (28)
+datatable:	3384:	checking index "INDEX_0009013A" (27)
+datatable:	3384:	checking index "INDEX_00090138" (26)
+datatable:	3384:	checking index "INDEX_00090330" (25)
+datatable:	3384:	checking index "INDEX_000900DE" (24)
+datatable:	3384:	checking index "INDEX_000902BB" (23)
+datatable:	3384:	checking index "INDEX_000200A9" (22)
+datatable:	3384:	checking index "INDEX_00090098" (21)
+datatable:	3384:	checking index "INDEX_00090089" (20)
+datatable:	3384:	checking index "INDEX_00090073" (19)
+datatable:	3384:	checking index "INDEX_00090656" (18)
+datatable:	3384:	checking index "INDEX_00090030" (17)
+datatable:	3384:	checking index "INDEX_00020013" (16)
+datatable:	3384:	checking index "INDEX_00090013" (15)
+datatable:	3384:	checking index "INDEX_00000013" (14)
+datatable:	3384:	checking index "INDEX_0000000B" (13)
+datatable:	3384:	checking index "INDEX_00000007" (12)
+datatable:	3384:	checking index "INDEX_00000003" (11)
+datatable:	3384:	checking index "INDEX_00150003" (10)
+datatable:	3384:	checking index "INDEX_00090202" (9)
+datatable:	3384:	checking LV refcounts
+datatable:	3384:	rebuilding and comparing indexes
+datatable:	3384:	integrity-check of table "datatable" (8) finishes with error 0 (0x0) after 0 seconds
+hiddentable:	3384:	checking table "hiddentable" (92)
+hiddentable:	3384:	checking data
+hiddentable:	3384:	integrity-check of table "hiddentable" (92) finishes with error 0 (0x0) after 0 seconds
+link_table:	3384:	checking table "link_table" (93)
+link_table:	3384:	checking data
+link_table:	3384:	checking index "backlink_index" (100)
+link_table:	3384:	checking index "link_present_index" (99)
+link_table:	3384:	checking index "backlink_present_index" (98)
+link_table:	3384:	checking index "link_del_index" (97)
+link_table:	3384:	checking index "link_DRA_USN_index" (96)
+link_table:	3384:	checking index "link_legacy_index" (95)
+link_table:	3384:	checking index "link_attr_USN_index" (94)
+link_table:	3384:	rebuilding and comparing indexes
+link_table:	3384:	integrity-check of table "link_table" (93) finishes with error 0 (0x0) after 0 seconds
+MSysUnicodeFixupVer2:	3384:	checking table "MSysUnicodeFixupVer2" (6)
+MSysUnicodeFixupVer2:	3384:	checking data
+MSysUnicodeFixupVer2:	3384:	checking index "secondary" (7)
+MSysUnicodeFixupVer2:	3384:	rebuilding and comparing indexes
+MSysUnicodeFixupVer2:	3384:	integrity-check of table "MSysUnicodeFixupVer2" (6) finishes with error 0 (0x0) after 0 seconds
+quota_rebuild_progress_table:	3384:	checking table "quota_rebuild_progress_table" (101)
+quota_rebuild_progress_table:	3384:	checking data
+quota_rebuild_progress_table:	3384:	integrity-check of table "quota_rebuild_progress_table" (101) finishes with error 0 (0x0) after 0 seconds
+quota_table:	3384:	checking table "quota_table" (102)
+quota_table:	3384:	checking data
+quota_table:	3384:	integrity-check of table "quota_table" (102) finishes with error 0 (0x0) after 0 seconds
+sdproptable:	3384:	checking table "sdproptable" (103)
+sdproptable:	3384:	checking data
+sdproptable:	3384:	checking index "trim_index" (105)
+sdproptable:	3384:	checking index "clientid_index" (104)
+sdproptable:	3384:	rebuilding and comparing indexes
+sdproptable:	3384:	integrity-check of table "sdproptable" (103) finishes with error 0 (0x0) after 0 seconds
+sd_table:	3384:	checking table "sd_table" (106)
+sd_table:	3384:	checking long value tree (108)
+sd_table:	3384:	checking data
+sd_table:	3384:	checking index "sd_hash_index" (107)
+sd_table:	3384:	checking LV refcounts
+sd_table:	3384:	rebuilding and comparing indexes
+sd_table:	3384:	integrity-check of table "sd_table" (106) finishes with error 0 (0x0) after 0 seconds
+WARNING: Database file is too big (expected 1792 pages, file is 2048 pages)
+checking unicode fixup table
+
+Integrity check successful.
+
+
+
+***** Eseutil completed in 0 seconds
+
+***** Repair of database 'c:\ntds\ntds.dit' started [ESENT version 06.01.7601.0000, (RETAIL RTM MBCS)]
+
+search for 'ERROR:' to find errors
+search for 'WARNING:' to find warnings
+trying for 109087 buffers
+checking database header
+database file "c:\ntds\ntds.dit" is 16793600 bytes
+Creating 4 threads
+checking SystemRoot
+SystemRoot (OE)
+SystemRoot (AE)
+checking system tables
+MSysObjects 
+MSysObjectsShadow 
+MSysObjects Name
+MSysObjects RootObjects
+rebuilding and comparing indexes
+checking logical consistency of system tables
+MSysObjects
+MSysObjectsShadow
+WARNING: Repair is not allowed on this database due to its specific content
+datatable:	2380:	checking table "datatable" (8)
+datatable:	2380:	checking long value tree (91)
+datatable:	2380:	checking data
+datatable:	2380:	checking index "INDEX_00090092" (90)
+datatable:	2380:	checking index "NC_Acc_Type_Sid" (89)
+datatable:	2380:	checking index "INDEX_00090002" (88)
+datatable:	2380:	checking index "deltime_index" (87)
+datatable:	2380:	checking index "DRA_USN_CREATED_index" (86)
+datatable:	2380:	checking index "Ancestors_index" (85)
+datatable:	2380:	checking index "PDNT_index" (84)
+datatable:	2380:	checking index "NC_Acc_Type_Name" (83)
+datatable:	2380:	checking index "nc_guid_Index" (82)
+datatable:	2380:	checking index "clean_index" (81)
+datatable:	2380:	checking index "DRA_USN_index" (80)
+datatable:	2380:	checking index "DRA_USN_CRITICAL_index" (79)
+datatable:	2380:	checking index "LCL_ABVIEW_index00000409" (78)
+datatable:	2380:	checking index "INDEX_00000004" (77)
+datatable:	2380:	checking index "INDEX_0000002A" (76)
+datatable:	2380:	checking index "INDEX_0002000D" (75)
+datatable:	2380:	checking index "INDEX_00020030" (74)
+datatable:	2380:	checking index "INDEX_00020073" (73)
+datatable:	2380:	checking index "INDEX_00020078" (72)
+datatable:	2380:	checking index "INDEX_000200D2" (71)
+datatable:	2380:	checking index "INDEX_000201CC" (70)
+datatable:	2380:	checking index "INDEX_00090001" (69)
+datatable:	2380:	checking index "INDEX_00090008" (68)
+datatable:	2380:	checking index "INDEX_0009001C" (67)
+datatable:	2380:	checking index "INDEX_00090057" (66)
+datatable:	2380:	checking index "INDEX_00090062" (65)
+datatable:	2380:	checking index "INDEX_00090085" (64)
+datatable:	2380:	checking index "INDEX_000900DD" (63)
+datatable:	2380:	checking index "INDEX_0009012E" (62)
+datatable:	2380:	checking index "INDEX_00090171" (61)
+datatable:	2380:	checking index "INDEX_000901FF" (60)
+datatable:	2380:	checking index "INDEX_00090261" (59)
+datatable:	2380:	checking index "INDEX_0009028F" (58)
+datatable:	2380:	checking index "INDEX_00090290" (57)
+datatable:	2380:	checking index "INDEX_000902EE" (56)
+datatable:	2380:	checking index "INDEX_00090303" (55)
+datatable:	2380:	checking index "INDEX_0009030E" (54)
+datatable:	2380:	checking index "INDEX_00090363" (53)
+datatable:	2380:	checking index "INDEX_000904E1" (52)
+datatable:	2380:	checking index "INDEX_00090582" (51)
+datatable:	2380:	checking index "INDEX_000906B6" (50)
+datatable:	2380:	checking index "INDEX_000901FD" (49)
+datatable:	2380:	checking index "INDEX_000901F6" (48)
+datatable:	2380:	checking index "INDEX_000201D5" (47)
+datatable:	2380:	checking index "INDEX_000903B4" (46)
+datatable:	2380:	checking index "INDEX_000905A3" (45)
+datatable:	2380:	checking index "INDEX_000905A2" (44)
+datatable:	2380:	checking index "INDEX_0009039D" (43)
+datatable:	2380:	checking index "INDEX_0009039A" (42)
+datatable:	2380:	checking index "INDEX_00090395" (41)
+datatable:	2380:	checking index "INDEX_00090587" (40)
+datatable:	2380:	checking index "INDEX_00090586" (39)
+datatable:	2380:	checking index "INDEX_00090573" (38)
+datatable:	2380:	checking index "INDEX_00090571" (37)
+datatable:	2380:	checking index "INDEX_0009056C" (36)
+datatable:	2380:	checking index "INDEX_00090167" (35)
+datatable:	2380:	checking index "INDEX_00090553" (34)
+datatable:	2380:	checking index "INDEX_0009014E" (33)
+datatable:	2380:	checking index "INDEX_0009014D" (32)
+datatable:	2380:	checking index "INDEX_0009014C" (31)
+datatable:	2380:	checking index "INDEX_00090147" (30)
+datatable:	2380:	checking index "INDEX_00090141" (29)
+datatable:	2380:	checking index "INDEX_00090140" (28)
+datatable:	2380:	checking index "INDEX_0009013A" (27)
+datatable:	2380:	checking index "INDEX_00090138" (26)
+datatable:	2380:	checking index "INDEX_00090330" (25)
+datatable:	2380:	checking index "INDEX_000900DE" (24)
+datatable:	2380:	checking index "INDEX_000902BB" (23)
+datatable:	2380:	checking index "INDEX_000200A9" (22)
+datatable:	2380:	checking index "INDEX_00090098" (21)
+datatable:	2380:	checking index "INDEX_00090089" (20)
+datatable:	2380:	checking index "INDEX_00090073" (19)
+datatable:	2380:	checking index "INDEX_00090656" (18)
+datatable:	2380:	checking index "INDEX_00090030" (17)
+datatable:	2380:	checking index "INDEX_00020013" (16)
+datatable:	2380:	checking index "INDEX_00090013" (15)
+datatable:	2380:	checking index "INDEX_00000013" (14)
+datatable:	2380:	checking index "INDEX_0000000B" (13)
+datatable:	2380:	checking index "INDEX_00000007" (12)
+datatable:	2380:	checking index "INDEX_00000003" (11)
+datatable:	2380:	checking index "INDEX_00150003" (10)
+datatable:	2380:	checking index "INDEX_00090202" (9)
+datatable:	2380:	checking LV refcounts
+datatable:	2380:	rebuilding and comparing indexes
+datatable:	2380:	integrity-check of table "datatable" (8) finishes with error 0 (0x0) after 0 seconds
+hiddentable:	2380:	checking table "hiddentable" (92)
+hiddentable:	2380:	checking data
+hiddentable:	2380:	integrity-check of table "hiddentable" (92) finishes with error 0 (0x0) after 0 seconds
+link_table:	2380:	checking table "link_table" (93)
+link_table:	2380:	checking data
+link_table:	2380:	checking index "backlink_index" (100)
+link_table:	2380:	checking index "link_present_index" (99)
+link_table:	2380:	checking index "backlink_present_index" (98)
+link_table:	2380:	checking index "link_del_index" (97)
+link_table:	2380:	checking index "link_DRA_USN_index" (96)
+link_table:	2380:	checking index "link_legacy_index" (95)
+link_table:	2380:	checking index "link_attr_USN_index" (94)
+link_table:	2380:	rebuilding and comparing indexes
+link_table:	2380:	integrity-check of table "link_table" (93) finishes with error 0 (0x0) after 0 seconds
+MSysUnicodeFixupVer2:	2380:	checking table "MSysUnicodeFixupVer2" (6)
+MSysUnicodeFixupVer2:	2380:	checking data
+MSysUnicodeFixupVer2:	2380:	checking index "secondary" (7)
+MSysUnicodeFixupVer2:	2380:	rebuilding and comparing indexes
+MSysUnicodeFixupVer2:	2380:	integrity-check of table "MSysUnicodeFixupVer2" (6) finishes with error 0 (0x0) after 0 seconds
+quota_rebuild_progress_table:	2380:	checking table "quota_rebuild_progress_table" (101)
+quota_rebuild_progress_table:	2380:	checking data
+quota_rebuild_progress_table:	2380:	integrity-check of table "quota_rebuild_progress_table" (101) finishes with error 0 (0x0) after 0 seconds
+quota_table:	2380:	checking table "quota_table" (102)
+quota_table:	2380:	checking data
+quota_table:	2380:	integrity-check of table "quota_table" (102) finishes with error 0 (0x0) after 0 seconds
+sdproptable:	2380:	checking table "sdproptable" (103)
+sdproptable:	2380:	checking data
+sdproptable:	2380:	checking index "trim_index" (105)
+sdproptable:	2380:	checking index "clientid_index" (104)
+sdproptable:	2380:	rebuilding and comparing indexes
+sdproptable:	2380:	integrity-check of table "sdproptable" (103) finishes with error 0 (0x0) after 0 seconds
+sd_table:	2380:	checking table "sd_table" (106)
+sd_table:	2380:	checking long value tree (108)
+sd_table:	2380:	checking data
+sd_table:	2380:	checking index "sd_hash_index" (107)
+sd_table:	2380:	checking LV refcounts
+sd_table:	2380:	rebuilding and comparing indexes
+sd_table:	2380:	integrity-check of table "sd_table" (106) finishes with error 0 (0x0) after 0 seconds
+WARNING: Database file is too big (expected 1792 pages, file is 2048 pages)
+checking unicode fixup table
+
+Integrity check successful.
+
+
+
+***** Eseutil completed in 0 seconds
+
+***** Repair of database 'c:\ntds\ntds.dit' started [ESENT version 06.01.7601.0000, (RETAIL RTM MBCS)]
+
+search for 'ERROR:' to find errors
+search for 'WARNING:' to find warnings
+trying for 108816 buffers
+checking database header
+database file "c:\ntds\ntds.dit" is 16793600 bytes
+Creating 4 threads
+checking SystemRoot
+SystemRoot (OE)
+SystemRoot (AE)
+checking system tables
+MSysObjects 
+MSysObjectsShadow 
+MSysObjects Name
+MSysObjects RootObjects
+rebuilding and comparing indexes
+checking logical consistency of system tables
+MSysObjects
+MSysObjectsShadow
+WARNING: Repair is not allowed on this database due to its specific content
+datatable:	1328:	checking table "datatable" (8)
+datatable:	1328:	checking long value tree (91)
+datatable:	1328:	checking data
+datatable:	1328:	checking index "INDEX_00090092" (90)
+datatable:	1328:	checking index "NC_Acc_Type_Sid" (89)
+datatable:	1328:	checking index "INDEX_00090002" (88)
+datatable:	1328:	checking index "deltime_index" (87)
+datatable:	1328:	checking index "DRA_USN_CREATED_index" (86)
+datatable:	1328:	checking index "Ancestors_index" (85)
+datatable:	1328:	checking index "PDNT_index" (84)
+datatable:	1328:	checking index "NC_Acc_Type_Name" (83)
+datatable:	1328:	checking index "nc_guid_Index" (82)
+datatable:	1328:	checking index "clean_index" (81)
+datatable:	1328:	checking index "DRA_USN_index" (80)
+datatable:	1328:	checking index "DRA_USN_CRITICAL_index" (79)
+datatable:	1328:	checking index "LCL_ABVIEW_index00000409" (78)
+datatable:	1328:	checking index "INDEX_00000004" (77)
+datatable:	1328:	checking index "INDEX_0000002A" (76)
+datatable:	1328:	checking index "INDEX_0002000D" (75)
+datatable:	1328:	checking index "INDEX_00020030" (74)
+datatable:	1328:	checking index "INDEX_00020073" (73)
+datatable:	1328:	checking index "INDEX_00020078" (72)
+datatable:	1328:	checking index "INDEX_000200D2" (71)
+datatable:	1328:	checking index "INDEX_000201CC" (70)
+datatable:	1328:	checking index "INDEX_00090001" (69)
+datatable:	1328:	checking index "INDEX_00090008" (68)
+datatable:	1328:	checking index "INDEX_0009001C" (67)
+datatable:	1328:	checking index "INDEX_00090057" (66)
+datatable:	1328:	checking index "INDEX_00090062" (65)
+datatable:	1328:	checking index "INDEX_00090085" (64)
+datatable:	1328:	checking index "INDEX_000900DD" (63)
+datatable:	1328:	checking index "INDEX_0009012E" (62)
+datatable:	1328:	checking index "INDEX_00090171" (61)
+datatable:	1328:	checking index "INDEX_000901FF" (60)
+datatable:	1328:	checking index "INDEX_00090261" (59)
+datatable:	1328:	checking index "INDEX_0009028F" (58)
+datatable:	1328:	checking index "INDEX_00090290" (57)
+datatable:	1328:	checking index "INDEX_000902EE" (56)
+datatable:	1328:	checking index "INDEX_00090303" (55)
+datatable:	1328:	checking index "INDEX_0009030E" (54)
+datatable:	1328:	checking index "INDEX_00090363" (53)
+datatable:	1328:	checking index "INDEX_000904E1" (52)
+datatable:	1328:	checking index "INDEX_00090582" (51)
+datatable:	1328:	checking index "INDEX_000906B6" (50)
+datatable:	1328:	checking index "INDEX_000901FD" (49)
+datatable:	1328:	checking index "INDEX_000901F6" (48)
+datatable:	1328:	checking index "INDEX_000201D5" (47)
+datatable:	1328:	checking index "INDEX_000903B4" (46)
+datatable:	1328:	checking index "INDEX_000905A3" (45)
+datatable:	1328:	checking index "INDEX_000905A2" (44)
+datatable:	1328:	checking index "INDEX_0009039D" (43)
+datatable:	1328:	checking index "INDEX_0009039A" (42)
+datatable:	1328:	checking index "INDEX_00090395" (41)
+datatable:	1328:	checking index "INDEX_00090587" (40)
+datatable:	1328:	checking index "INDEX_00090586" (39)
+datatable:	1328:	checking index "INDEX_00090573" (38)
+datatable:	1328:	checking index "INDEX_00090571" (37)
+datatable:	1328:	checking index "INDEX_0009056C" (36)
+datatable:	1328:	checking index "INDEX_00090167" (35)
+datatable:	1328:	checking index "INDEX_00090553" (34)
+datatable:	1328:	checking index "INDEX_0009014E" (33)
+datatable:	1328:	checking index "INDEX_0009014D" (32)
+datatable:	1328:	checking index "INDEX_0009014C" (31)
+datatable:	1328:	checking index "INDEX_00090147" (30)
+datatable:	1328:	checking index "INDEX_00090141" (29)
+datatable:	1328:	checking index "INDEX_00090140" (28)
+datatable:	1328:	checking index "INDEX_0009013A" (27)
+datatable:	1328:	checking index "INDEX_00090138" (26)
+datatable:	1328:	checking index "INDEX_00090330" (25)
+datatable:	1328:	checking index "INDEX_000900DE" (24)
+datatable:	1328:	checking index "INDEX_000902BB" (23)
+datatable:	1328:	checking index "INDEX_000200A9" (22)
+datatable:	1328:	checking index "INDEX_00090098" (21)
+datatable:	1328:	checking index "INDEX_00090089" (20)
+datatable:	1328:	checking index "INDEX_00090073" (19)
+datatable:	1328:	checking index "INDEX_00090656" (18)
+datatable:	1328:	checking index "INDEX_00090030" (17)
+datatable:	1328:	checking index "INDEX_00020013" (16)
+datatable:	1328:	checking index "INDEX_00090013" (15)
+datatable:	1328:	checking index "INDEX_00000013" (14)
+datatable:	1328:	checking index "INDEX_0000000B" (13)
+datatable:	1328:	checking index "INDEX_00000007" (12)
+datatable:	1328:	checking index "INDEX_00000003" (11)
+datatable:	1328:	checking index "INDEX_00150003" (10)
+datatable:	1328:	checking index "INDEX_00090202" (9)
+datatable:	1328:	checking LV refcounts
+datatable:	1328:	rebuilding and comparing indexes
+datatable:	1328:	integrity-check of table "datatable" (8) finishes with error 0 (0x0) after 0 seconds
+hiddentable:	1328:	checking table "hiddentable" (92)
+hiddentable:	1328:	checking data
+hiddentable:	1328:	integrity-check of table "hiddentable" (92) finishes with error 0 (0x0) after 0 seconds
+link_table:	1328:	checking table "link_table" (93)
+link_table:	1328:	checking data
+link_table:	1328:	checking index "backlink_index" (100)
+link_table:	1328:	checking index "link_present_index" (99)
+link_table:	1328:	checking index "backlink_present_index" (98)
+link_table:	1328:	checking index "link_del_index" (97)
+link_table:	1328:	checking index "link_DRA_USN_index" (96)
+link_table:	1328:	checking index "link_legacy_index" (95)
+link_table:	1328:	checking index "link_attr_USN_index" (94)
+link_table:	1328:	rebuilding and comparing indexes
+link_table:	1328:	integrity-check of table "link_table" (93) finishes with error 0 (0x0) after 0 seconds
+MSysUnicodeFixupVer2:	1328:	checking table "MSysUnicodeFixupVer2" (6)
+MSysUnicodeFixupVer2:	1328:	checking data
+MSysUnicodeFixupVer2:	1328:	checking index "secondary" (7)
+MSysUnicodeFixupVer2:	1328:	rebuilding and comparing indexes
+MSysUnicodeFixupVer2:	1328:	integrity-check of table "MSysUnicodeFixupVer2" (6) finishes with error 0 (0x0) after 0 seconds
+quota_rebuild_progress_table:	1328:	checking table "quota_rebuild_progress_table" (101)
+quota_rebuild_progress_table:	1328:	checking data
+quota_rebuild_progress_table:	1328:	integrity-check of table "quota_rebuild_progress_table" (101) finishes with error 0 (0x0) after 0 seconds
+quota_table:	1328:	checking table "quota_table" (102)
+quota_table:	1328:	checking data
+quota_table:	1328:	integrity-check of table "quota_table" (102) finishes with error 0 (0x0) after 0 seconds
+sdproptable:	1328:	checking table "sdproptable" (103)
+sdproptable:	1328:	checking data
+sdproptable:	1328:	checking index "trim_index" (105)
+sdproptable:	1328:	checking index "clientid_index" (104)
+sdproptable:	1328:	rebuilding and comparing indexes
+sdproptable:	1328:	integrity-check of table "sdproptable" (103) finishes with error 0 (0x0) after 0 seconds
+sd_table:	1328:	checking table "sd_table" (106)
+sd_table:	1328:	checking long value tree (108)
+sd_table:	1328:	checking data
+sd_table:	1328:	checking index "sd_hash_index" (107)
+sd_table:	1328:	checking LV refcounts
+sd_table:	1328:	rebuilding and comparing indexes
+sd_table:	1328:	integrity-check of table "sd_table" (106) finishes with error 0 (0x0) after 0 seconds
+WARNING: Database file is too big (expected 1792 pages, file is 2048 pages)
+checking unicode fixup table
+
+Integrity check successful.
+
+
+
+***** Eseutil completed in 0 seconds
+
+***** Repair of database 'c:\ntds\ntds.dit' started [ESENT version 06.01.7601.0000, (RETAIL RTM MBCS)]
+
+search for 'ERROR:' to find errors
+search for 'WARNING:' to find warnings
+trying for 108790 buffers
+checking database header
+database file "c:\ntds\ntds.dit" is 16793600 bytes
+Creating 4 threads
+checking SystemRoot
+SystemRoot (OE)
+SystemRoot (AE)
+checking system tables
+MSysObjects 
+MSysObjectsShadow 
+MSysObjects Name
+MSysObjects RootObjects
+rebuilding and comparing indexes
+checking logical consistency of system tables
+MSysObjects
+MSysObjectsShadow
+WARNING: Repair is not allowed on this database due to its specific content
+datatable:	1380:	checking table "datatable" (8)
+datatable:	1380:	checking long value tree (91)
+datatable:	1380:	checking data
+datatable:	1380:	checking index "INDEX_00090092" (90)
+datatable:	1380:	checking index "NC_Acc_Type_Sid" (89)
+datatable:	1380:	checking index "INDEX_00090002" (88)
+datatable:	1380:	checking index "deltime_index" (87)
+datatable:	1380:	checking index "DRA_USN_CREATED_index" (86)
+datatable:	1380:	checking index "Ancestors_index" (85)
+datatable:	1380:	checking index "PDNT_index" (84)
+datatable:	1380:	checking index "NC_Acc_Type_Name" (83)
+datatable:	1380:	checking index "nc_guid_Index" (82)
+datatable:	1380:	checking index "clean_index" (81)
+datatable:	1380:	checking index "DRA_USN_index" (80)
+datatable:	1380:	checking index "DRA_USN_CRITICAL_index" (79)
+datatable:	1380:	checking index "LCL_ABVIEW_index00000409" (78)
+datatable:	1380:	checking index "INDEX_00000004" (77)
+datatable:	1380:	checking index "INDEX_0000002A" (76)
+datatable:	1380:	checking index "INDEX_0002000D" (75)
+datatable:	1380:	checking index "INDEX_00020030" (74)
+datatable:	1380:	checking index "INDEX_00020073" (73)
+datatable:	1380:	checking index "INDEX_00020078" (72)
+datatable:	1380:	checking index "INDEX_000200D2" (71)
+datatable:	1380:	checking index "INDEX_000201CC" (70)
+datatable:	1380:	checking index "INDEX_00090001" (69)
+datatable:	1380:	checking index "INDEX_00090008" (68)
+datatable:	1380:	checking index "INDEX_0009001C" (67)
+datatable:	1380:	checking index "INDEX_00090057" (66)
+datatable:	1380:	checking index "INDEX_00090062" (65)
+datatable:	1380:	checking index "INDEX_00090085" (64)
+datatable:	1380:	checking index "INDEX_000900DD" (63)
+datatable:	1380:	checking index "INDEX_0009012E" (62)
+datatable:	1380:	checking index "INDEX_00090171" (61)
+datatable:	1380:	checking index "INDEX_000901FF" (60)
+datatable:	1380:	checking index "INDEX_00090261" (59)
+datatable:	1380:	checking index "INDEX_0009028F" (58)
+datatable:	1380:	checking index "INDEX_00090290" (57)
+datatable:	1380:	checking index "INDEX_000902EE" (56)
+datatable:	1380:	checking index "INDEX_00090303" (55)
+datatable:	1380:	checking index "INDEX_0009030E" (54)
+datatable:	1380:	checking index "INDEX_00090363" (53)
+datatable:	1380:	checking index "INDEX_000904E1" (52)
+datatable:	1380:	checking index "INDEX_00090582" (51)
+datatable:	1380:	checking index "INDEX_000906B6" (50)
+datatable:	1380:	checking index "INDEX_000901FD" (49)
+datatable:	1380:	checking index "INDEX_000901F6" (48)
+datatable:	1380:	checking index "INDEX_000201D5" (47)
+datatable:	1380:	checking index "INDEX_000903B4" (46)
+datatable:	1380:	checking index "INDEX_000905A3" (45)
+datatable:	1380:	checking index "INDEX_000905A2" (44)
+datatable:	1380:	checking index "INDEX_0009039D" (43)
+datatable:	1380:	checking index "INDEX_0009039A" (42)
+datatable:	1380:	checking index "INDEX_00090395" (41)
+datatable:	1380:	checking index "INDEX_00090587" (40)
+datatable:	1380:	checking index "INDEX_00090586" (39)
+datatable:	1380:	checking index "INDEX_00090573" (38)
+datatable:	1380:	checking index "INDEX_00090571" (37)
+datatable:	1380:	checking index "INDEX_0009056C" (36)
+datatable:	1380:	checking index "INDEX_00090167" (35)
+datatable:	1380:	checking index "INDEX_00090553" (34)
+datatable:	1380:	checking index "INDEX_0009014E" (33)
+datatable:	1380:	checking index "INDEX_0009014D" (32)
+datatable:	1380:	checking index "INDEX_0009014C" (31)
+datatable:	1380:	checking index "INDEX_00090147" (30)
+datatable:	1380:	checking index "INDEX_00090141" (29)
+datatable:	1380:	checking index "INDEX_00090140" (28)
+datatable:	1380:	checking index "INDEX_0009013A" (27)
+datatable:	1380:	checking index "INDEX_00090138" (26)
+datatable:	1380:	checking index "INDEX_00090330" (25)
+datatable:	1380:	checking index "INDEX_000900DE" (24)
+datatable:	1380:	checking index "INDEX_000902BB" (23)
+datatable:	1380:	checking index "INDEX_000200A9" (22)
+datatable:	1380:	checking index "INDEX_00090098" (21)
+datatable:	1380:	checking index "INDEX_00090089" (20)
+datatable:	1380:	checking index "INDEX_00090073" (19)
+datatable:	1380:	checking index "INDEX_00090656" (18)
+datatable:	1380:	checking index "INDEX_00090030" (17)
+datatable:	1380:	checking index "INDEX_00020013" (16)
+datatable:	1380:	checking index "INDEX_00090013" (15)
+datatable:	1380:	checking index "INDEX_00000013" (14)
+datatable:	1380:	checking index "INDEX_0000000B" (13)
+datatable:	1380:	checking index "INDEX_00000007" (12)
+datatable:	1380:	checking index "INDEX_00000003" (11)
+datatable:	1380:	checking index "INDEX_00150003" (10)
+datatable:	1380:	checking index "INDEX_00090202" (9)
+datatable:	1380:	checking LV refcounts
+datatable:	1380:	rebuilding and comparing indexes
+datatable:	1380:	integrity-check of table "datatable" (8) finishes with error 0 (0x0) after 0 seconds
+hiddentable:	1380:	checking table "hiddentable" (92)
+hiddentable:	1380:	checking data
+hiddentable:	1380:	integrity-check of table "hiddentable" (92) finishes with error 0 (0x0) after 0 seconds
+link_table:	1380:	checking table "link_table" (93)
+link_table:	1380:	checking data
+link_table:	1380:	checking index "backlink_index" (100)
+link_table:	1380:	checking index "link_present_index" (99)
+link_table:	1380:	checking index "backlink_present_index" (98)
+link_table:	1380:	checking index "link_del_index" (97)
+link_table:	1380:	checking index "link_DRA_USN_index" (96)
+link_table:	1380:	checking index "link_legacy_index" (95)
+link_table:	1380:	checking index "link_attr_USN_index" (94)
+link_table:	1380:	rebuilding and comparing indexes
+link_table:	1380:	integrity-check of table "link_table" (93) finishes with error 0 (0x0) after 0 seconds
+MSysUnicodeFixupVer2:	1380:	checking table "MSysUnicodeFixupVer2" (6)
+MSysUnicodeFixupVer2:	1380:	checking data
+MSysUnicodeFixupVer2:	1380:	checking index "secondary" (7)
+MSysUnicodeFixupVer2:	1380:	rebuilding and comparing indexes
+MSysUnicodeFixupVer2:	1380:	integrity-check of table "MSysUnicodeFixupVer2" (6) finishes with error 0 (0x0) after 0 seconds
+quota_rebuild_progress_table:	1380:	checking table "quota_rebuild_progress_table" (101)
+quota_rebuild_progress_table:	1380:	checking data
+quota_rebuild_progress_table:	1380:	integrity-check of table "quota_rebuild_progress_table" (101) finishes with error 0 (0x0) after 0 seconds
+quota_table:	1380:	checking table "quota_table" (102)
+quota_table:	1380:	checking data
+quota_table:	1380:	integrity-check of table "quota_table" (102) finishes with error 0 (0x0) after 0 seconds
+sdproptable:	1380:	checking table "sdproptable" (103)
+sdproptable:	1380:	checking data
+sdproptable:	1380:	checking index "trim_index" (105)
+sdproptable:	1380:	checking index "clientid_index" (104)
+sdproptable:	1380:	rebuilding and comparing indexes
+sdproptable:	1380:	integrity-check of table "sdproptable" (103) finishes with error 0 (0x0) after 0 seconds
+sd_table:	1380:	checking table "sd_table" (106)
+sd_table:	1380:	checking long value tree (108)
+sd_table:	1380:	checking data
+sd_table:	1380:	checking index "sd_hash_index" (107)
+sd_table:	1380:	checking LV refcounts
+sd_table:	1380:	rebuilding and comparing indexes
+sd_table:	1380:	integrity-check of table "sd_table" (106) finishes with error 0 (0x0) after 0 seconds
+WARNING: Database file is too big (expected 1792 pages, file is 2048 pages)
+checking unicode fixup table
+
+Integrity check successful.
+
+
+
+***** Eseutil completed in 0 seconds
+
+***** Repair of database 'c:\ntds\ntds.dit' started [ESENT version 06.01.7601.0000, (RETAIL RTM MBCS)]
+
+search for 'ERROR:' to find errors
+search for 'WARNING:' to find warnings
+trying for 108872 buffers
+checking database header
+database file "c:\ntds\ntds.dit" is 16793600 bytes
+Creating 4 threads
+checking SystemRoot
+SystemRoot (OE)
+SystemRoot (AE)
+checking system tables
+MSysObjects 
+MSysObjectsShadow 
+MSysObjects Name
+MSysObjects RootObjects
+rebuilding and comparing indexes
+checking logical consistency of system tables
+MSysObjects
+MSysObjectsShadow
+WARNING: Repair is not allowed on this database due to its specific content
+datatable:	3504:	checking table "datatable" (8)
+datatable:	3504:	checking long value tree (91)
+datatable:	3504:	checking data
+datatable:	3504:	checking index "INDEX_00090092" (90)
+datatable:	3504:	checking index "NC_Acc_Type_Sid" (89)
+datatable:	3504:	checking index "INDEX_00090002" (88)
+datatable:	3504:	checking index "deltime_index" (87)
+datatable:	3504:	checking index "DRA_USN_CREATED_index" (86)
+datatable:	3504:	checking index "Ancestors_index" (85)
+datatable:	3504:	checking index "PDNT_index" (84)
+datatable:	3504:	checking index "NC_Acc_Type_Name" (83)
+datatable:	3504:	checking index "nc_guid_Index" (82)
+datatable:	3504:	checking index "clean_index" (81)
+datatable:	3504:	checking index "DRA_USN_index" (80)
+datatable:	3504:	checking index "DRA_USN_CRITICAL_index" (79)
+datatable:	3504:	checking index "LCL_ABVIEW_index00000409" (78)
+datatable:	3504:	checking index "INDEX_00000004" (77)
+datatable:	3504:	checking index "INDEX_0000002A" (76)
+datatable:	3504:	checking index "INDEX_0002000D" (75)
+datatable:	3504:	checking index "INDEX_00020030" (74)
+datatable:	3504:	checking index "INDEX_00020073" (73)
+datatable:	3504:	checking index "INDEX_00020078" (72)
+datatable:	3504:	checking index "INDEX_000200D2" (71)
+datatable:	3504:	checking index "INDEX_000201CC" (70)
+datatable:	3504:	checking index "INDEX_00090001" (69)
+datatable:	3504:	checking index "INDEX_00090008" (68)
+datatable:	3504:	checking index "INDEX_0009001C" (67)
+datatable:	3504:	checking index "INDEX_00090057" (66)
+datatable:	3504:	checking index "INDEX_00090062" (65)
+datatable:	3504:	checking index "INDEX_00090085" (64)
+datatable:	3504:	checking index "INDEX_000900DD" (63)
+datatable:	3504:	checking index "INDEX_0009012E" (62)
+datatable:	3504:	checking index "INDEX_00090171" (61)
+datatable:	3504:	checking index "INDEX_000901FF" (60)
+datatable:	3504:	checking index "INDEX_00090261" (59)
+datatable:	3504:	checking index "INDEX_0009028F" (58)
+datatable:	3504:	checking index "INDEX_00090290" (57)
+datatable:	3504:	checking index "INDEX_000902EE" (56)
+datatable:	3504:	checking index "INDEX_00090303" (55)
+datatable:	3504:	checking index "INDEX_0009030E" (54)
+datatable:	3504:	checking index "INDEX_00090363" (53)
+datatable:	3504:	checking index "INDEX_000904E1" (52)
+datatable:	3504:	checking index "INDEX_00090582" (51)
+datatable:	3504:	checking index "INDEX_000906B6" (50)
+datatable:	3504:	checking index "INDEX_000901FD" (49)
+datatable:	3504:	checking index "INDEX_000901F6" (48)
+datatable:	3504:	checking index "INDEX_000201D5" (47)
+datatable:	3504:	checking index "INDEX_000903B4" (46)
+datatable:	3504:	checking index "INDEX_000905A3" (45)
+datatable:	3504:	checking index "INDEX_000905A2" (44)
+datatable:	3504:	checking index "INDEX_0009039D" (43)
+datatable:	3504:	checking index "INDEX_0009039A" (42)
+datatable:	3504:	checking index "INDEX_00090395" (41)
+datatable:	3504:	checking index "INDEX_00090587" (40)
+datatable:	3504:	checking index "INDEX_00090586" (39)
+datatable:	3504:	checking index "INDEX_00090573" (38)
+datatable:	3504:	checking index "INDEX_00090571" (37)
+datatable:	3504:	checking index "INDEX_0009056C" (36)
+datatable:	3504:	checking index "INDEX_00090167" (35)
+datatable:	3504:	checking index "INDEX_00090553" (34)
+datatable:	3504:	checking index "INDEX_0009014E" (33)
+datatable:	3504:	checking index "INDEX_0009014D" (32)
+datatable:	3504:	checking index "INDEX_0009014C" (31)
+datatable:	3504:	checking index "INDEX_00090147" (30)
+datatable:	3504:	checking index "INDEX_00090141" (29)
+datatable:	3504:	checking index "INDEX_00090140" (28)
+datatable:	3504:	checking index "INDEX_0009013A" (27)
+datatable:	3504:	checking index "INDEX_00090138" (26)
+datatable:	3504:	checking index "INDEX_00090330" (25)
+datatable:	3504:	checking index "INDEX_000900DE" (24)
+datatable:	3504:	checking index "INDEX_000902BB" (23)
+datatable:	3504:	checking index "INDEX_000200A9" (22)
+datatable:	3504:	checking index "INDEX_00090098" (21)
+datatable:	3504:	checking index "INDEX_00090089" (20)
+datatable:	3504:	checking index "INDEX_00090073" (19)
+datatable:	3504:	checking index "INDEX_00090656" (18)
+datatable:	3504:	checking index "INDEX_00090030" (17)
+datatable:	3504:	checking index "INDEX_00020013" (16)
+datatable:	3504:	checking index "INDEX_00090013" (15)
+datatable:	3504:	checking index "INDEX_00000013" (14)
+datatable:	3504:	checking index "INDEX_0000000B" (13)
+datatable:	3504:	checking index "INDEX_00000007" (12)
+datatable:	3504:	checking index "INDEX_00000003" (11)
+datatable:	3504:	checking index "INDEX_00150003" (10)
+datatable:	3504:	checking index "INDEX_00090202" (9)
+datatable:	3504:	checking LV refcounts
+datatable:	3504:	rebuilding and comparing indexes
+datatable:	3504:	integrity-check of table "datatable" (8) finishes with error 0 (0x0) after 0 seconds
+hiddentable:	3504:	checking table "hiddentable" (92)
+hiddentable:	3504:	checking data
+hiddentable:	3504:	integrity-check of table "hiddentable" (92) finishes with error 0 (0x0) after 0 seconds
+link_table:	3504:	checking table "link_table" (93)
+link_table:	3504:	checking data
+link_table:	3504:	checking index "backlink_index" (100)
+link_table:	3504:	checking index "link_present_index" (99)
+link_table:	3504:	checking index "backlink_present_index" (98)
+link_table:	3504:	checking index "link_del_index" (97)
+link_table:	3504:	checking index "link_DRA_USN_index" (96)
+link_table:	3504:	checking index "link_legacy_index" (95)
+link_table:	3504:	checking index "link_attr_USN_index" (94)
+link_table:	3504:	rebuilding and comparing indexes
+link_table:	3504:	integrity-check of table "link_table" (93) finishes with error 0 (0x0) after 0 seconds
+MSysUnicodeFixupVer2:	3504:	checking table "MSysUnicodeFixupVer2" (6)
+MSysUnicodeFixupVer2:	3504:	checking data
+MSysUnicodeFixupVer2:	3504:	checking index "secondary" (7)
+MSysUnicodeFixupVer2:	3504:	rebuilding and comparing indexes
+MSysUnicodeFixupVer2:	3504:	integrity-check of table "MSysUnicodeFixupVer2" (6) finishes with error 0 (0x0) after 0 seconds
+quota_rebuild_progress_table:	3504:	checking table "quota_rebuild_progress_table" (101)
+quota_rebuild_progress_table:	3504:	checking data
+quota_rebuild_progress_table:	3504:	integrity-check of table "quota_rebuild_progress_table" (101) finishes with error 0 (0x0) after 0 seconds
+quota_table:	3504:	checking table "quota_table" (102)
+quota_table:	3504:	checking data
+quota_table:	3504:	integrity-check of table "quota_table" (102) finishes with error 0 (0x0) after 0 seconds
+sdproptable:	3504:	checking table "sdproptable" (103)
+sdproptable:	3504:	checking data
+sdproptable:	3504:	checking index "trim_index" (105)
+sdproptable:	3504:	checking index "clientid_index" (104)
+sdproptable:	3504:	rebuilding and comparing indexes
+sdproptable:	3504:	integrity-check of table "sdproptable" (103) finishes with error 0 (0x0) after 0 seconds
+sd_table:	3504:	checking table "sd_table" (106)
+sd_table:	3504:	checking long value tree (108)
+sd_table:	3504:	checking data
+sd_table:	3504:	checking index "sd_hash_index" (107)
+sd_table:	3504:	checking LV refcounts
+sd_table:	3504:	rebuilding and comparing indexes
+sd_table:	3504:	integrity-check of table "sd_table" (106) finishes with error 0 (0x0) after 0 seconds
+WARNING: Database file is too big (expected 1792 pages, file is 2048 pages)
+checking unicode fixup table
+
+Integrity check successful.
+
+
+
+***** Eseutil completed in 0 seconds
+
+***** Repair of database 'c:\ntds\ntds.dit' started [ESENT version 06.01.7601.0000, (RETAIL RTM MBCS)]
+
+search for 'ERROR:' to find errors
+search for 'WARNING:' to find warnings
+trying for 108649 buffers
+checking database header
+database file "c:\ntds\ntds.dit" is 16793600 bytes
+Creating 4 threads
+checking SystemRoot
+SystemRoot (OE)
+SystemRoot (AE)
+checking system tables
+MSysObjects 
+MSysObjectsShadow 
+MSysObjects Name
+MSysObjects RootObjects
+rebuilding and comparing indexes
+checking logical consistency of system tables
+MSysObjects
+MSysObjectsShadow
+WARNING: Repair is not allowed on this database due to its specific content
+datatable:	1316:	checking table "datatable" (8)
+datatable:	1316:	checking long value tree (91)
+datatable:	1316:	checking data
+datatable:	1316:	checking index "INDEX_00090092" (90)
+datatable:	1316:	checking index "NC_Acc_Type_Sid" (89)
+datatable:	1316:	checking index "INDEX_00090002" (88)
+datatable:	1316:	checking index "deltime_index" (87)
+datatable:	1316:	checking index "DRA_USN_CREATED_index" (86)
+datatable:	1316:	checking index "Ancestors_index" (85)
+datatable:	1316:	checking index "PDNT_index" (84)
+datatable:	1316:	checking index "NC_Acc_Type_Name" (83)
+datatable:	1316:	checking index "nc_guid_Index" (82)
+datatable:	1316:	checking index "clean_index" (81)
+datatable:	1316:	checking index "DRA_USN_index" (80)
+datatable:	1316:	checking index "DRA_USN_CRITICAL_index" (79)
+datatable:	1316:	checking index "LCL_ABVIEW_index00000409" (78)
+datatable:	1316:	checking index "INDEX_00000004" (77)
+datatable:	1316:	checking index "INDEX_0000002A" (76)
+datatable:	1316:	checking index "INDEX_0002000D" (75)
+datatable:	1316:	checking index "INDEX_00020030" (74)
+datatable:	1316:	checking index "INDEX_00020073" (73)
+datatable:	1316:	checking index "INDEX_00020078" (72)
+datatable:	1316:	checking index "INDEX_000200D2" (71)
+datatable:	1316:	checking index "INDEX_000201CC" (70)
+datatable:	1316:	checking index "INDEX_00090001" (69)
+datatable:	1316:	checking index "INDEX_00090008" (68)
+datatable:	1316:	checking index "INDEX_0009001C" (67)
+datatable:	1316:	checking index "INDEX_00090057" (66)
+datatable:	1316:	checking index "INDEX_00090062" (65)
+datatable:	1316:	checking index "INDEX_00090085" (64)
+datatable:	1316:	checking index "INDEX_000900DD" (63)
+datatable:	1316:	checking index "INDEX_0009012E" (62)
+datatable:	1316:	checking index "INDEX_00090171" (61)
+datatable:	1316:	checking index "INDEX_000901FF" (60)
+datatable:	1316:	checking index "INDEX_00090261" (59)
+datatable:	1316:	checking index "INDEX_0009028F" (58)
+datatable:	1316:	checking index "INDEX_00090290" (57)
+datatable:	1316:	checking index "INDEX_000902EE" (56)
+datatable:	1316:	checking index "INDEX_00090303" (55)
+datatable:	1316:	checking index "INDEX_0009030E" (54)
+datatable:	1316:	checking index "INDEX_00090363" (53)
+datatable:	1316:	checking index "INDEX_000904E1" (52)
+datatable:	1316:	checking index "INDEX_00090582" (51)
+datatable:	1316:	checking index "INDEX_000906B6" (50)
+datatable:	1316:	checking index "INDEX_000901FD" (49)
+datatable:	1316:	checking index "INDEX_000901F6" (48)
+datatable:	1316:	checking index "INDEX_000201D5" (47)
+datatable:	1316:	checking index "INDEX_000903B4" (46)
+datatable:	1316:	checking index "INDEX_000905A3" (45)
+datatable:	1316:	checking index "INDEX_000905A2" (44)
+datatable:	1316:	checking index "INDEX_0009039D" (43)
+datatable:	1316:	checking index "INDEX_0009039A" (42)
+datatable:	1316:	checking index "INDEX_00090395" (41)
+datatable:	1316:	checking index "INDEX_00090587" (40)
+datatable:	1316:	checking index "INDEX_00090586" (39)
+datatable:	1316:	checking index "INDEX_00090573" (38)
+datatable:	1316:	checking index "INDEX_00090571" (37)
+datatable:	1316:	checking index "INDEX_0009056C" (36)
+datatable:	1316:	checking index "INDEX_00090167" (35)
+datatable:	1316:	checking index "INDEX_00090553" (34)
+datatable:	1316:	checking index "INDEX_0009014E" (33)
+datatable:	1316:	checking index "INDEX_0009014D" (32)
+datatable:	1316:	checking index "INDEX_0009014C" (31)
+datatable:	1316:	checking index "INDEX_00090147" (30)
+datatable:	1316:	checking index "INDEX_00090141" (29)
+datatable:	1316:	checking index "INDEX_00090140" (28)
+datatable:	1316:	checking index "INDEX_0009013A" (27)
+datatable:	1316:	checking index "INDEX_00090138" (26)
+datatable:	1316:	checking index "INDEX_00090330" (25)
+datatable:	1316:	checking index "INDEX_000900DE" (24)
+datatable:	1316:	checking index "INDEX_000902BB" (23)
+datatable:	1316:	checking index "INDEX_000200A9" (22)
+datatable:	1316:	checking index "INDEX_00090098" (21)
+datatable:	1316:	checking index "INDEX_00090089" (20)
+datatable:	1316:	checking index "INDEX_00090073" (19)
+datatable:	1316:	checking index "INDEX_00090656" (18)
+datatable:	1316:	checking index "INDEX_00090030" (17)
+datatable:	1316:	checking index "INDEX_00020013" (16)
+datatable:	1316:	checking index "INDEX_00090013" (15)
+datatable:	1316:	checking index "INDEX_00000013" (14)
+datatable:	1316:	checking index "INDEX_0000000B" (13)
+datatable:	1316:	checking index "INDEX_00000007" (12)
+datatable:	1316:	checking index "INDEX_00000003" (11)
+datatable:	1316:	checking index "INDEX_00150003" (10)
+datatable:	1316:	checking index "INDEX_00090202" (9)
+datatable:	1316:	checking LV refcounts
+datatable:	1316:	rebuilding and comparing indexes
+datatable:	1316:	integrity-check of table "datatable" (8) finishes with error 0 (0x0) after 0 seconds
+hiddentable:	1316:	checking table "hiddentable" (92)
+hiddentable:	1316:	checking data
+hiddentable:	1316:	integrity-check of table "hiddentable" (92) finishes with error 0 (0x0) after 0 seconds
+link_table:	1316:	checking table "link_table" (93)
+link_table:	1316:	checking data
+link_table:	1316:	checking index "backlink_index" (100)
+link_table:	1316:	checking index "link_present_index" (99)
+link_table:	1316:	checking index "backlink_present_index" (98)
+link_table:	1316:	checking index "link_del_index" (97)
+link_table:	1316:	checking index "link_DRA_USN_index" (96)
+link_table:	1316:	checking index "link_legacy_index" (95)
+link_table:	1316:	checking index "link_attr_USN_index" (94)
+link_table:	1316:	rebuilding and comparing indexes
+link_table:	1316:	integrity-check of table "link_table" (93) finishes with error 0 (0x0) after 0 seconds
+MSysUnicodeFixupVer2:	1316:	checking table "MSysUnicodeFixupVer2" (6)
+MSysUnicodeFixupVer2:	1316:	checking data
+MSysUnicodeFixupVer2:	1316:	checking index "secondary" (7)
+MSysUnicodeFixupVer2:	1316:	rebuilding and comparing indexes
+MSysUnicodeFixupVer2:	1316:	integrity-check of table "MSysUnicodeFixupVer2" (6) finishes with error 0 (0x0) after 0 seconds
+quota_rebuild_progress_table:	1316:	checking table "quota_rebuild_progress_table" (101)
+quota_rebuild_progress_table:	1316:	checking data
+quota_rebuild_progress_table:	1316:	integrity-check of table "quota_rebuild_progress_table" (101) finishes with error 0 (0x0) after 0 seconds
+quota_table:	1316:	checking table "quota_table" (102)
+quota_table:	1316:	checking data
+quota_table:	1316:	integrity-check of table "quota_table" (102) finishes with error 0 (0x0) after 0 seconds
+sdproptable:	1316:	checking table "sdproptable" (103)
+sdproptable:	1316:	checking data
+sdproptable:	1316:	checking index "trim_index" (105)
+sdproptable:	1316:	checking index "clientid_index" (104)
+sdproptable:	1316:	rebuilding and comparing indexes
+sdproptable:	1316:	integrity-check of table "sdproptable" (103) finishes with error 0 (0x0) after 0 seconds
+sd_table:	1316:	checking table "sd_table" (106)
+sd_table:	1316:	checking long value tree (108)
+sd_table:	1316:	checking data
+sd_table:	1316:	checking index "sd_hash_index" (107)
+sd_table:	1316:	checking LV refcounts
+sd_table:	1316:	rebuilding and comparing indexes
+sd_table:	1316:	integrity-check of table "sd_table" (106) finishes with error 0 (0x0) after 0 seconds
+WARNING: Database file is too big (expected 1792 pages, file is 2048 pages)
+checking unicode fixup table
+
+Integrity check successful.
+
+
+
+***** Eseutil completed in 0 seconds
+
+***** Repair of database 'c:\ntds\ntds.dit' started [ESENT version 06.01.7601.0000, (RETAIL RTM MBCS)]
+
+search for 'ERROR:' to find errors
+search for 'WARNING:' to find warnings
+trying for 108436 buffers
+checking database header
+database file "c:\ntds\ntds.dit" is 16793600 bytes
+Creating 4 threads
+checking SystemRoot
+SystemRoot (OE)
+SystemRoot (AE)
+checking system tables
+MSysObjects 
+MSysObjectsShadow 
+MSysObjects Name
+MSysObjects RootObjects
+rebuilding and comparing indexes
+checking logical consistency of system tables
+MSysObjects
+MSysObjectsShadow
+WARNING: Repair is not allowed on this database due to its specific content
+datatable:	3188:	checking table "datatable" (8)
+datatable:	3188:	checking long value tree (91)
+datatable:	3188:	checking data
+datatable:	3188:	checking index "INDEX_00090092" (90)
+datatable:	3188:	checking index "NC_Acc_Type_Sid" (89)
+datatable:	3188:	checking index "INDEX_00090002" (88)
+datatable:	3188:	checking index "deltime_index" (87)
+datatable:	3188:	checking index "DRA_USN_CREATED_index" (86)
+datatable:	3188:	checking index "Ancestors_index" (85)
+datatable:	3188:	checking index "PDNT_index" (84)
+datatable:	3188:	checking index "NC_Acc_Type_Name" (83)
+datatable:	3188:	checking index "nc_guid_Index" (82)
+datatable:	3188:	checking index "clean_index" (81)
+datatable:	3188:	checking index "DRA_USN_index" (80)
+datatable:	3188:	checking index "DRA_USN_CRITICAL_index" (79)
+datatable:	3188:	checking index "LCL_ABVIEW_index00000409" (78)
+datatable:	3188:	checking index "INDEX_00000004" (77)
+datatable:	3188:	checking index "INDEX_0000002A" (76)
+datatable:	3188:	checking index "INDEX_0002000D" (75)
+datatable:	3188:	checking index "INDEX_00020030" (74)
+datatable:	3188:	checking index "INDEX_00020073" (73)
+datatable:	3188:	checking index "INDEX_00020078" (72)
+datatable:	3188:	checking index "INDEX_000200D2" (71)
+datatable:	3188:	checking index "INDEX_000201CC" (70)
+datatable:	3188:	checking index "INDEX_00090001" (69)
+datatable:	3188:	checking index "INDEX_00090008" (68)
+datatable:	3188:	checking index "INDEX_0009001C" (67)
+datatable:	3188:	checking index "INDEX_00090057" (66)
+datatable:	3188:	checking index "INDEX_00090062" (65)
+datatable:	3188:	checking index "INDEX_00090085" (64)
+datatable:	3188:	checking index "INDEX_000900DD" (63)
+datatable:	3188:	checking index "INDEX_0009012E" (62)
+datatable:	3188:	checking index "INDEX_00090171" (61)
+datatable:	3188:	checking index "INDEX_000901FF" (60)
+datatable:	3188:	checking index "INDEX_00090261" (59)
+datatable:	3188:	checking index "INDEX_0009028F" (58)
+datatable:	3188:	checking index "INDEX_00090290" (57)
+datatable:	3188:	checking index "INDEX_000902EE" (56)
+datatable:	3188:	checking index "INDEX_00090303" (55)
+datatable:	3188:	checking index "INDEX_0009030E" (54)
+datatable:	3188:	checking index "INDEX_00090363" (53)
+datatable:	3188:	checking index "INDEX_000904E1" (52)
+datatable:	3188:	checking index "INDEX_00090582" (51)
+datatable:	3188:	checking index "INDEX_000906B6" (50)
+datatable:	3188:	checking index "INDEX_000901FD" (49)
+datatable:	3188:	checking index "INDEX_000901F6" (48)
+datatable:	3188:	checking index "INDEX_000201D5" (47)
+datatable:	3188:	checking index "INDEX_000903B4" (46)
+datatable:	3188:	checking index "INDEX_000905A3" (45)
+datatable:	3188:	checking index "INDEX_000905A2" (44)
+datatable:	3188:	checking index "INDEX_0009039D" (43)
+datatable:	3188:	checking index "INDEX_0009039A" (42)
+datatable:	3188:	checking index "INDEX_00090395" (41)
+datatable:	3188:	checking index "INDEX_00090587" (40)
+datatable:	3188:	checking index "INDEX_00090586" (39)
+datatable:	3188:	checking index "INDEX_00090573" (38)
+datatable:	3188:	checking index "INDEX_00090571" (37)
+datatable:	3188:	checking index "INDEX_0009056C" (36)
+datatable:	3188:	checking index "INDEX_00090167" (35)
+datatable:	3188:	checking index "INDEX_00090553" (34)
+datatable:	3188:	checking index "INDEX_0009014E" (33)
+datatable:	3188:	checking index "INDEX_0009014D" (32)
+datatable:	3188:	checking index "INDEX_0009014C" (31)
+datatable:	3188:	checking index "INDEX_00090147" (30)
+datatable:	3188:	checking index "INDEX_00090141" (29)
+datatable:	3188:	checking index "INDEX_00090140" (28)
+datatable:	3188:	checking index "INDEX_0009013A" (27)
+datatable:	3188:	checking index "INDEX_00090138" (26)
+datatable:	3188:	checking index "INDEX_00090330" (25)
+datatable:	3188:	checking index "INDEX_000900DE" (24)
+datatable:	3188:	checking index "INDEX_000902BB" (23)
+datatable:	3188:	checking index "INDEX_000200A9" (22)
+datatable:	3188:	checking index "INDEX_00090098" (21)
+datatable:	3188:	checking index "INDEX_00090089" (20)
+datatable:	3188:	checking index "INDEX_00090073" (19)
+datatable:	3188:	checking index "INDEX_00090656" (18)
+datatable:	3188:	checking index "INDEX_00090030" (17)
+datatable:	3188:	checking index "INDEX_00020013" (16)
+datatable:	3188:	checking index "INDEX_00090013" (15)
+datatable:	3188:	checking index "INDEX_00000013" (14)
+datatable:	3188:	checking index "INDEX_0000000B" (13)
+datatable:	3188:	checking index "INDEX_00000007" (12)
+datatable:	3188:	checking index "INDEX_00000003" (11)
+datatable:	3188:	checking index "INDEX_00150003" (10)
+datatable:	3188:	checking index "INDEX_00090202" (9)
+datatable:	3188:	checking LV refcounts
+datatable:	3188:	rebuilding and comparing indexes
+datatable:	3188:	integrity-check of table "datatable" (8) finishes with error 0 (0x0) after 0 seconds
+hiddentable:	3188:	checking table "hiddentable" (92)
+hiddentable:	3188:	checking data
+hiddentable:	3188:	integrity-check of table "hiddentable" (92) finishes with error 0 (0x0) after 0 seconds
+link_table:	3188:	checking table "link_table" (93)
+link_table:	3188:	checking data
+link_table:	3188:	checking index "backlink_index" (100)
+link_table:	3188:	checking index "link_present_index" (99)
+link_table:	3188:	checking index "backlink_present_index" (98)
+link_table:	3188:	checking index "link_del_index" (97)
+link_table:	3188:	checking index "link_DRA_USN_index" (96)
+link_table:	3188:	checking index "link_legacy_index" (95)
+link_table:	3188:	checking index "link_attr_USN_index" (94)
+link_table:	3188:	rebuilding and comparing indexes
+link_table:	3188:	integrity-check of table "link_table" (93) finishes with error 0 (0x0) after 0 seconds
+MSysUnicodeFixupVer2:	3188:	checking table "MSysUnicodeFixupVer2" (6)
+MSysUnicodeFixupVer2:	3188:	checking data
+MSysUnicodeFixupVer2:	3188:	checking index "secondary" (7)
+MSysUnicodeFixupVer2:	3188:	rebuilding and comparing indexes
+MSysUnicodeFixupVer2:	3188:	integrity-check of table "MSysUnicodeFixupVer2" (6) finishes with error 0 (0x0) after 0 seconds
+quota_rebuild_progress_table:	3188:	checking table "quota_rebuild_progress_table" (101)
+quota_rebuild_progress_table:	3188:	checking data
+quota_rebuild_progress_table:	3188:	integrity-check of table "quota_rebuild_progress_table" (101) finishes with error 0 (0x0) after 0 seconds
+quota_table:	3188:	checking table "quota_table" (102)
+quota_table:	3188:	checking data
+quota_table:	3188:	integrity-check of table "quota_table" (102) finishes with error 0 (0x0) after 0 seconds
+sdproptable:	3188:	checking table "sdproptable" (103)
+sdproptable:	3188:	checking data
+sdproptable:	3188:	checking index "trim_index" (105)
+sdproptable:	3188:	checking index "clientid_index" (104)
+sdproptable:	3188:	rebuilding and comparing indexes
+sdproptable:	3188:	integrity-check of table "sdproptable" (103) finishes with error 0 (0x0) after 0 seconds
+sd_table:	3188:	checking table "sd_table" (106)
+sd_table:	3188:	checking long value tree (108)
+sd_table:	3188:	checking data
+sd_table:	3188:	checking index "sd_hash_index" (107)
+sd_table:	3188:	checking LV refcounts
+sd_table:	3188:	rebuilding and comparing indexes
+sd_table:	3188:	integrity-check of table "sd_table" (106) finishes with error 0 (0x0) after 0 seconds
+WARNING: Database file is too big (expected 1792 pages, file is 2048 pages)
+checking unicode fixup table
+
+Integrity check successful.
+
+
+
+***** Eseutil completed in 0 seconds
+
+***** Repair of database 'c:\ntds\ntds.dit' started [ESENT version 06.01.7601.0000, (RETAIL RTM MBCS)]
+
+search for 'ERROR:' to find errors
+search for 'WARNING:' to find warnings
+trying for 108365 buffers
+checking database header
+database file "c:\ntds\ntds.dit" is 16793600 bytes
+Creating 4 threads
+checking SystemRoot
+SystemRoot (OE)
+SystemRoot (AE)
+checking system tables
+MSysObjects 
+MSysObjectsShadow 
+MSysObjects Name
+MSysObjects RootObjects
+rebuilding and comparing indexes
+checking logical consistency of system tables
+MSysObjects
+MSysObjectsShadow
+WARNING: Repair is not allowed on this database due to its specific content
+datatable:	3400:	checking table "datatable" (8)
+datatable:	3400:	checking long value tree (91)
+datatable:	3400:	checking data
+datatable:	3400:	checking index "INDEX_00090092" (90)
+datatable:	3400:	checking index "NC_Acc_Type_Sid" (89)
+datatable:	3400:	checking index "INDEX_00090002" (88)
+datatable:	3400:	checking index "deltime_index" (87)
+datatable:	3400:	checking index "DRA_USN_CREATED_index" (86)
+datatable:	3400:	checking index "Ancestors_index" (85)
+datatable:	3400:	checking index "PDNT_index" (84)
+datatable:	3400:	checking index "NC_Acc_Type_Name" (83)
+datatable:	3400:	checking index "nc_guid_Index" (82)
+datatable:	3400:	checking index "clean_index" (81)
+datatable:	3400:	checking index "DRA_USN_index" (80)
+datatable:	3400:	checking index "DRA_USN_CRITICAL_index" (79)
+datatable:	3400:	checking index "LCL_ABVIEW_index00000409" (78)
+datatable:	3400:	checking index "INDEX_00000004" (77)
+datatable:	3400:	checking index "INDEX_0000002A" (76)
+datatable:	3400:	checking index "INDEX_0002000D" (75)
+datatable:	3400:	checking index "INDEX_00020030" (74)
+datatable:	3400:	checking index "INDEX_00020073" (73)
+datatable:	3400:	checking index "INDEX_00020078" (72)
+datatable:	3400:	checking index "INDEX_000200D2" (71)
+datatable:	3400:	checking index "INDEX_000201CC" (70)
+datatable:	3400:	checking index "INDEX_00090001" (69)
+datatable:	3400:	checking index "INDEX_00090008" (68)
+datatable:	3400:	checking index "INDEX_0009001C" (67)
+datatable:	3400:	checking index "INDEX_00090057" (66)
+datatable:	3400:	checking index "INDEX_00090062" (65)
+datatable:	3400:	checking index "INDEX_00090085" (64)
+datatable:	3400:	checking index "INDEX_000900DD" (63)
+datatable:	3400:	checking index "INDEX_0009012E" (62)
+datatable:	3400:	checking index "INDEX_00090171" (61)
+datatable:	3400:	checking index "INDEX_000901FF" (60)
+datatable:	3400:	checking index "INDEX_00090261" (59)
+datatable:	3400:	checking index "INDEX_0009028F" (58)
+datatable:	3400:	checking index "INDEX_00090290" (57)
+datatable:	3400:	checking index "INDEX_000902EE" (56)
+datatable:	3400:	checking index "INDEX_00090303" (55)
+datatable:	3400:	checking index "INDEX_0009030E" (54)
+datatable:	3400:	checking index "INDEX_00090363" (53)
+datatable:	3400:	checking index "INDEX_000904E1" (52)
+datatable:	3400:	checking index "INDEX_00090582" (51)
+datatable:	3400:	checking index "INDEX_000906B6" (50)
+datatable:	3400:	checking index "INDEX_000901FD" (49)
+datatable:	3400:	checking index "INDEX_000901F6" (48)
+datatable:	3400:	checking index "INDEX_000201D5" (47)
+datatable:	3400:	checking index "INDEX_000903B4" (46)
+datatable:	3400:	checking index "INDEX_000905A3" (45)
+datatable:	3400:	checking index "INDEX_000905A2" (44)
+datatable:	3400:	checking index "INDEX_0009039D" (43)
+datatable:	3400:	checking index "INDEX_0009039A" (42)
+datatable:	3400:	checking index "INDEX_00090395" (41)
+datatable:	3400:	checking index "INDEX_00090587" (40)
+datatable:	3400:	checking index "INDEX_00090586" (39)
+datatable:	3400:	checking index "INDEX_00090573" (38)
+datatable:	3400:	checking index "INDEX_00090571" (37)
+datatable:	3400:	checking index "INDEX_0009056C" (36)
+datatable:	3400:	checking index "INDEX_00090167" (35)
+datatable:	3400:	checking index "INDEX_00090553" (34)
+datatable:	3400:	checking index "INDEX_0009014E" (33)
+datatable:	3400:	checking index "INDEX_0009014D" (32)
+datatable:	3400:	checking index "INDEX_0009014C" (31)
+datatable:	3400:	checking index "INDEX_00090147" (30)
+datatable:	3400:	checking index "INDEX_00090141" (29)
+datatable:	3400:	checking index "INDEX_00090140" (28)
+datatable:	3400:	checking index "INDEX_0009013A" (27)
+datatable:	3400:	checking index "INDEX_00090138" (26)
+datatable:	3400:	checking index "INDEX_00090330" (25)
+datatable:	3400:	checking index "INDEX_000900DE" (24)
+datatable:	3400:	checking index "INDEX_000902BB" (23)
+datatable:	3400:	checking index "INDEX_000200A9" (22)
+datatable:	3400:	checking index "INDEX_00090098" (21)
+datatable:	3400:	checking index "INDEX_00090089" (20)
+datatable:	3400:	checking index "INDEX_00090073" (19)
+datatable:	3400:	checking index "INDEX_00090656" (18)
+datatable:	3400:	checking index "INDEX_00090030" (17)
+datatable:	3400:	checking index "INDEX_00020013" (16)
+datatable:	3400:	checking index "INDEX_00090013" (15)
+datatable:	3400:	checking index "INDEX_00000013" (14)
+datatable:	3400:	checking index "INDEX_0000000B" (13)
+datatable:	3400:	checking index "INDEX_00000007" (12)
+datatable:	3400:	checking index "INDEX_00000003" (11)
+datatable:	3400:	checking index "INDEX_00150003" (10)
+datatable:	3400:	checking index "INDEX_00090202" (9)
+datatable:	3400:	checking LV refcounts
+datatable:	3400:	rebuilding and comparing indexes
+datatable:	3400:	integrity-check of table "datatable" (8) finishes with error 0 (0x0) after 0 seconds
+hiddentable:	3400:	checking table "hiddentable" (92)
+hiddentable:	3400:	checking data
+hiddentable:	3400:	integrity-check of table "hiddentable" (92) finishes with error 0 (0x0) after 0 seconds
+link_table:	3400:	checking table "link_table" (93)
+link_table:	3400:	checking data
+link_table:	3400:	checking index "backlink_index" (100)
+link_table:	3400:	checking index "link_present_index" (99)
+link_table:	3400:	checking index "backlink_present_index" (98)
+link_table:	3400:	checking index "link_del_index" (97)
+link_table:	3400:	checking index "link_DRA_USN_index" (96)
+link_table:	3400:	checking index "link_legacy_index" (95)
+link_table:	3400:	checking index "link_attr_USN_index" (94)
+link_table:	3400:	rebuilding and comparing indexes
+link_table:	3400:	integrity-check of table "link_table" (93) finishes with error 0 (0x0) after 0 seconds
+MSysUnicodeFixupVer2:	3400:	checking table "MSysUnicodeFixupVer2" (6)
+MSysUnicodeFixupVer2:	3400:	checking data
+MSysUnicodeFixupVer2:	3400:	checking index "secondary" (7)
+MSysUnicodeFixupVer2:	3400:	rebuilding and comparing indexes
+MSysUnicodeFixupVer2:	3400:	integrity-check of table "MSysUnicodeFixupVer2" (6) finishes with error 0 (0x0) after 0 seconds
+quota_rebuild_progress_table:	3400:	checking table "quota_rebuild_progress_table" (101)
+quota_rebuild_progress_table:	3400:	checking data
+quota_rebuild_progress_table:	3400:	integrity-check of table "quota_rebuild_progress_table" (101) finishes with error 0 (0x0) after 0 seconds
+quota_table:	3400:	checking table "quota_table" (102)
+quota_table:	3400:	checking data
+quota_table:	3400:	integrity-check of table "quota_table" (102) finishes with error 0 (0x0) after 0 seconds
+sdproptable:	3400:	checking table "sdproptable" (103)
+sdproptable:	3400:	checking data
+sdproptable:	3400:	checking index "trim_index" (105)
+sdproptable:	3400:	checking index "clientid_index" (104)
+sdproptable:	3400:	rebuilding and comparing indexes
+sdproptable:	3400:	integrity-check of table "sdproptable" (103) finishes with error 0 (0x0) after 0 seconds
+sd_table:	3400:	checking table "sd_table" (106)
+sd_table:	3400:	checking long value tree (108)
+sd_table:	3400:	checking data
+sd_table:	3400:	checking index "sd_hash_index" (107)
+sd_table:	3400:	checking LV refcounts
+sd_table:	3400:	rebuilding and comparing indexes
+sd_table:	3400:	integrity-check of table "sd_table" (106) finishes with error 0 (0x0) after 0 seconds
+WARNING: Database file is too big (expected 1792 pages, file is 2048 pages)
+checking unicode fixup table
+
+Integrity check successful.
+
+
+
+***** Eseutil completed in 0 seconds
+
+***** Repair of database 'c:\ntds\ntds.dit' started [ESENT version 06.01.7601.0000, (RETAIL RTM MBCS)]
+
+search for 'ERROR:' to find errors
+search for 'WARNING:' to find warnings
+trying for 108282 buffers
+checking database header
+database file "c:\ntds\ntds.dit" is 16793600 bytes
+Creating 4 threads
+checking SystemRoot
+SystemRoot (OE)
+SystemRoot (AE)
+checking system tables
+MSysObjects 
+MSysObjectsShadow 
+MSysObjects Name
+MSysObjects RootObjects
+rebuilding and comparing indexes
+checking logical consistency of system tables
+MSysObjects
+MSysObjectsShadow
+WARNING: Repair is not allowed on this database due to its specific content
+datatable:	2068:	checking table "datatable" (8)
+datatable:	2068:	checking long value tree (91)
+datatable:	2068:	checking data
+datatable:	2068:	checking index "INDEX_00090092" (90)
+datatable:	2068:	checking index "NC_Acc_Type_Sid" (89)
+datatable:	2068:	checking index "INDEX_00090002" (88)
+datatable:	2068:	checking index "deltime_index" (87)
+datatable:	2068:	checking index "DRA_USN_CREATED_index" (86)
+datatable:	2068:	checking index "Ancestors_index" (85)
+datatable:	2068:	checking index "PDNT_index" (84)
+datatable:	2068:	checking index "NC_Acc_Type_Name" (83)
+datatable:	2068:	checking index "nc_guid_Index" (82)
+datatable:	2068:	checking index "clean_index" (81)
+datatable:	2068:	checking index "DRA_USN_index" (80)
+datatable:	2068:	checking index "DRA_USN_CRITICAL_index" (79)
+datatable:	2068:	checking index "LCL_ABVIEW_index00000409" (78)
+datatable:	2068:	checking index "INDEX_00000004" (77)
+datatable:	2068:	checking index "INDEX_0000002A" (76)
+datatable:	2068:	checking index "INDEX_0002000D" (75)
+datatable:	2068:	checking index "INDEX_00020030" (74)
+datatable:	2068:	checking index "INDEX_00020073" (73)
+datatable:	2068:	checking index "INDEX_00020078" (72)
+datatable:	2068:	checking index "INDEX_000200D2" (71)
+datatable:	2068:	checking index "INDEX_000201CC" (70)
+datatable:	2068:	checking index "INDEX_00090001" (69)
+datatable:	2068:	checking index "INDEX_00090008" (68)
+datatable:	2068:	checking index "INDEX_0009001C" (67)
+datatable:	2068:	checking index "INDEX_00090057" (66)
+datatable:	2068:	checking index "INDEX_00090062" (65)
+datatable:	2068:	checking index "INDEX_00090085" (64)
+datatable:	2068:	checking index "INDEX_000900DD" (63)
+datatable:	2068:	checking index "INDEX_0009012E" (62)
+datatable:	2068:	checking index "INDEX_00090171" (61)
+datatable:	2068:	checking index "INDEX_000901FF" (60)
+datatable:	2068:	checking index "INDEX_00090261" (59)
+datatable:	2068:	checking index "INDEX_0009028F" (58)
+datatable:	2068:	checking index "INDEX_00090290" (57)
+datatable:	2068:	checking index "INDEX_000902EE" (56)
+datatable:	2068:	checking index "INDEX_00090303" (55)
+datatable:	2068:	checking index "INDEX_0009030E" (54)
+datatable:	2068:	checking index "INDEX_00090363" (53)
+datatable:	2068:	checking index "INDEX_000904E1" (52)
+datatable:	2068:	checking index "INDEX_00090582" (51)
+datatable:	2068:	checking index "INDEX_000906B6" (50)
+datatable:	2068:	checking index "INDEX_000901FD" (49)
+datatable:	2068:	checking index "INDEX_000901F6" (48)
+datatable:	2068:	checking index "INDEX_000201D5" (47)
+datatable:	2068:	checking index "INDEX_000903B4" (46)
+datatable:	2068:	checking index "INDEX_000905A3" (45)
+datatable:	2068:	checking index "INDEX_000905A2" (44)
+datatable:	2068:	checking index "INDEX_0009039D" (43)
+datatable:	2068:	checking index "INDEX_0009039A" (42)
+datatable:	2068:	checking index "INDEX_00090395" (41)
+datatable:	2068:	checking index "INDEX_00090587" (40)
+datatable:	2068:	checking index "INDEX_00090586" (39)
+datatable:	2068:	checking index "INDEX_00090573" (38)
+datatable:	2068:	checking index "INDEX_00090571" (37)
+datatable:	2068:	checking index "INDEX_0009056C" (36)
+datatable:	2068:	checking index "INDEX_00090167" (35)
+datatable:	2068:	checking index "INDEX_00090553" (34)
+datatable:	2068:	checking index "INDEX_0009014E" (33)
+datatable:	2068:	checking index "INDEX_0009014D" (32)
+datatable:	2068:	checking index "INDEX_0009014C" (31)
+datatable:	2068:	checking index "INDEX_00090147" (30)
+datatable:	2068:	checking index "INDEX_00090141" (29)
+datatable:	2068:	checking index "INDEX_00090140" (28)
+datatable:	2068:	checking index "INDEX_0009013A" (27)
+datatable:	2068:	checking index "INDEX_00090138" (26)
+datatable:	2068:	checking index "INDEX_00090330" (25)
+datatable:	2068:	checking index "INDEX_000900DE" (24)
+datatable:	2068:	checking index "INDEX_000902BB" (23)
+datatable:	2068:	checking index "INDEX_000200A9" (22)
+datatable:	2068:	checking index "INDEX_00090098" (21)
+datatable:	2068:	checking index "INDEX_00090089" (20)
+datatable:	2068:	checking index "INDEX_00090073" (19)
+datatable:	2068:	checking index "INDEX_00090656" (18)
+datatable:	2068:	checking index "INDEX_00090030" (17)
+datatable:	2068:	checking index "INDEX_00020013" (16)
+datatable:	2068:	checking index "INDEX_00090013" (15)
+datatable:	2068:	checking index "INDEX_00000013" (14)
+datatable:	2068:	checking index "INDEX_0000000B" (13)
+datatable:	2068:	checking index "INDEX_00000007" (12)
+datatable:	2068:	checking index "INDEX_00000003" (11)
+datatable:	2068:	checking index "INDEX_00150003" (10)
+datatable:	2068:	checking index "INDEX_00090202" (9)
+datatable:	2068:	checking LV refcounts
+datatable:	2068:	rebuilding and comparing indexes
+datatable:	2068:	integrity-check of table "datatable" (8) finishes with error 0 (0x0) after 0 seconds
+hiddentable:	2068:	checking table "hiddentable" (92)
+hiddentable:	2068:	checking data
+hiddentable:	2068:	integrity-check of table "hiddentable" (92) finishes with error 0 (0x0) after 0 seconds
+link_table:	2068:	checking table "link_table" (93)
+link_table:	2068:	checking data
+link_table:	2068:	checking index "backlink_index" (100)
+link_table:	2068:	checking index "link_present_index" (99)
+link_table:	2068:	checking index "backlink_present_index" (98)
+link_table:	2068:	checking index "link_del_index" (97)
+link_table:	2068:	checking index "link_DRA_USN_index" (96)
+link_table:	2068:	checking index "link_legacy_index" (95)
+link_table:	2068:	checking index "link_attr_USN_index" (94)
+link_table:	2068:	rebuilding and comparing indexes
+link_table:	2068:	integrity-check of table "link_table" (93) finishes with error 0 (0x0) after 0 seconds
+MSysUnicodeFixupVer2:	2068:	checking table "MSysUnicodeFixupVer2" (6)
+MSysUnicodeFixupVer2:	2068:	checking data
+MSysUnicodeFixupVer2:	2068:	checking index "secondary" (7)
+MSysUnicodeFixupVer2:	2068:	rebuilding and comparing indexes
+MSysUnicodeFixupVer2:	2068:	integrity-check of table "MSysUnicodeFixupVer2" (6) finishes with error 0 (0x0) after 0 seconds
+quota_rebuild_progress_table:	2068:	checking table "quota_rebuild_progress_table" (101)
+quota_rebuild_progress_table:	2068:	checking data
+quota_rebuild_progress_table:	2068:	integrity-check of table "quota_rebuild_progress_table" (101) finishes with error 0 (0x0) after 0 seconds
+quota_table:	2068:	checking table "quota_table" (102)
+quota_table:	2068:	checking data
+quota_table:	2068:	integrity-check of table "quota_table" (102) finishes with error 0 (0x0) after 0 seconds
+sdproptable:	2068:	checking table "sdproptable" (103)
+sdproptable:	2068:	checking data
+sdproptable:	2068:	checking index "trim_index" (105)
+sdproptable:	2068:	checking index "clientid_index" (104)
+sdproptable:	2068:	rebuilding and comparing indexes
+sdproptable:	2068:	integrity-check of table "sdproptable" (103) finishes with error 0 (0x0) after 0 seconds
+sd_table:	2068:	checking table "sd_table" (106)
+sd_table:	2068:	checking long value tree (108)
+sd_table:	2068:	checking data
+sd_table:	2068:	checking index "sd_hash_index" (107)
+sd_table:	2068:	checking LV refcounts
+sd_table:	2068:	rebuilding and comparing indexes
+sd_table:	2068:	integrity-check of table "sd_table" (106) finishes with error 0 (0x0) after 0 seconds
+WARNING: Database file is too big (expected 1792 pages, file is 2048 pages)
+checking unicode fixup table
+
+Integrity check successful.
+
+
+
+***** Eseutil completed in 0 seconds
+
+***** Repair of database 'c:\ntds\ntds.dit' started [ESENT version 06.01.7601.0000, (RETAIL RTM MBCS)]
+
+search for 'ERROR:' to find errors
+search for 'WARNING:' to find warnings
+trying for 109253 buffers
+checking database header
+database file "c:\ntds\ntds.dit" is 16793600 bytes
+Creating 4 threads
+checking SystemRoot
+SystemRoot (OE)
+SystemRoot (AE)
+checking system tables
+MSysObjects 
+MSysObjectsShadow 
+MSysObjects Name
+MSysObjects RootObjects
+rebuilding and comparing indexes
+checking logical consistency of system tables
+MSysObjects
+MSysObjectsShadow
+WARNING: Repair is not allowed on this database due to its specific content
+datatable:	2164:	checking table "datatable" (8)
+datatable:	2164:	checking long value tree (91)
+datatable:	2164:	checking data
+datatable:	2164:	checking index "INDEX_00090092" (90)
+datatable:	2164:	checking index "NC_Acc_Type_Sid" (89)
+datatable:	2164:	checking index "INDEX_00090002" (88)
+datatable:	2164:	checking index "deltime_index" (87)
+datatable:	2164:	checking index "DRA_USN_CREATED_index" (86)
+datatable:	2164:	checking index "Ancestors_index" (85)
+datatable:	2164:	checking index "PDNT_index" (84)
+datatable:	2164:	checking index "NC_Acc_Type_Name" (83)
+datatable:	2164:	checking index "nc_guid_Index" (82)
+datatable:	2164:	checking index "clean_index" (81)
+datatable:	2164:	checking index "DRA_USN_index" (80)
+datatable:	2164:	checking index "DRA_USN_CRITICAL_index" (79)
+datatable:	2164:	checking index "LCL_ABVIEW_index00000409" (78)
+datatable:	2164:	checking index "INDEX_00000004" (77)
+datatable:	2164:	checking index "INDEX_0000002A" (76)
+datatable:	2164:	checking index "INDEX_0002000D" (75)
+datatable:	2164:	checking index "INDEX_00020030" (74)
+datatable:	2164:	checking index "INDEX_00020073" (73)
+datatable:	2164:	checking index "INDEX_00020078" (72)
+datatable:	2164:	checking index "INDEX_000200D2" (71)
+datatable:	2164:	checking index "INDEX_000201CC" (70)
+datatable:	2164:	checking index "INDEX_00090001" (69)
+datatable:	2164:	checking index "INDEX_00090008" (68)
+datatable:	2164:	checking index "INDEX_0009001C" (67)
+datatable:	2164:	checking index "INDEX_00090057" (66)
+datatable:	2164:	checking index "INDEX_00090062" (65)
+datatable:	2164:	checking index "INDEX_00090085" (64)
+datatable:	2164:	checking index "INDEX_000900DD" (63)
+datatable:	2164:	checking index "INDEX_0009012E" (62)
+datatable:	2164:	checking index "INDEX_00090171" (61)
+datatable:	2164:	checking index "INDEX_000901FF" (60)
+datatable:	2164:	checking index "INDEX_00090261" (59)
+datatable:	2164:	checking index "INDEX_0009028F" (58)
+datatable:	2164:	checking index "INDEX_00090290" (57)
+datatable:	2164:	checking index "INDEX_000902EE" (56)
+datatable:	2164:	checking index "INDEX_00090303" (55)
+datatable:	2164:	checking index "INDEX_0009030E" (54)
+datatable:	2164:	checking index "INDEX_00090363" (53)
+datatable:	2164:	checking index "INDEX_000904E1" (52)
+datatable:	2164:	checking index "INDEX_00090582" (51)
+datatable:	2164:	checking index "INDEX_000906B6" (50)
+datatable:	2164:	checking index "INDEX_000901FD" (49)
+datatable:	2164:	checking index "INDEX_000901F6" (48)
+datatable:	2164:	checking index "INDEX_000201D5" (47)
+datatable:	2164:	checking index "INDEX_000903B4" (46)
+datatable:	2164:	checking index "INDEX_000905A3" (45)
+datatable:	2164:	checking index "INDEX_000905A2" (44)
+datatable:	2164:	checking index "INDEX_0009039D" (43)
+datatable:	2164:	checking index "INDEX_0009039A" (42)
+datatable:	2164:	checking index "INDEX_00090395" (41)
+datatable:	2164:	checking index "INDEX_00090587" (40)
+datatable:	2164:	checking index "INDEX_00090586" (39)
+datatable:	2164:	checking index "INDEX_00090573" (38)
+datatable:	2164:	checking index "INDEX_00090571" (37)
+datatable:	2164:	checking index "INDEX_0009056C" (36)
+datatable:	2164:	checking index "INDEX_00090167" (35)
+datatable:	2164:	checking index "INDEX_00090553" (34)
+datatable:	2164:	checking index "INDEX_0009014E" (33)
+datatable:	2164:	checking index "INDEX_0009014D" (32)
+datatable:	2164:	checking index "INDEX_0009014C" (31)
+datatable:	2164:	checking index "INDEX_00090147" (30)
+datatable:	2164:	checking index "INDEX_00090141" (29)
+datatable:	2164:	checking index "INDEX_00090140" (28)
+datatable:	2164:	checking index "INDEX_0009013A" (27)
+datatable:	2164:	checking index "INDEX_00090138" (26)
+datatable:	2164:	checking index "INDEX_00090330" (25)
+datatable:	2164:	checking index "INDEX_000900DE" (24)
+datatable:	2164:	checking index "INDEX_000902BB" (23)
+datatable:	2164:	checking index "INDEX_000200A9" (22)
+datatable:	2164:	checking index "INDEX_00090098" (21)
+datatable:	2164:	checking index "INDEX_00090089" (20)
+datatable:	2164:	checking index "INDEX_00090073" (19)
+datatable:	2164:	checking index "INDEX_00090656" (18)
+datatable:	2164:	checking index "INDEX_00090030" (17)
+datatable:	2164:	checking index "INDEX_00020013" (16)
+datatable:	2164:	checking index "INDEX_00090013" (15)
+datatable:	2164:	checking index "INDEX_00000013" (14)
+datatable:	2164:	checking index "INDEX_0000000B" (13)
+datatable:	2164:	checking index "INDEX_00000007" (12)
+datatable:	2164:	checking index "INDEX_00000003" (11)
+datatable:	2164:	checking index "INDEX_00150003" (10)
+datatable:	2164:	checking index "INDEX_00090202" (9)
+datatable:	2164:	checking LV refcounts
+datatable:	2164:	rebuilding and comparing indexes
+datatable:	2164:	integrity-check of table "datatable" (8) finishes with error 0 (0x0) after 0 seconds
+hiddentable:	2164:	checking table "hiddentable" (92)
+hiddentable:	2164:	checking data
+hiddentable:	2164:	integrity-check of table "hiddentable" (92) finishes with error 0 (0x0) after 0 seconds
+link_table:	2164:	checking table "link_table" (93)
+link_table:	2164:	checking data
+link_table:	2164:	checking index "backlink_index" (100)
+link_table:	2164:	checking index "link_present_index" (99)
+link_table:	2164:	checking index "backlink_present_index" (98)
+link_table:	2164:	checking index "link_del_index" (97)
+link_table:	2164:	checking index "link_DRA_USN_index" (96)
+link_table:	2164:	checking index "link_legacy_index" (95)
+link_table:	2164:	checking index "link_attr_USN_index" (94)
+link_table:	2164:	rebuilding and comparing indexes
+link_table:	2164:	integrity-check of table "link_table" (93) finishes with error 0 (0x0) after 0 seconds
+MSysUnicodeFixupVer2:	2164:	checking table "MSysUnicodeFixupVer2" (6)
+MSysUnicodeFixupVer2:	2164:	checking data
+MSysUnicodeFixupVer2:	2164:	checking index "secondary" (7)
+MSysUnicodeFixupVer2:	2164:	rebuilding and comparing indexes
+MSysUnicodeFixupVer2:	2164:	integrity-check of table "MSysUnicodeFixupVer2" (6) finishes with error 0 (0x0) after 0 seconds
+quota_rebuild_progress_table:	2164:	checking table "quota_rebuild_progress_table" (101)
+quota_rebuild_progress_table:	2164:	checking data
+quota_rebuild_progress_table:	2164:	integrity-check of table "quota_rebuild_progress_table" (101) finishes with error 0 (0x0) after 0 seconds
+quota_table:	2164:	checking table "quota_table" (102)
+quota_table:	2164:	checking data
+quota_table:	2164:	integrity-check of table "quota_table" (102) finishes with error 0 (0x0) after 0 seconds
+sdproptable:	2164:	checking table "sdproptable" (103)
+sdproptable:	2164:	checking data
+sdproptable:	2164:	checking index "trim_index" (105)
+sdproptable:	2164:	checking index "clientid_index" (104)
+sdproptable:	2164:	rebuilding and comparing indexes
+sdproptable:	2164:	integrity-check of table "sdproptable" (103) finishes with error 0 (0x0) after 0 seconds
+sd_table:	2164:	checking table "sd_table" (106)
+sd_table:	2164:	checking long value tree (108)
+sd_table:	2164:	checking data
+sd_table:	2164:	checking index "sd_hash_index" (107)
+sd_table:	2164:	checking LV refcounts
+sd_table:	2164:	rebuilding and comparing indexes
+sd_table:	2164:	integrity-check of table "sd_table" (106) finishes with error 0 (0x0) after 0 seconds
+WARNING: Database file is too big (expected 1792 pages, file is 2048 pages)
+checking unicode fixup table
+
+Integrity check successful.
+
+
+
+***** Eseutil completed in 0 seconds
+
