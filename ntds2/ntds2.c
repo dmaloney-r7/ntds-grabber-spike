@@ -170,9 +170,41 @@ JET_ERR get_column_info(jetState *ntdsState, ntdsColumns *accountColumns){
 	return JET_errSuccess;
 }
 
+JET_ERR get_PEK(jetState *ntdsState, ntdsColumns *accountColumns, unsigned char* encryptionKey[255]){
+	JET_ERR cursorStatus;
+	JET_ERR readStatus;
+
+	cursorStatus = JetMove(ntdsState->jetSession, ntdsState->jetTable, JET_MoveFirst, NULL);
+	if (cursorStatus != JET_errSuccess){
+		puts("Unable to set the cursor to the first index!");
+		return cursorStatus;
+	}
+	do{
+		//Attempt to retrieve the Password Encryption Key
+		unsigned long columnSize = 0;
+		readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->encryptionKey.columnid, encryptionKey, 255, &columnSize, 0, NULL);
+		if (readStatus == JET_errSuccess){
+			puts("Found the Password Encryption Key");
+			return readStatus;
+		}
+		cursorStatus = JetMove(ntdsState->jetSession, ntdsState->jetTable, JET_MoveNext, NULL);
+	} while (cursorStatus == JET_errSuccess);
+	return readStatus;
+}
+
 JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns){
 	JET_ERR cursorStatus;
 	JET_ERR readStatus;
+	JET_ERR pekStatus;
+	unsigned char encryptionKey[255];
+
+	pekStatus = get_PEK(ntdsState, accountColumns, &encryptionKey);
+	if ( pekStatus == JET_errSuccess){
+		puts("Found the PEK");
+	}
+	else{
+		puts("Uh-oh didn't find the PEK");
+	}
 
 	cursorStatus = JetMove(ntdsState->jetSession, ntdsState->jetTable, JET_MoveFirst, NULL);
 	if (cursorStatus != JET_errSuccess){
@@ -186,7 +218,6 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns){
 		FILETIME accountExpiry;
 		SYSTEMTIME accountExpiry2;
 		char expiryDate[255];
-		unsigned char encryptionKey[255];
 		FILETIME lastLogon;
 		SYSTEMTIME lastLogon2;
 		char logonDate[255];
