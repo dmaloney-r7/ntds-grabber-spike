@@ -170,7 +170,7 @@ JET_ERR get_column_info(jetState *ntdsState, ntdsColumns *accountColumns){
 	return JET_errSuccess;
 }
 
-JET_ERR get_PEK(jetState *ntdsState, ntdsColumns *accountColumns, unsigned char* encryptionKey[255]){
+JET_ERR get_PEK(jetState *ntdsState, ntdsColumns *accountColumns, unsigned char* encryptionKey[76]){
 	JET_ERR cursorStatus;
 	JET_ERR readStatus;
 
@@ -182,7 +182,7 @@ JET_ERR get_PEK(jetState *ntdsState, ntdsColumns *accountColumns, unsigned char*
 	do{
 		//Attempt to retrieve the Password Encryption Key
 		unsigned long columnSize = 0;
-		readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->encryptionKey.columnid, encryptionKey, 255, &columnSize, 0, NULL);
+		readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->encryptionKey.columnid, encryptionKey, 76, &columnSize, 0, NULL);
 		if (readStatus == JET_errSuccess){
 			puts("Found the Password Encryption Key");
 			return readStatus;
@@ -196,7 +196,7 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns){
 	JET_ERR cursorStatus;
 	JET_ERR readStatus;
 	JET_ERR pekStatus;
-	unsigned char encryptionKey[255];
+	unsigned char encryptionKey[76];
 
 	pekStatus = get_PEK(ntdsState, accountColumns, &encryptionKey);
 	if ( pekStatus == JET_errSuccess){
