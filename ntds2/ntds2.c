@@ -9,6 +9,7 @@
 #include <Windows.h>
 #include <esent.h>
 #pragma comment(lib, "esent")
+#pragma comment(lib, "wsock32")
 
 typedef struct {
 	TCHAR ntdsPath[255];
@@ -41,6 +42,45 @@ typedef struct {
 #define NTDS_ACCOUNT_PASS_NO_EXPIRE   0x00010000
 #define NTDS_ACCOUNT_PASS_EXPIRED     0x00800000
 
+BOOL get_syskey(unsigned char *sysKey[16]){
+	long regStatus;
+	DWORD disposition = 0;
+	//Reg key handles
+	HKEY lsaHandle;
+	HKEY lsaJD;
+	HKEY lsaSkew1;
+	HKEY lsaGBG;
+	HKEY lsaData;
+	// Values for our bits
+	unsigned char valJD[16];
+	unsigned char valSkew1[16];
+	unsigned char valGBG[16];
+	unsigned char valData[16];
+	DWORD sizeData = 9;
+
+	regStatus = RegCreateKeyEx(HKEY_LOCAL_MACHINE, "SYSTEM\\CurrentControlSet\\Control\\Lsa", 0, NULL, REG_OPTION_NON_VOLATILE, KEY_READ, NULL, &lsaHandle, &disposition);
+	if (regStatus != ERROR_SUCCESS){
+		puts("Could not open Lsa Registry Key");
+		return FALSE;
+	}
+	if (disposition == REG_CREATED_NEW_KEY){
+		puts("The Lsa key did not exist");
+		RegCloseKey(lsaHandle);
+		return FALSE;
+	}
+	regStatus = RegOpenKeyEx(lsaHandle,"JD",0,KEY_READ,&lsaJD);
+	if (regStatus != ERROR_SUCCESS){
+		return FALSE;
+	}
+	regStatus = RegQueryInfoKey(lsaJD, &valJD, &sizeData, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+	if (regStatus != ERROR_SUCCESS){
+		return FALSE;
+	}
+	int foo = strtol(valJD, NULL, 16);
+	//foo = htonl(foo);
+	strncpy(sysKey, &foo, sizeof(foo));
+
+}
 
 JET_ERR engine_startup(jetState *ntdsState){
 	JET_ERR jetError;
@@ -349,6 +389,12 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns){
 
 int _tmain(int argc, TCHAR* argv[])
 {
+	unsigned char sysKey[16];
+	get_syskey(&sysKey);
+	return 0;
+
+
+
 	// Create our state structure to track the various info we need
 	jetState *ntdsState = malloc(sizeof(jetState));
 	memset(ntdsState, 0, sizeof(jetState));
