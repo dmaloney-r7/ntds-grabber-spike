@@ -9,7 +9,6 @@
 #include <Windows.h>
 #include <esent.h>
 #pragma comment(lib, "esent")
-#pragma comment(lib, "wsock32")
 
 typedef struct {
 	TCHAR ntdsPath[255];
@@ -57,6 +56,7 @@ BOOL get_syskey(unsigned char *sysKey[16]){
 	unsigned char valGBG[16];
 	unsigned char valData[16];
 	DWORD sizeData = 9;
+	int byteComponent = 0;
 
 	regStatus = RegCreateKeyEx(HKEY_LOCAL_MACHINE, "SYSTEM\\CurrentControlSet\\Control\\Lsa", 0, NULL, REG_OPTION_NON_VOLATILE, KEY_READ, NULL, &lsaHandle, &disposition);
 	if (regStatus != ERROR_SUCCESS){
@@ -68,6 +68,7 @@ BOOL get_syskey(unsigned char *sysKey[16]){
 		RegCloseKey(lsaHandle);
 		return FALSE;
 	}
+	//Collect the value in JD and start the sysKey with it
 	regStatus = RegOpenKeyEx(lsaHandle,"JD",0,KEY_READ,&lsaJD);
 	if (regStatus != ERROR_SUCCESS){
 		return FALSE;
@@ -76,10 +77,44 @@ BOOL get_syskey(unsigned char *sysKey[16]){
 	if (regStatus != ERROR_SUCCESS){
 		return FALSE;
 	}
-	int foo = strtol(valJD, NULL, 16);
-	//foo = htonl(foo);
-	strncpy(sysKey, &foo, sizeof(foo));
-
+	byteComponent = strtoimax(valJD, NULL, 16);
+	strncpy(sysKey, &byteComponent,4);
+	//Collect the value in Skew1 and append it to the sysKey
+	regStatus = RegOpenKeyEx(lsaHandle, "Skew1", 0, KEY_READ, &lsaSkew1);
+	if (regStatus != ERROR_SUCCESS){
+		return FALSE;
+	}
+	sizeData = 9;
+	regStatus = RegQueryInfoKey(lsaSkew1, &valSkew1, &sizeData, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+	if (regStatus != ERROR_SUCCESS){
+		return FALSE;
+	}
+	byteComponent = strtoimax(valSkew1, NULL, 16);
+	strncpy((sysKey+1), &byteComponent, 4);
+	//Collect the value in GBG and append it to the sysKey
+	regStatus = RegOpenKeyEx(lsaHandle, "GBG", 0, KEY_READ, &lsaGBG);
+	if (regStatus != ERROR_SUCCESS){
+		return FALSE;
+	}
+	sizeData = 9;
+	regStatus = RegQueryInfoKey(lsaGBG, &valGBG, &sizeData, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+	if (regStatus != ERROR_SUCCESS){
+		return FALSE;
+	}
+	byteComponent = strtoimax(valGBG, NULL, 16);
+	strncpy((sysKey + 2), &byteComponent, 4);
+	// Collect the value in Data and append it to the sysKey
+	regStatus = RegOpenKeyEx(lsaHandle, "Data", 0, KEY_READ, &lsaData);
+	if (regStatus != ERROR_SUCCESS){
+		return FALSE;
+	}
+	sizeData = 9;
+	regStatus = RegQueryInfoKey(lsaData, &valData, &sizeData, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+	if (regStatus != ERROR_SUCCESS){
+		return FALSE;
+	}
+	byteComponent = strtoimax(valData, NULL, 16);
+	strncpy((sysKey + 3), &byteComponent, 4);
 }
 
 JET_ERR engine_startup(jetState *ntdsState){
