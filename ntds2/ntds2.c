@@ -284,17 +284,7 @@ JET_ERR get_PEK(jetState *ntdsState, ntdsColumns *accountColumns, unsigned char*
 
 JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns){
 	JET_ERR cursorStatus;
-	JET_ERR readStatus;
-	JET_ERR pekStatus;
-	unsigned char encryptionKey[76];
-
-	pekStatus = get_PEK(ntdsState, accountColumns, &encryptionKey);
-	if ( pekStatus == JET_errSuccess){
-		puts("Found the PEK");
-	}
-	else{
-		puts("Uh-oh didn't find the PEK");
-	}
+	JET_ERR readStatus;	
 
 	cursorStatus = JetMove(ntdsState->jetSession, ntdsState->jetTable, JET_MoveFirst, NULL);
 	if (cursorStatus != JET_errSuccess){
@@ -439,11 +429,8 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns){
 
 int _tmain(int argc, TCHAR* argv[])
 {
-	unsigned char sysKey[16];
+	unsigned char sysKey[17];
 	get_syskey(&sysKey);
-	return 0;
-
-
 
 	// Create our state structure to track the various info we need
 	jetState *ntdsState = malloc(sizeof(jetState));
@@ -496,6 +483,17 @@ int _tmain(int argc, TCHAR* argv[])
 	if (columnStatus != JET_errSuccess){
 		puts("could not retrieve data on one or more columns!");
 		exit(columnStatus);
+	}
+
+	JET_ERR pekStatus;
+	unsigned char encryptionKey[76];
+
+	pekStatus = get_PEK(ntdsState, accountColumns, &encryptionKey);
+	if (pekStatus == JET_errSuccess){
+		puts("Found the PEK");
+	}
+	else{
+		puts("Uh-oh didn't find the PEK");
 	}
 
 	read_table(ntdsState, accountColumns);
