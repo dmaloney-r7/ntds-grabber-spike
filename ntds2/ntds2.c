@@ -42,6 +42,8 @@ typedef struct {
 #define NTDS_ACCOUNT_PASS_EXPIRED     0x00800000
 
 BOOL get_syskey(unsigned char *sysKey[16]){
+	unsigned char tmpSysKey[16];
+	unsigned char interimSysKey[16];
 	long regStatus;
 	DWORD disposition = 0;
 	//Reg key handles
@@ -57,6 +59,12 @@ BOOL get_syskey(unsigned char *sysKey[16]){
 	unsigned char valData[16];
 	DWORD sizeData = 9;
 	int byteComponent = 0;
+
+	memset(&tmpSysKey, 0, sizeof(tmpSysKey));
+	memset(&interimSysKey, 0, sizeof(tmpSysKey));
+
+	//Used for descrambling the bytes of the SYSKEY (absurd isn't it?)
+	BYTE syskeyDescrambler[16] = { 0x0b, 0x06, 0x07, 0x01, 0x08, 0x0a, 0x0e, 0x00, 0x03, 0x05, 0x02, 0x0f, 0x0d, 0x09, 0x0c, 0x04 };
 
 	regStatus = RegCreateKeyEx(HKEY_LOCAL_MACHINE, "SYSTEM\\CurrentControlSet\\Control\\Lsa", 0, NULL, REG_OPTION_NON_VOLATILE, KEY_READ, NULL, &lsaHandle, &disposition);
 	if (regStatus != ERROR_SUCCESS){
@@ -78,7 +86,7 @@ BOOL get_syskey(unsigned char *sysKey[16]){
 		return FALSE;
 	}
 	byteComponent = strtoimax(valJD, NULL, 16);
-	strncpy(sysKey, &byteComponent,4);
+	strncpy(&tmpSysKey, &byteComponent, 4);
 	//Collect the value in Skew1 and append it to the sysKey
 	regStatus = RegOpenKeyEx(lsaHandle, "Skew1", 0, KEY_READ, &lsaSkew1);
 	if (regStatus != ERROR_SUCCESS){
@@ -90,7 +98,7 @@ BOOL get_syskey(unsigned char *sysKey[16]){
 		return FALSE;
 	}
 	byteComponent = strtoimax(valSkew1, NULL, 16);
-	strncpy((sysKey+1), &byteComponent, 4);
+	strncat(&tmpSysKey, &byteComponent, 4);
 	//Collect the value in GBG and append it to the sysKey
 	regStatus = RegOpenKeyEx(lsaHandle, "GBG", 0, KEY_READ, &lsaGBG);
 	if (regStatus != ERROR_SUCCESS){
@@ -102,7 +110,7 @@ BOOL get_syskey(unsigned char *sysKey[16]){
 		return FALSE;
 	}
 	byteComponent = strtoimax(valGBG, NULL, 16);
-	strncpy((sysKey + 2), &byteComponent, 4);
+	strncat(&tmpSysKey, &byteComponent, 4);
 	// Collect the value in Data and append it to the sysKey
 	regStatus = RegOpenKeyEx(lsaHandle, "Data", 0, KEY_READ, &lsaData);
 	if (regStatus != ERROR_SUCCESS){
@@ -114,7 +122,11 @@ BOOL get_syskey(unsigned char *sysKey[16]){
 		return FALSE;
 	}
 	byteComponent = strtoimax(valData, NULL, 16);
-	strncpy((sysKey + 3), &byteComponent, 4);
+	strncat(&tmpSysKey, &byteComponent, 4);
+
+
+	return TRUE;
+
 }
 
 JET_ERR engine_startup(jetState *ntdsState){
