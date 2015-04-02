@@ -42,8 +42,8 @@ typedef struct {
 #define NTDS_ACCOUNT_PASS_EXPIRED     0x00800000
 
 BOOL get_syskey(unsigned char *sysKey[16]){
-	unsigned char tmpSysKey[16];
-	unsigned char interimSysKey[16];
+	unsigned char tmpSysKey[17];
+	unsigned char interimSysKey[17];
 	long regStatus;
 	DWORD disposition = 0;
 	//Reg key handles
@@ -60,8 +60,8 @@ BOOL get_syskey(unsigned char *sysKey[16]){
 	DWORD sizeData = 9;
 	int byteComponent = 0;
 
-	memset(&tmpSysKey, 0, sizeof(tmpSysKey)+1);
-	memset(&interimSysKey, 0, sizeof(tmpSysKey)+1);
+	memset(&tmpSysKey, 0, sizeof(tmpSysKey));
+	memset(&interimSysKey, 0, sizeof(tmpSysKey));
 
 	//Used for descrambling the bytes of the SYSKEY (absurd isn't it?)
 	BYTE syskeyDescrambler[16] = { 0x0b, 0x06, 0x07, 0x01, 0x08, 0x0a, 0x0e, 0x00, 0x03, 0x05, 0x02, 0x0f, 0x0d, 0x09, 0x0c, 0x04 };
