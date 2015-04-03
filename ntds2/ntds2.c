@@ -176,61 +176,41 @@ JET_ERR open_database(jetState *ntdsState){
 
 JET_ERR get_column_info(jetState *ntdsState, ntdsColumns *accountColumns){
 	JET_ERR columnError;
-	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTm590045", &accountColumns->accountName, sizeof(JET_COLUMNDEF), JET_ColInfo);
-	if (columnError != JET_errSuccess){
-		return columnError;
-	}
-	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTj590126", &accountColumns->accountType, sizeof(JET_COLUMNDEF), JET_ColInfo);
-	if (columnError != JET_errSuccess){
-		return columnError;
-	}
-	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTq589983", &accountColumns->accountExpiry, sizeof(JET_COLUMNDEF), JET_ColInfo);
-	if (columnError != JET_errSuccess){
-		return columnError;
-	}
-	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTq589983", &accountColumns->accountExpiry, sizeof(JET_COLUMNDEF), JET_ColInfo);
-	if (columnError != JET_errSuccess){
-		return columnError;
-	}
-	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTk590689", &accountColumns->encryptionKey, sizeof(JET_COLUMNDEF), JET_ColInfo);
-	if (columnError != JET_errSuccess){
-		return columnError;
-	}
-	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTq589876", &accountColumns->lastLogon, sizeof(JET_COLUMNDEF), JET_ColInfo);
-	if (columnError != JET_errSuccess){
-		return columnError;
-	}
-	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTk589879", &accountColumns->lmHash, sizeof(JET_COLUMNDEF), JET_ColInfo);
-	if (columnError != JET_errSuccess){
-		return columnError;
-	}
-	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTk589984", &accountColumns->lmHistory, sizeof(JET_COLUMNDEF), JET_ColInfo);
-	if (columnError != JET_errSuccess){
-		return columnError;
-	}
-	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTj589993", &accountColumns->logonCount, sizeof(JET_COLUMNDEF), JET_ColInfo);
-	if (columnError != JET_errSuccess){
-		return columnError;
-	}
-	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTk589914", &accountColumns->ntHash, sizeof(JET_COLUMNDEF), JET_ColInfo);
-	if (columnError != JET_errSuccess){
-		return columnError;
-	}
-	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTk589918", &accountColumns->ntHistory, sizeof(JET_COLUMNDEF), JET_ColInfo);
-	if (columnError != JET_errSuccess){
-		return columnError;
-	}
-	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTm13", &accountColumns->accountDescription, sizeof(JET_COLUMNDEF), JET_ColInfo);
-	if (columnError != JET_errSuccess){
-		return columnError;
-	}
-	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTj589832", &accountColumns->accountControl, sizeof(JET_COLUMNDEF), JET_ColInfo);
-	if (columnError != JET_errSuccess){
-		return columnError;
-	}
-	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTq589920", &accountColumns->lastPasswordChange, sizeof(JET_COLUMNDEF), JET_ColInfo);
-	if (columnError != JET_errSuccess){
-		return columnError;
+	const char attributeNames[][25] = { 
+		"ATTm590045", 
+		"ATTj590126", 
+		"ATTq589983",  
+		"ATTk590689", 
+		"ATTq589876", 
+		"ATTk589879", 
+		"ATTk589984", 
+		"ATTj589993", 
+		"ATTk589914", 
+		"ATTk589918", 
+		"ATTm13",  
+		"ATTj589832", 
+		"ATTq589920" 
+	};
+	JET_COLUMNDEF *columnDefs[] = { 
+		&accountColumns->accountName, 
+		&accountColumns->accountType,
+		&accountColumns->accountExpiry,
+		&accountColumns->encryptionKey,
+		&accountColumns->lastLogon,
+		&accountColumns->lmHash,
+		&accountColumns->lmHistory,
+		&accountColumns->logonCount,
+		&accountColumns->ntHash,
+		&accountColumns->ntHistory,
+		&accountColumns->accountDescription,
+		&accountColumns->accountControl,
+		&accountColumns->lastPasswordChange
+	};	
+	for (int i = 0; i < 13; i++){
+		columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, attributeNames[i], columnDefs[i], sizeof(JET_COLUMNDEF), JET_ColInfo);
+		if (columnError != JET_errSuccess){
+			return columnError;
+		}
 	}
 	return JET_errSuccess;
 }
