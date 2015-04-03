@@ -293,9 +293,10 @@ JET_ERR get_column_info(jetState *ntdsState, ntdsColumns *accountColumns){
 	return JET_errSuccess;
 }
 
-JET_ERR get_PEK(jetState *ntdsState, ntdsColumns *accountColumns, unsigned char* encryptionKey[76]){
+JET_ERR get_PEK(jetState *ntdsState, ntdsColumns *accountColumns, encryptedPEK *pekEncrypted){
 	JET_ERR cursorStatus;
 	JET_ERR readStatus;
+	unsigned char *encryptionKey[76];
 
 	cursorStatus = JetMove(ntdsState->jetSession, ntdsState->jetTable, JET_MoveFirst, NULL);
 	if (cursorStatus != JET_errSuccess){
@@ -307,6 +308,7 @@ JET_ERR get_PEK(jetState *ntdsState, ntdsColumns *accountColumns, unsigned char*
 		unsigned long columnSize = 0;
 		readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->encryptionKey.columnid, encryptionKey, 76, &columnSize, 0, NULL);
 		if (readStatus == JET_errSuccess){
+			memcpy(pekEncrypted, &encryptionKey, 76);
 			puts("Found the Password Encryption Key");
 			return readStatus;
 		}
@@ -543,13 +545,12 @@ int _tmain(int argc, TCHAR* argv[])
 	}
 
 	JET_ERR pekStatus;
-	unsigned char encryptionKey[76];
 	encryptedPEK *pekEncrypted = malloc(sizeof(encryptedPEK));
 	decryptedPEK *pekDecrypted = malloc(sizeof(decryptedPEK));
 	memset(pekEncrypted, 0, sizeof(encryptedPEK));
 	memset(pekDecrypted, 0, sizeof(decryptedPEK));
 
-	pekStatus = get_PEK(ntdsState, accountColumns, &encryptionKey);
+	pekStatus = get_PEK(ntdsState, accountColumns,pekEncrypted);
 	if (pekStatus == JET_errSuccess){
 		puts("Found the PEK");
 	}
@@ -558,7 +559,6 @@ int _tmain(int argc, TCHAR* argv[])
 		exit(pekStatus);
 	}
 
-	memcpy(pekEncrypted, &encryptionKey, 76);
 	decrypt_PEK(&sysKey, pekEncrypted, pekDecrypted);
 	read_table(ntdsState, accountColumns);
 
