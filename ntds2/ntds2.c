@@ -74,25 +74,31 @@ typedef struct{
 #define NTDS_ACCOUNT_PASS_NO_EXPIRE   0x00010000
 #define NTDS_ACCOUNT_PASS_EXPIRED     0x00800000
 
+BOOL get_syskey_component(HKEY lsaHandle, char subkeyName[255], unsigned char *tmpSysKey[17]){
+	DWORD sizeData = 9;
+	long regStatus;
+	HKEY subkeyHandle;
+	unsigned char tmpVal[16];
+	int byteComponent = 0;
+
+	regStatus = RegOpenKeyEx(lsaHandle, subkeyName, 0, KEY_READ, &subkeyHandle);
+	if (regStatus != ERROR_SUCCESS){
+		return FALSE;
+	}
+	regStatus = RegQueryInfoKey(subkeyHandle, &tmpVal, &sizeData, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+	if (regStatus != ERROR_SUCCESS){
+		return FALSE;
+	}
+	byteComponent = strtoimax(tmpVal, NULL, 16);
+	strncat(tmpSysKey, &byteComponent, 4);
+}
+
 BOOL get_syskey(unsigned char *sysKey[17]){
 	unsigned char tmpSysKey[17];
 	unsigned char interimSysKey[17];
 	long regStatus;
 	DWORD disposition = 0;
-	//Reg key handles
 	HKEY lsaHandle;
-	HKEY lsaJD;
-	HKEY lsaSkew1;
-	HKEY lsaGBG;
-	HKEY lsaData;
-	// Values for our bits
-	unsigned char valJD[16];
-	unsigned char valSkew1[16];
-	unsigned char valGBG[16];
-	unsigned char valData[16];
-	DWORD sizeData = 9;
-	int byteComponent = 0;
-
 	memset(&tmpSysKey, 0, sizeof(tmpSysKey));
 	memset(&interimSysKey, 0, sizeof(tmpSysKey));
 
@@ -109,54 +115,19 @@ BOOL get_syskey(unsigned char *sysKey[17]){
 		RegCloseKey(lsaHandle);
 		return FALSE;
 	}
-	//Collect the value in JD and start the sysKey with it
-	regStatus = RegOpenKeyEx(lsaHandle,"JD",0,KEY_READ,&lsaJD);
-	if (regStatus != ERROR_SUCCESS){
+	if (!get_syskey_component(lsaHandle, "JD", &tmpSysKey)){
 		return FALSE;
 	}
-	regStatus = RegQueryInfoKey(lsaJD, &valJD, &sizeData, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-	if (regStatus != ERROR_SUCCESS){
+	if (!get_syskey_component(lsaHandle, "Skew1", &tmpSysKey)){
 		return FALSE;
 	}
-	byteComponent = strtoimax(valJD, NULL, 16);
-	strncpy(&tmpSysKey, &byteComponent, 4);
-	//Collect the value in Skew1 and append it to the sysKey
-	regStatus = RegOpenKeyEx(lsaHandle, "Skew1", 0, KEY_READ, &lsaSkew1);
-	if (regStatus != ERROR_SUCCESS){
+	if (!get_syskey_component(lsaHandle, "GBG", &tmpSysKey)){
 		return FALSE;
 	}
-	sizeData = 9;
-	regStatus = RegQueryInfoKey(lsaSkew1, &valSkew1, &sizeData, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-	if (regStatus != ERROR_SUCCESS){
+	if (!get_syskey_component(lsaHandle, "Data", &tmpSysKey)){
 		return FALSE;
 	}
-	byteComponent = strtoimax(valSkew1, NULL, 16);
-	strncat(&tmpSysKey, &byteComponent, 4);
-	//Collect the value in GBG and append it to the sysKey
-	regStatus = RegOpenKeyEx(lsaHandle, "GBG", 0, KEY_READ, &lsaGBG);
-	if (regStatus != ERROR_SUCCESS){
-		return FALSE;
-	}
-	sizeData = 9;
-	regStatus = RegQueryInfoKey(lsaGBG, &valGBG, &sizeData, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-	if (regStatus != ERROR_SUCCESS){
-		return FALSE;
-	}
-	byteComponent = strtoimax(valGBG, NULL, 16);
-	strncat(&tmpSysKey, &byteComponent, 4);
-	// Collect the value in Data and append it to the sysKey
-	regStatus = RegOpenKeyEx(lsaHandle, "Data", 0, KEY_READ, &lsaData);
-	if (regStatus != ERROR_SUCCESS){
-		return FALSE;
-	}
-	sizeData = 9;
-	regStatus = RegQueryInfoKey(lsaData, &valData, &sizeData, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-	if (regStatus != ERROR_SUCCESS){
-		return FALSE;
-	}
-	byteComponent = strtoimax(valData, NULL, 16);
-	strncat(&tmpSysKey, &byteComponent, 4);
-
+	
 	for (int i = 0; i < 16; i++) {
 		interimSysKey[i] = tmpSysKey[syskeyDescrambler[i]];
 	}
