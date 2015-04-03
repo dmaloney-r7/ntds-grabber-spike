@@ -7,6 +7,7 @@
 #include <wchar.h>
 #include <process.h>
 #include <Windows.h>
+#include <wincrypt.h>
 #include <esent.h>
 #pragma comment(lib, "esent")
 
@@ -34,6 +35,18 @@ typedef struct {
 	JET_COLUMNDEF ntHistory;
 }ntdsColumns;
 
+typedef struct{
+	unsigned char header[8];
+	unsigned char keyMaterial[16];
+	unsigned char pekData[36];
+	unsigned char pekFinal[16];
+}encryptedPEK;
+
+typedef struct{
+	unsigned char pekData[36];
+	unsigned char pekKey[16];
+}decryptedPEK;
+
 // UserAccountControl Flags
 #define NTDS_ACCOUNT_DISABLED         0x00000002
 #define NTDS_ACCOUNT_LOCKED           0x00000010
@@ -41,7 +54,7 @@ typedef struct {
 #define NTDS_ACCOUNT_PASS_NO_EXPIRE   0x00010000
 #define NTDS_ACCOUNT_PASS_EXPIRED     0x00800000
 
-BOOL get_syskey(unsigned char *sysKey[16]){
+BOOL get_syskey(unsigned char *sysKey[17]){
 	unsigned char tmpSysKey[17];
 	unsigned char interimSysKey[17];
 	long regStatus;
@@ -427,6 +440,43 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns){
 	}
 }
 
+BOOL decrypt_PEK(unsigned char *sysKey[17], encryptedPEK *pekEncrypted, decryptedPEK *pekDecrypted){
+	BOOL cryptOK = FALSE;
+	HCRYPTPROV hProv = 0;
+	HCRYPTHASH hHash = 0;
+	DWORD md5Len = 16;
+	unsigned char rc4Key[16];
+
+	cryptOK = CryptAcquireContext(&hProv, NULL, NULL, PROV_RSA_FULL, CRYPT_VERIFYCONTEXT);
+	if (!cryptOK){
+		puts("Failed to aquire cryptographic context");
+		return FALSE;
+	}
+	cryptOK = CryptCreateHash(hProv, CALG_MD5, 0, 0, &hHash);
+	if (!cryptOK){
+		puts("Failed to initialize MD5 Hash");
+		return FALSE;
+	}
+	cryptOK = CryptHashData(hHash, sysKey, 16, 0);
+	if (!cryptOK){
+		puts("Failed to hash the sysKey");
+		return FALSE;
+	}
+	for (int i = 0; i < 1000; i++){
+		cryptOK = CryptHashData(hHash, &pekEncrypted->keyMaterial, 16, 0);
+		if (!cryptOK){
+			puts("Failed to hash the PEK key");
+			return FALSE;
+		}
+	}
+	cryptOK = CryptGetHashParam(hHash, HP_HASHVAL, &rc4Key, &md5Len, 0);
+	if (!cryptOK){
+		puts("Failed to get final hash value");
+		return FALSE;
+	}
+	return TRUE;
+}
+
 int _tmain(int argc, TCHAR* argv[])
 {
 	unsigned char sysKey[17];
@@ -487,6 +537,10 @@ int _tmain(int argc, TCHAR* argv[])
 
 	JET_ERR pekStatus;
 	unsigned char encryptionKey[76];
+	encryptedPEK *pekEncrypted = malloc(sizeof(encryptedPEK));
+	decryptedPEK *pekDecrypted = malloc(sizeof(decryptedPEK));
+	memset(pekEncrypted, 0, sizeof(encryptedPEK));
+	memset(pekDecrypted, 0, sizeof(decryptedPEK));
 
 	pekStatus = get_PEK(ntdsState, accountColumns, &encryptionKey);
 	if (pekStatus == JET_errSuccess){
@@ -494,8 +548,11 @@ int _tmain(int argc, TCHAR* argv[])
 	}
 	else{
 		puts("Uh-oh didn't find the PEK");
+		exit(pekStatus);
 	}
 
+	memcpy(pekEncrypted, &encryptionKey, 76);
+	decrypt_PEK(&sysKey, pekEncrypted, pekDecrypted);
 	read_table(ntdsState, accountColumns);
 
 	return 0;
