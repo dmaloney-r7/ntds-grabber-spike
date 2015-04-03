@@ -133,7 +133,6 @@ BOOL get_syskey(unsigned char *sysKey[17]){
 	}
 	strncpy(sysKey, &interimSysKey, 17);
 	return TRUE;
-
 }
 
 JET_ERR engine_startup(jetState *ntdsState){
@@ -177,88 +176,60 @@ JET_ERR open_database(jetState *ntdsState){
 
 JET_ERR get_column_info(jetState *ntdsState, ntdsColumns *accountColumns){
 	JET_ERR columnError;
-
 	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTm590045", &accountColumns->accountName, sizeof(JET_COLUMNDEF), JET_ColInfo);
 	if (columnError != JET_errSuccess){
-		puts("Error getting Column Definition for the samAccountName");
 		return columnError;
 	}
-
 	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTj590126", &accountColumns->accountType, sizeof(JET_COLUMNDEF), JET_ColInfo);
 	if (columnError != JET_errSuccess){
-		puts("Error getting Column Definition for the Account Type");
 		return columnError;
 	}
-
 	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTq589983", &accountColumns->accountExpiry, sizeof(JET_COLUMNDEF), JET_ColInfo);
 	if (columnError != JET_errSuccess){
-		puts("Error getting Column Definition for the Account Expiration Date");
 		return columnError;
 	}
-
 	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTq589983", &accountColumns->accountExpiry, sizeof(JET_COLUMNDEF), JET_ColInfo);
 	if (columnError != JET_errSuccess){
-		puts("Error getting Column Definition for the Account Expiration Date");
 		return columnError;
 	}
-
 	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTk590689", &accountColumns->encryptionKey, sizeof(JET_COLUMNDEF), JET_ColInfo);
 	if (columnError != JET_errSuccess){
-		puts("Error getting Column Definition for the Password Encryption Key");
 		return columnError;
 	}
-
 	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTq589876", &accountColumns->lastLogon, sizeof(JET_COLUMNDEF), JET_ColInfo);
 	if (columnError != JET_errSuccess){
-		puts("Error getting Column Definition for the Last Logon Time");
 		return columnError;
 	}
-
 	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTk589879", &accountColumns->lmHash, sizeof(JET_COLUMNDEF), JET_ColInfo);
 	if (columnError != JET_errSuccess){
-		puts("Error getting Column Definition for the current LM hash");
 		return columnError;
 	}
-
 	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTk589984", &accountColumns->lmHistory, sizeof(JET_COLUMNDEF), JET_ColInfo);
 	if (columnError != JET_errSuccess){
-		puts("Error getting Column Definition for the LM hash history");
 		return columnError;
 	}
-
 	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTj589993", &accountColumns->logonCount, sizeof(JET_COLUMNDEF), JET_ColInfo);
 	if (columnError != JET_errSuccess){
-		puts("Error getting Column Definition for the logon count");
 		return columnError;
 	}
-
 	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTk589914", &accountColumns->ntHash, sizeof(JET_COLUMNDEF), JET_ColInfo);
 	if (columnError != JET_errSuccess){
-		puts("Error getting Column Definition for the current NT Hash");
 		return columnError;
 	}
-
 	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTk589918", &accountColumns->ntHistory, sizeof(JET_COLUMNDEF), JET_ColInfo);
 	if (columnError != JET_errSuccess){
-		puts("Error getting Column Definition for the NT Hash history");
 		return columnError;
 	}
-
 	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTm13", &accountColumns->accountDescription, sizeof(JET_COLUMNDEF), JET_ColInfo);
 	if (columnError != JET_errSuccess){
-		puts("Error getting Column Definition for the Account Description");
 		return columnError;
 	}
-
 	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTj589832", &accountColumns->accountControl, sizeof(JET_COLUMNDEF), JET_ColInfo);
 	if (columnError != JET_errSuccess){
-		puts("Error getting Column Definition for the UserAccountControl");
 		return columnError;
 	}
-
 	columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, "ATTq589920", &accountColumns->lastPasswordChange, sizeof(JET_COLUMNDEF), JET_ColInfo);
 	if (columnError != JET_errSuccess){
-		puts("Error getting Column Definition for the UserAccountControl");
 		return columnError;
 	}
 	return JET_errSuccess;
