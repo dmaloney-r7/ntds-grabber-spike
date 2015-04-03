@@ -47,6 +47,26 @@ typedef struct{
 	unsigned char pekKey[16];
 }decryptedPEK;
 
+typedef struct{
+	wchar_t accountName[255];
+	char expiryDate[255];
+	char logonDate[255];
+	char logonTime[255];
+	char passChangeDate[255];
+	char passChangeTime[255];
+	wchar_t accountDescription[255];
+	BOOL accountDisabled;
+	BOOL accountLocked;
+	BOOL noPassword;
+	BOOL passNoExpire;
+	BOOL passExpired;
+	unsigned char lmHash[255];
+	unsigned char lmHistory[255];
+	int logonCount;
+	unsigned char ntHash[255];
+	unsigned char ntHistory[255];
+}ntdsAccount;
+
 // UserAccountControl Flags
 #define NTDS_ACCOUNT_DISABLED         0x00000002
 #define NTDS_ACCOUNT_LOCKED           0x00000010
@@ -305,32 +325,19 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns){
 		return cursorStatus;
 	}
 	do{
-		//Set up our column values here
-		wchar_t accountName[255];
+		// Create a User Account Struct to hold our data
+		ntdsAccount *userAccount = malloc(sizeof(ntdsAccount));
+		memset(userAccount, 0, sizeof(ntdsAccount));
+
+		//Define our temp values here
 		DWORD accountType = 0;
 		FILETIME accountExpiry;
 		SYSTEMTIME accountExpiry2;
-		char expiryDate[255];
 		FILETIME lastLogon;
 		SYSTEMTIME lastLogon2;
-		char logonDate[255];
-		char logonTime[255];
 		FILETIME lastPass;
 		SYSTEMTIME lastPass2;
-		char passChangeDate[255];
-		char passChangeTime[255];
-		wchar_t accountDescription[255];
-		DWORD accountControl = FALSE;
-		BOOL accountDisabled = FALSE;
-		BOOL accountLocked = FALSE;
-		BOOL noPassword = FALSE;
-		BOOL passNoExpire = FALSE;
-		BOOL passExpired = FALSE;
-		unsigned char lmHash[255];
-		unsigned char lmHistory[255];
-		int logonCount;
-		unsigned char ntHash[255];
-		unsigned char ntHistory[255];
+		DWORD accountControl = 0;
 		unsigned long columnSize = 0;
 
 		//Retrieve the account type for this row
@@ -346,7 +353,7 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns){
 			exit(readStatus);
 		}
 		// Grab the samAccountName here
-		readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->accountName.columnid, &accountName, sizeof(accountName), &columnSize, 0, NULL);
+		readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->accountName.columnid, &userAccount->accountName, sizeof(userAccount->accountName), &columnSize, 0, NULL);
 		if (readStatus != JET_errSuccess){
 			puts("An error has occured reading the column");
 			exit(readStatus);
@@ -359,10 +366,10 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns){
 		}
 		//Convert the FILETIME to a SYSTEMTIME so we can get a human readable date
 		FileTimeToSystemTime(&accountExpiry, &accountExpiry2);
-		int dateResult = GetDateFormat(LOCALE_SYSTEM_DEFAULT, DATE_LONGDATE, &accountExpiry2, NULL, expiryDate, 255);
+		int dateResult = GetDateFormat(LOCALE_SYSTEM_DEFAULT, DATE_LONGDATE, &accountExpiry2, NULL, userAccount->expiryDate, 255);
 		// Getting Human Readable will fail if account never expires. Just set the expiryDate string to 'never'
 		if (dateResult == 0){
-			strcpy(&expiryDate, "Never");
+			strcpy(&userAccount->expiryDate, "Never");
 		}
 		// Grab the last logon date and time
 		readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->lastLogon.columnid, &lastLogon, sizeof(lastLogon), &columnSize, 0, NULL);
@@ -372,14 +379,14 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns){
 		}
 		//Convert the FILETIME to a SYSTEMTIME so we can get a human readable date
 		FileTimeToSystemTime(&lastLogon, &lastLogon2);
-		dateResult = GetDateFormat(LOCALE_SYSTEM_DEFAULT, DATE_LONGDATE, &lastLogon2, NULL, logonDate, 255);
+		dateResult = GetDateFormat(LOCALE_SYSTEM_DEFAULT, DATE_LONGDATE, &lastLogon2, NULL, userAccount->logonDate, 255);
 		// Getting Human Readable will fail if account has never logged in, much like the expiry date
 		if (dateResult == 0){
-			strcpy(&logonDate, "Never");
+			strcpy(&userAccount->logonDate, "Never");
 		}
-		dateResult = GetTimeFormat(LOCALE_SYSTEM_DEFAULT, 0, &lastLogon2, NULL, logonTime, 255);
+		dateResult = GetTimeFormat(LOCALE_SYSTEM_DEFAULT, 0, &lastLogon2, NULL, userAccount->logonTime, 255);
 		if (dateResult == 0){
-			strcpy(&logonTime, "Never");
+			strcpy(&userAccount->logonTime, "Never");
 		}
 		// Grab the last password change date and time
 		readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->lastPasswordChange.columnid, &lastPass, sizeof(lastPass), &columnSize, 0, NULL);
@@ -389,17 +396,17 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns){
 		}
 		//Convert the FILETIME to a SYSTEMTIME so we can get a human readable date
 		FileTimeToSystemTime(&lastPass, &lastPass2);
-		dateResult = GetDateFormat(LOCALE_SYSTEM_DEFAULT, DATE_LONGDATE, &lastPass2, NULL, passChangeDate, 255);
+		dateResult = GetDateFormat(LOCALE_SYSTEM_DEFAULT, DATE_LONGDATE, &lastPass2, NULL, userAccount->passChangeDate, 255);
 		// Getting Human Readable will fail if account has never logged in, much like the expiry date
 		if (dateResult == 0){
-			strcpy(&passChangeDate, "Never");
+			strcpy(&userAccount->passChangeDate, "Never");
 		}
-		dateResult = GetTimeFormat(LOCALE_SYSTEM_DEFAULT, 0, &lastPass2, NULL, passChangeTime, 255);
+		dateResult = GetTimeFormat(LOCALE_SYSTEM_DEFAULT, 0, &lastPass2, NULL, userAccount->passChangeTime, 255);
 		if (dateResult == 0){
-			strcpy(&passChangeTime, "Never");
+			strcpy(&userAccount->passChangeTime, "Never");
 		}
 		// Grab the Account Description here
-		readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->accountDescription.columnid, &accountDescription, sizeof(accountDescription), &columnSize, 0, NULL);
+		readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->accountDescription.columnid, &userAccount->accountDescription, sizeof(userAccount->accountDescription), &columnSize, 0, NULL);
 		if (readStatus != JET_errSuccess){
 			puts("An error has occured reading the column");
 			exit(readStatus);
@@ -412,22 +419,22 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns){
 			exit(readStatus);
 		}
 		if (accountControl & NTDS_ACCOUNT_DISABLED){
-			accountDisabled = TRUE;
+			userAccount->accountDisabled = TRUE;
 		}
 		if (accountControl & NTDS_ACCOUNT_LOCKED){
-			accountLocked = TRUE;
+			userAccount->accountLocked = TRUE;
 		}
 		if (accountControl & NTDS_ACCOUNT_NO_PASS){
-			noPassword = TRUE;
+			userAccount->noPassword = TRUE;
 		}
 		if (accountControl & NTDS_ACCOUNT_PASS_EXPIRED){
-			passExpired = TRUE;
+			userAccount->passExpired = TRUE;
 		}
 		if (accountControl & NTDS_ACCOUNT_PASS_NO_EXPIRE){
-			passNoExpire = TRUE;
+			userAccount->passNoExpire = TRUE;
 		}
 		// Grab the Logon Count here
-		readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->logonCount.columnid, &logonCount, sizeof(logonCount), &columnSize, 0, NULL);
+		readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->logonCount.columnid, &userAccount->logonCount, sizeof(userAccount->logonCount), &columnSize, 0, NULL);
 		if (readStatus != JET_errSuccess){
 			puts("An error has occured reading the column");
 			exit(readStatus);
