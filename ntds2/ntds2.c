@@ -377,6 +377,7 @@ BOOL decrypt_PEK(unsigned char *sysKey[17], encryptedPEK *pekEncrypted, decrypte
 	HCRYPTHASH hHash = 0;
 	DWORD md5Len = 16;
 	unsigned char rc4Key[16];
+	HCRYPTKEY rc4KeyFinal;
 
 	cryptOK = CryptAcquireContext(&hProv, NULL, NULL, PROV_RSA_FULL, CRYPT_VERIFYCONTEXT);
 	if (!cryptOK){
@@ -405,6 +406,20 @@ BOOL decrypt_PEK(unsigned char *sysKey[17], encryptedPEK *pekEncrypted, decrypte
 		puts("Failed to get final hash value");
 		return FALSE;
 	}
+	cryptOK = CryptDeriveKey(hProv, CALG_RC4, hHash,0, &rc4KeyFinal);
+	if (!cryptOK){
+		puts("Failed to derive RC4 key");
+		return FALSE;
+	}
+	unsigned char pekData[36];
+	DWORD pekLength = 52;
+	memcpy(&pekData, &pekEncrypted->pekData, pekLength);
+	cryptOK = CryptEncrypt(rc4KeyFinal, NULL, TRUE, 0, &pekData, &pekLength, pekLength);
+	if (!cryptOK){
+		puts("Failed to decrypt PEK");
+		return FALSE;
+	}
+	memcpy(pekDecrypted, &pekData, pekLength);
 	return TRUE;
 }
 
