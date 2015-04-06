@@ -250,8 +250,67 @@ JET_ERR get_PEK(jetState *ntdsState, ntdsColumns *accountColumns, encryptedPEK *
 	} while (cursorStatus == JET_errSuccess);
 	return readStatus;
 }
+// Convert DES 56 to 64 as per the method in lib/msf/core/post/windows/priv.rb
+void convert_56_to_64(LPBYTE tmp_key, LPBYTE key){
+	int des_odd_parity[256] = {
+		1, 1, 2, 2, 4, 4, 7, 7, 8, 8, 11, 11, 13, 13, 14, 14,
+		16, 16, 19, 19, 21, 21, 22, 22, 25, 25, 26, 26, 28, 28, 31, 31,
+		32, 32, 35, 35, 37, 37, 38, 38, 41, 41, 42, 42, 44, 44, 47, 47,
+		49, 49, 50, 50, 52, 52, 55, 55, 56, 56, 59, 59, 61, 61, 62, 62,
+		64, 64, 67, 67, 69, 69, 70, 70, 73, 73, 74, 74, 76, 76, 79, 79,
+		81, 81, 82, 82, 84, 84, 87, 87, 88, 88, 91, 91, 93, 93, 94, 94,
+		97, 97, 98, 98, 100, 100, 103, 103, 104, 104, 107, 107, 109, 109, 110, 110,
+		112, 112, 115, 115, 117, 117, 118, 118, 121, 121, 122, 122, 124, 124, 127, 127,
+		128, 128, 131, 131, 133, 133, 134, 134, 137, 137, 138, 138, 140, 140, 143, 143,
+		145, 145, 146, 146, 148, 148, 151, 151, 152, 152, 155, 155, 157, 157, 158, 158,
+		161, 161, 162, 162, 164, 164, 167, 167, 168, 168, 171, 171, 173, 173, 174, 174,
+		176, 176, 179, 179, 181, 181, 182, 182, 185, 185, 186, 186, 188, 188, 191, 191,
+		193, 193, 194, 194, 196, 196, 199, 199, 200, 200, 203, 203, 205, 205, 206, 206,
+		208, 208, 211, 211, 213, 213, 214, 214, 217, 217, 218, 218, 220, 220, 223, 223,
+		224, 224, 227, 227, 229, 229, 230, 230, 233, 233, 234, 234, 236, 236, 239, 239,
+		241, 241, 242, 242, 244, 244, 247, 247, 248, 248, 251, 251, 253, 253, 254, 254
+	};
 
-BOOL decrypt_hash(encryptedHash *encryptedNTLM, decryptedPEK *pekDecrypted, char *hashString[32]){
+	key[0] = tmp_key[0] >> 1;
+	key[1] = (((tmp_key[0]) & 0x01) << 6) | (tmp_key[1] >> 2);
+	key[2] = (((tmp_key[1]) & 0x03) << 5) | (tmp_key[2] >> 3);
+	key[3] = (((tmp_key[2]) & 0x07) << 4) | (tmp_key[3] >> 4);
+	key[4] = (((tmp_key[3]) & 0x0F) << 3) | (tmp_key[4] >> 5);
+	key[5] = (((tmp_key[4]) & 0x1F) << 2) | (tmp_key[5] >> 6);
+	key[6] = (((tmp_key[5]) & 0x3F) << 1) | (tmp_key[6] >> 7);
+	key[7] = tmp_key[6] & 0x7F;
+
+	for (int i = 0; i<8; i++) {
+		key[i] = ((unsigned int)key[i] << 1);
+		key[i] = des_odd_parity[(unsigned int)key[i]];
+	}
+}
+
+void get_DES_keys(DWORD rid, LPBYTE key1[8], LPBYTE key2[8]){
+	BYTE k1[7]; 
+	BYTE k2[7];
+
+	k1[0] = rid & 0xFF;
+	k1[1] = (rid >> 8) & 0xFF;
+	k1[2] = (rid >> 16) & 0xFF;
+	k1[3] = (rid >> 24) & 0xFF;
+	k1[4] = k1[0];
+	k1[5] = k1[1];
+	k1[6] = k1[2];
+
+	k2[0] = k1[3];
+	k2[1] = k1[0];
+	k2[2] = k1[1];
+	k2[3] = k1[2];
+	k2[4] = k2[0];
+	k2[5] = k2[1];
+	k2[6] = k2[2];
+
+	convert_56_to_64(k1, key1);
+	convert_56_to_64(k2, key2);
+}
+
+BOOL decrypt_hash(encryptedHash *encryptedNTLM, decryptedPEK *pekDecrypted, char *hashString[32], DWORD rid){
 	BOOL cryptOK = FALSE;
 	HCRYPTPROV hProv = 0;
 	HCRYPTHASH hHash = 0;
@@ -296,7 +355,9 @@ BOOL decrypt_hash(encryptedHash *encryptedNTLM, decryptedPEK *pekDecrypted, char
 	memcpy(&encHashData, &encryptedNTLM->encryptedHash, 16);
 	cryptOK = CryptEncrypt(rc4KeyFinal, NULL, TRUE, 0, &encHashData, &md5Len, md5Len);
 	
-
+	BYTE desKey1[8];
+	BYTE desKey2[8];
+	get_DES_keys(rid, &desKey1,&desKey2);
 
 	return TRUE;
 
@@ -448,7 +509,7 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns, decryptedPE
 			exit(readStatus);
 		}
 		else{
-			decrypt_hash(encryptedNT, pekDecrypted, &userAccount->ntHash);
+			decrypt_hash(encryptedNT, pekDecrypted, &userAccount->ntHash, userAccount->accountRID);
 		}
 		
 		cursorStatus = JetMove(ntdsState->jetSession, ntdsState->jetTable, JET_MoveNext, NULL);
