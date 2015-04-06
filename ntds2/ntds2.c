@@ -271,7 +271,7 @@ void convert_56_to_64(LPBYTE tmp_key, LPBYTE key){
 		241, 241, 242, 242, 244, 244, 247, 247, 248, 248, 251, 251, 253, 253, 254, 254
 	};
 
-	key[0] = tmp_key[0] >> 1;
+	
 	key[1] = (((tmp_key[0]) & 0x01) << 6) | (tmp_key[1] >> 2);
 	key[2] = (((tmp_key[1]) & 0x03) << 5) | (tmp_key[2] >> 3);
 	key[3] = (((tmp_key[2]) & 0x07) << 4) | (tmp_key[3] >> 4);
@@ -285,6 +285,7 @@ void convert_56_to_64(LPBYTE tmp_key, LPBYTE key){
 		key[i] = des_odd_parity[(unsigned int)key[i]];
 	}
 }
+
 
 void get_DES_keys(DWORD rid, LPBYTE key1[8], LPBYTE key2[8]){
 	BYTE k1[7]; 
@@ -310,6 +311,7 @@ void get_DES_keys(DWORD rid, LPBYTE key1[8], LPBYTE key2[8]){
 	convert_56_to_64(k2, key2);
 }
 
+
 BOOL decrypt_hash(encryptedHash *encryptedNTLM, decryptedPEK *pekDecrypted, char *hashString[32], DWORD rid){
 	BOOL cryptOK = FALSE;
 	HCRYPTPROV hProv = 0;
@@ -318,7 +320,7 @@ BOOL decrypt_hash(encryptedHash *encryptedNTLM, decryptedPEK *pekDecrypted, char
 	unsigned char rc4Key[16];
 	HCRYPTKEY rc4KeyFinal;
 	
-	cryptOK = CryptAcquireContext(&hProv, NULL, NULL, PROV_RSA_FULL, CRYPT_VERIFYCONTEXT);
+	cryptOK = CryptAcquireContext(&hProv, 0, MS_ENHANCED_PROV, PROV_RSA_FULL, 0);
 	if (!cryptOK){
 		puts("Failed to aquire cryptographic context");
 		return FALSE;
@@ -355,9 +357,91 @@ BOOL decrypt_hash(encryptedHash *encryptedNTLM, decryptedPEK *pekDecrypted, char
 	memcpy(&encHashData, &encryptedNTLM->encryptedHash, 16);
 	cryptOK = CryptEncrypt(rc4KeyFinal, NULL, TRUE, 0, &encHashData, &md5Len, md5Len);
 	
+	unsigned char hashFirst[8];
+	unsigned char hashSecond[8];
+	memcpy(&hashFirst, &encHashData[0], 8);
+	memcpy(&hashSecond, &encHashData[8], 8);
+
+	BYTE DesKeyBlob[] = {
+		0x08, 0x02, 0x00, 0x00, 0x01, 0x66, 0x00, 0x00, // BLOB header 
+		0x08, 0x00, 0x00, 0x00                          // Key Length in Bytes
+	};
+	BYTE DesKey1Blob[20];
+	BYTE DesKey2Blob[20];
+
 	BYTE desKey1[8];
 	BYTE desKey2[8];
 	get_DES_keys(rid, &desKey1,&desKey2);
+
+	HCRYPTKEY hDes1;
+	HCRYPTKEY hDes2;
+
+	//Convert our DES keys into Des Key Blobs that WinCrypt can import.
+	// This is kinda cheaty
+	memcpy(&DesKey1Blob[0], &DesKeyBlob, sizeof(DesKeyBlob));
+	memcpy(&DesKey1Blob[sizeof(DesKeyBlob)], &desKey1, sizeof(desKey1));
+	memcpy(&DesKey2Blob[0], &DesKeyBlob, sizeof(DesKeyBlob));
+	memcpy(&DesKey2Blob[sizeof(DesKeyBlob)], &desKey2, sizeof(desKey2));
+
+	cryptOK = CryptImportKey(hProv, DesKey1Blob, sizeof(DesKey1Blob), 0, CRYPT_EXPORTABLE, &hDes1);
+	if (!cryptOK){
+		LPVOID lpMsgBuf;
+		LPVOID lpDisplayBuf;
+		DWORD dw = GetLastError();
+		FormatMessage(
+			FORMAT_MESSAGE_ALLOCATE_BUFFER |
+			FORMAT_MESSAGE_FROM_SYSTEM |
+			FORMAT_MESSAGE_IGNORE_INSERTS,
+			NULL,
+			dw,
+			MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+			(LPTSTR)&lpMsgBuf,
+			0, NULL);
+		puts("There was an error importing Des Key 1");
+		return FALSE;
+	}
+	cryptOK = CryptImportKey(hProv, DesKey2Blob, sizeof(DesKey1Blob), 0, CRYPT_EXPORTABLE, &hDes2);
+	if (!cryptOK){
+		puts("There was an error importing Des Key 2");
+		return FALSE;
+	}
+	
+	DWORD cryptMode = CRYPT_MODE_ECB;
+	cryptOK = CryptSetKeyParam(hDes1, KP_MODE, &cryptMode, 0);
+	if (!cryptOK){
+		puts("There was an error setting ECB mode");
+		return FALSE;
+	}
+	cryptOK = CryptSetKeyParam(hDes2, KP_MODE, &cryptMode, 0);
+	if (!cryptOK){
+		puts("There was an error setting ECB mode");
+		return FALSE;
+	}
+
+	DWORD hashHalf = 8;
+
+	cryptOK = CryptDecrypt(hDes1, 0, TRUE, 0, hashFirst, &hashHalf);
+	if (!cryptOK){
+		puts("There was an error decrypting the hash");
+		LPVOID lpMsgBuf;
+		LPVOID lpDisplayBuf;
+		DWORD dw = GetLastError();
+		FormatMessage(
+			FORMAT_MESSAGE_ALLOCATE_BUFFER |
+			FORMAT_MESSAGE_FROM_SYSTEM |
+			FORMAT_MESSAGE_IGNORE_INSERTS,
+			NULL,
+			dw,
+			MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+			(LPTSTR)&lpMsgBuf,
+			0, NULL);
+		return FALSE;
+	}
+	cryptOK = CryptDecrypt(hDes2, 0, TRUE, 0, hashSecond, &hashHalf);
+	if (!cryptOK){
+		puts("There was an error decrypting the hash");
+		return FALSE;
+	}
 
 	return TRUE;
 
