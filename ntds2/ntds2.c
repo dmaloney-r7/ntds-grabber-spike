@@ -60,12 +60,18 @@ typedef struct{
 	BOOL noPassword;
 	BOOL passNoExpire;
 	BOOL passExpired;
-	unsigned char lmHash[255];
+	char lmHash[32];
 	unsigned char lmHistory[255];
 	int logonCount;
-	unsigned char ntHash[255];
+	char ntHash[32];
 	unsigned char ntHistory[255];
 }ntdsAccount;
+
+typedef struct{
+	unsigned char header[8];
+	unsigned char keyMaterial[16];
+	unsigned char encryptedHash[16];
+}encryptedHash;
 
 // UserAccountControl Flags
 #define NTDS_ACCOUNT_DISABLED         0x00000002
@@ -239,7 +245,55 @@ JET_ERR get_PEK(jetState *ntdsState, ntdsColumns *accountColumns, encryptedPEK *
 	return readStatus;
 }
 
-JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns){
+BOOL decrypt_hash(encryptedHash *encryptedNTLM, decryptedPEK *pekDecrypted, char *hashString[32]){
+	BOOL cryptOK = FALSE;
+	HCRYPTPROV hProv = 0;
+	HCRYPTHASH hHash = 0;
+	DWORD md5Len = 16;
+	unsigned char rc4Key[16];
+	HCRYPTKEY rc4KeyFinal;
+	
+	cryptOK = CryptAcquireContext(&hProv, NULL, NULL, PROV_RSA_FULL, CRYPT_VERIFYCONTEXT);
+	if (!cryptOK){
+		puts("Failed to aquire cryptographic context");
+		return FALSE;
+	}
+	cryptOK = CryptCreateHash(hProv, CALG_MD5, 0, 0, &hHash);
+	if (!cryptOK){
+		puts("Failed to initialize MD5 Hash");
+		return FALSE;
+	}
+
+	cryptOK = CryptHashData(hHash, pekDecrypted->pekKey, 16, 0);
+	if (!cryptOK){
+		puts("Failed to hash the PEK");
+		return FALSE;
+	}
+
+	cryptOK = CryptHashData(hHash, encryptedNTLM->keyMaterial, 16, 0);
+	if (!cryptOK){
+		puts("Failed to hash the key material");
+		return FALSE;
+	}
+	cryptOK = CryptGetHashParam(hHash, HP_HASHVAL, &rc4Key, &md5Len, 0);
+	if (!cryptOK){
+		puts("Failed to get final hash value");
+		return FALSE;
+	}
+	cryptOK = CryptDeriveKey(hProv, CALG_RC4, hHash, 0, &rc4KeyFinal);
+	if (!cryptOK){
+		puts("Failed to derive RC4 key");
+		return FALSE;
+	}
+
+	unsigned char encHashData[16];
+	memcpy(&encHashData, &encryptedNTLM->encryptedHash, 16);
+	cryptOK = CryptEncrypt(rc4KeyFinal, NULL, TRUE, 0, &encHashData, &md5Len, md5Len);
+	return TRUE;
+
+}
+
+JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns, decryptedPEK *pekDecrypted){
 	JET_ERR cursorStatus;
 	JET_ERR readStatus;	
 
@@ -263,6 +317,10 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns){
 		SYSTEMTIME lastPass2;
 		DWORD accountControl = 0;
 		unsigned long columnSize = 0;
+		encryptedHash *encryptedLM = malloc(sizeof(encryptedHash));
+		encryptedHash *encryptedNT = malloc(sizeof(encryptedHash));
+		memset(encryptedLM, 0, sizeof(encryptedHash));
+		memset(encryptedNT, 0, sizeof(encryptedHash));
 
 		//Retrieve the account type for this row
 		readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->accountType.columnid, &accountType, sizeof(accountType),columnSize,0,NULL);
@@ -363,6 +421,16 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns){
 			puts("An error has occured reading the column");
 			exit(readStatus);
 		}
+		// Grab the NT Hash
+		readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->ntHash.columnid, encryptedNT, sizeof(encryptedHash), &columnSize, 0, NULL);
+		if (readStatus != JET_errSuccess){
+			puts("An error has occured reading the column");
+			exit(readStatus);
+		}
+		else{
+			decrypt_hash(encryptedNT, pekDecrypted, &userAccount->ntHash);
+		}
+		
 		cursorStatus = JetMove(ntdsState->jetSession, ntdsState->jetTable, JET_MoveNext, NULL);
 	} while (cursorStatus == JET_errSuccess);
 	if (cursorStatus != JET_errNoCurrentRecord){
@@ -411,7 +479,7 @@ BOOL decrypt_PEK(unsigned char *sysKey[17], encryptedPEK *pekEncrypted, decrypte
 		puts("Failed to derive RC4 key");
 		return FALSE;
 	}
-	unsigned char pekData[36];
+	unsigned char pekData[52];
 	DWORD pekLength = 52;
 	memcpy(&pekData, &pekEncrypted->pekData, pekLength);
 	cryptOK = CryptEncrypt(rc4KeyFinal, NULL, TRUE, 0, &pekData, &pekLength, pekLength);
@@ -497,7 +565,7 @@ int _tmain(int argc, TCHAR* argv[])
 	}
 
 	decrypt_PEK(&sysKey, pekEncrypted, pekDecrypted);
-	read_table(ntdsState, accountColumns);
+	read_table(ntdsState, accountColumns, pekDecrypted);
 
 	return 0;
 }
