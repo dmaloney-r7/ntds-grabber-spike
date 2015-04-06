@@ -10,6 +10,7 @@
 #include <wincrypt.h>
 #include <esent.h>
 #pragma comment(lib, "esent")
+#pragma comment(lib, "Ws2_32.lib")
 
 typedef struct {
 	TCHAR ntdsPath[255];
@@ -33,6 +34,7 @@ typedef struct {
 	JET_COLUMNDEF logonCount;
 	JET_COLUMNDEF ntHash;
 	JET_COLUMNDEF ntHistory;
+	JET_COLUMNDEF accountSID;
 }ntdsColumns;
 
 typedef struct{
@@ -65,6 +67,8 @@ typedef struct{
 	int logonCount;
 	char ntHash[32];
 	unsigned char ntHistory[255];
+	unsigned char accountSID[24];
+	DWORD accountRID;
 }ntdsAccount;
 
 typedef struct{
@@ -195,10 +199,11 @@ JET_ERR get_column_info(jetState *ntdsState, ntdsColumns *accountColumns){
 		"ATTk589918", 
 		"ATTm13",  
 		"ATTj589832", 
-		"ATTq589920" 
+		"ATTq589920",
+		"ATTr589970"
 	};
 	JET_COLUMNDEF *columnDefs[] = { 
-		&accountColumns->accountName, 
+		&accountColumns->accountName,
 		&accountColumns->accountType,
 		&accountColumns->accountExpiry,
 		&accountColumns->encryptionKey,
@@ -210,9 +215,10 @@ JET_ERR get_column_info(jetState *ntdsState, ntdsColumns *accountColumns){
 		&accountColumns->ntHistory,
 		&accountColumns->accountDescription,
 		&accountColumns->accountControl,
-		&accountColumns->lastPasswordChange
+		&accountColumns->lastPasswordChange,
+		&accountColumns->accountSID
 	};	
-	for (int i = 0; i < 13; i++){
+	for (int i = 0; i < 14; i++){
 		columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, attributeNames[i], columnDefs[i], sizeof(JET_COLUMNDEF), JET_ColInfo);
 		if (columnError != JET_errSuccess){
 			return columnError;
@@ -289,6 +295,9 @@ BOOL decrypt_hash(encryptedHash *encryptedNTLM, decryptedPEK *pekDecrypted, char
 	unsigned char encHashData[16];
 	memcpy(&encHashData, &encryptedNTLM->encryptedHash, 16);
 	cryptOK = CryptEncrypt(rc4KeyFinal, NULL, TRUE, 0, &encHashData, &md5Len, md5Len);
+	
+
+
 	return TRUE;
 
 }
@@ -334,6 +343,17 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns, decryptedPE
 			puts("An error has occured reading the column");
 			exit(readStatus);
 		}
+		// Grab the SID here
+		readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->accountSID.columnid, &userAccount->accountSID, sizeof(userAccount->accountName), &columnSize, 0, NULL);
+		if (readStatus != JET_errSuccess){
+			puts("An error has occured reading the column");
+			exit(readStatus);
+		}
+		// Derive the RID from the SID
+		int ridIndex = columnSize - sizeof(DWORD);
+		DWORD *ridLoc = &userAccount->accountSID[ridIndex];
+		userAccount->accountRID = htonl(*ridLoc);
+
 		// Grab the samAccountName here
 		readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->accountName.columnid, &userAccount->accountName, sizeof(userAccount->accountName), &columnSize, 0, NULL);
 		if (readStatus != JET_errSuccess){
