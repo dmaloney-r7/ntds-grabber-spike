@@ -1,4 +1,4 @@
-﻿Build started 4/6/2015 7:03:49 PM.
+﻿Build started 4/7/2015 12:43:42 PM.
 Project "C:\ntds\ntds2\ntds2\ntds2.vcxproj" on node 2 (Build target(s)).
 ClCompile:
   C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt ntds2.c
@@ -41,70 +41,62 @@ c:\ntds\ntds2\ntds2\ntds2.c(358): warning C4047: 'function' : 'HCRYPTHASH' diffe
 c:\ntds\ntds2\ntds2\ntds2.c(358): warning C4024: 'CryptEncrypt' : different types for formal and actual parameter 2
 c:\ntds\ntds2\ntds2\ntds2.c(358): warning C4047: 'function' : 'BYTE *' differs in levels of indirection from 'unsigned char (*)[16]'
 c:\ntds\ntds2\ntds2\ntds2.c(358): warning C4024: 'CryptEncrypt' : different types for formal and actual parameter 5
-c:\ntds\ntds2\ntds2\ntds2.c(374): warning C4047: 'function' : 'LPBYTE *' differs in levels of indirection from 'BYTE (*)[8]'
-c:\ntds\ntds2\ntds2\ntds2.c(374): warning C4024: 'get_DES_keys' : different types for formal and actual parameter 2
-c:\ntds\ntds2\ntds2\ntds2.c(374): warning C4024: 'get_DES_keys' : different types for formal and actual parameter 3
+c:\ntds\ntds2\ntds2\ntds2.c(369): warning C4047: 'function' : 'LPBYTE *' differs in levels of indirection from 'BYTE (*)[8]'
+c:\ntds\ntds2\ntds2\ntds2.c(369): warning C4024: 'get_DES_keys' : different types for formal and actual parameter 2
+c:\ntds\ntds2\ntds2\ntds2.c(369): warning C4024: 'get_DES_keys' : different types for formal and actual parameter 3
+c:\ntds\ntds2\ntds2\ntds2.c(416): warning C4133: 'function' : incompatible types - from 'DWORD *' to 'const BYTE *'
 c:\ntds\ntds2\ntds2\ntds2.c(421): warning C4133: 'function' : incompatible types - from 'DWORD *' to 'const BYTE *'
-c:\ntds\ntds2\ntds2\ntds2.c(426): warning C4133: 'function' : incompatible types - from 'DWORD *' to 'const BYTE *'
-c:\ntds\ntds2\ntds2\ntds2.c(432): warning C4047: 'initializing' : 'DWORD' differs in levels of indirection from 'BYTE (*)[8]'
-c:\ntds\ntds2\ntds2\ntds2.c(433): warning C4047: 'initializing' : 'DWORD' differs in levels of indirection from 'BYTE (*)[8]'
-c:\ntds\ntds2\ntds2\ntds2.c(434): warning C4047: 'function' : 'const BYTE *' differs in levels of indirection from 'BYTE (*)[8]'
-c:\ntds\ntds2\ntds2\ntds2.c(434): warning C4024: 'CryptSetKeyParam' : different types for formal and actual parameter 3
-c:\ntds\ntds2\ntds2\ntds2.c(454): warning C4047: 'function' : 'const BYTE *' differs in levels of indirection from 'DWORD'
-c:\ntds\ntds2\ntds2\ntds2.c(454): warning C4024: 'CryptSetKeyParam' : different types for formal and actual parameter 3
-c:\ntds\ntds2\ntds2\ntds2.c(369): warning C4101: 'DesKey1Blob' : unreferenced local variable
-c:\ntds\ntds2\ntds2\ntds2.c(370): warning C4101: 'DesKey2Blob' : unreferenced local variable
-c:\ntds\ntds2\ntds2\ntds2.c(437): warning C4101: 'lpDisplayBuf' : unreferenced local variable
-c:\ntds\ntds2\ntds2\ntds2.c(466): warning C4101: 'lpDisplayBuf' : unreferenced local variable
-c:\ntds\ntds2\ntds2\ntds2.c(493): warning C4047: 'function' : 'JET_GRBIT' differs in levels of indirection from 'void *'
-c:\ntds\ntds2\ntds2\ntds2.c(493): warning C4024: 'JetMove' : different types for formal and actual parameter 4
-c:\ntds\ntds2\ntds2\ntds2.c(519): warning C4047: 'function' : 'unsigned long *' differs in levels of indirection from 'unsigned long'
-c:\ntds\ntds2\ntds2\ntds2.c(519): warning C4024: 'JetRetrieveColumn' : different types for formal and actual parameter 6
-c:\ntds\ntds2\ntds2\ntds2.c(522): warning C4047: 'function' : 'JET_GRBIT' differs in levels of indirection from 'void *'
-c:\ntds\ntds2\ntds2\ntds2.c(522): warning C4024: 'JetMove' : different types for formal and actual parameter 4
-c:\ntds\ntds2\ntds2\ntds2.c(538): warning C4133: 'initializing' : incompatible types - from 'unsigned char *' to 'DWORD *'
-c:\ntds\ntds2\ntds2\ntds2.c(558): warning C4047: 'function' : 'char *' differs in levels of indirection from 'char (*)[255]'
-c:\ntds\ntds2\ntds2\ntds2.c(558): warning C4024: 'strcpy' : different types for formal and actual parameter 1
-c:\ntds\ntds2\ntds2\ntds2.c(558): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\ntds\ntds2\ntds2\ntds2.c(395): warning C4101: 'lpDisplayBuf' : unreferenced local variable
+c:\ntds\ntds2\ntds2\ntds2.c(431): warning C4101: 'lpDisplayBuf' : unreferenced local variable
+c:\ntds\ntds2\ntds2\ntds2.c(458): warning C4047: 'function' : 'JET_GRBIT' differs in levels of indirection from 'void *'
+c:\ntds\ntds2\ntds2\ntds2.c(458): warning C4024: 'JetMove' : different types for formal and actual parameter 4
+c:\ntds\ntds2\ntds2\ntds2.c(484): warning C4047: 'function' : 'unsigned long *' differs in levels of indirection from 'unsigned long'
+c:\ntds\ntds2\ntds2\ntds2.c(484): warning C4024: 'JetRetrieveColumn' : different types for formal and actual parameter 6
+c:\ntds\ntds2\ntds2\ntds2.c(487): warning C4047: 'function' : 'JET_GRBIT' differs in levels of indirection from 'void *'
+c:\ntds\ntds2\ntds2\ntds2.c(487): warning C4024: 'JetMove' : different types for formal and actual parameter 4
+c:\ntds\ntds2\ntds2\ntds2.c(503): warning C4133: 'initializing' : incompatible types - from 'unsigned char *' to 'DWORD *'
+c:\ntds\ntds2\ntds2\ntds2.c(523): warning C4047: 'function' : 'char *' differs in levels of indirection from 'char (*)[255]'
+c:\ntds\ntds2\ntds2\ntds2.c(523): warning C4024: 'strcpy' : different types for formal and actual parameter 1
+c:\ntds\ntds2\ntds2\ntds2.c(523): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
           c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(112) : see declaration of 'strcpy'
-c:\ntds\ntds2\ntds2\ntds2.c(571): warning C4047: 'function' : 'char *' differs in levels of indirection from 'char (*)[255]'
-c:\ntds\ntds2\ntds2\ntds2.c(571): warning C4024: 'strcpy' : different types for formal and actual parameter 1
-c:\ntds\ntds2\ntds2\ntds2.c(571): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\ntds\ntds2\ntds2\ntds2.c(536): warning C4047: 'function' : 'char *' differs in levels of indirection from 'char (*)[255]'
+c:\ntds\ntds2\ntds2\ntds2.c(536): warning C4024: 'strcpy' : different types for formal and actual parameter 1
+c:\ntds\ntds2\ntds2\ntds2.c(536): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
           c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(112) : see declaration of 'strcpy'
-c:\ntds\ntds2\ntds2\ntds2.c(575): warning C4047: 'function' : 'char *' differs in levels of indirection from 'char (*)[255]'
-c:\ntds\ntds2\ntds2\ntds2.c(575): warning C4024: 'strcpy' : different types for formal and actual parameter 1
-c:\ntds\ntds2\ntds2\ntds2.c(575): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\ntds\ntds2\ntds2\ntds2.c(540): warning C4047: 'function' : 'char *' differs in levels of indirection from 'char (*)[255]'
+c:\ntds\ntds2\ntds2\ntds2.c(540): warning C4024: 'strcpy' : different types for formal and actual parameter 1
+c:\ntds\ntds2\ntds2\ntds2.c(540): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
           c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(112) : see declaration of 'strcpy'
-c:\ntds\ntds2\ntds2\ntds2.c(588): warning C4047: 'function' : 'char *' differs in levels of indirection from 'char (*)[255]'
-c:\ntds\ntds2\ntds2\ntds2.c(588): warning C4024: 'strcpy' : different types for formal and actual parameter 1
-c:\ntds\ntds2\ntds2\ntds2.c(588): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\ntds\ntds2\ntds2\ntds2.c(553): warning C4047: 'function' : 'char *' differs in levels of indirection from 'char (*)[255]'
+c:\ntds\ntds2\ntds2\ntds2.c(553): warning C4024: 'strcpy' : different types for formal and actual parameter 1
+c:\ntds\ntds2\ntds2\ntds2.c(553): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
           c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(112) : see declaration of 'strcpy'
-c:\ntds\ntds2\ntds2\ntds2.c(592): warning C4047: 'function' : 'char *' differs in levels of indirection from 'char (*)[255]'
-c:\ntds\ntds2\ntds2\ntds2.c(592): warning C4024: 'strcpy' : different types for formal and actual parameter 1
-c:\ntds\ntds2\ntds2\ntds2.c(592): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\ntds\ntds2\ntds2\ntds2.c(557): warning C4047: 'function' : 'char *' differs in levels of indirection from 'char (*)[255]'
+c:\ntds\ntds2\ntds2\ntds2.c(557): warning C4024: 'strcpy' : different types for formal and actual parameter 1
+c:\ntds\ntds2\ntds2\ntds2.c(557): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
           c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(112) : see declaration of 'strcpy'
-c:\ntds\ntds2\ntds2\ntds2.c(635): warning C4047: 'function' : 'char **' differs in levels of indirection from 'char (*)[32]'
-c:\ntds\ntds2\ntds2\ntds2.c(635): warning C4024: 'decrypt_hash' : different types for formal and actual parameter 3
-c:\ntds\ntds2\ntds2\ntds2.c(638): warning C4047: 'function' : 'JET_GRBIT' differs in levels of indirection from 'void *'
-c:\ntds\ntds2\ntds2\ntds2.c(638): warning C4024: 'JetMove' : different types for formal and actual parameter 4
-c:\ntds\ntds2\ntds2\ntds2.c(664): warning C4047: 'function' : 'const BYTE *' differs in levels of indirection from 'unsigned char **'
-c:\ntds\ntds2\ntds2\ntds2.c(664): warning C4024: 'CryptHashData' : different types for formal and actual parameter 2
-c:\ntds\ntds2\ntds2\ntds2.c(670): warning C4047: 'function' : 'const BYTE *' differs in levels of indirection from 'unsigned char (*)[16]'
-c:\ntds\ntds2\ntds2\ntds2.c(670): warning C4024: 'CryptHashData' : different types for formal and actual parameter 2
-c:\ntds\ntds2\ntds2\ntds2.c(676): warning C4047: 'function' : 'BYTE *' differs in levels of indirection from 'unsigned char (*)[16]'
-c:\ntds\ntds2\ntds2\ntds2.c(676): warning C4024: 'CryptGetHashParam' : different types for formal and actual parameter 3
-c:\ntds\ntds2\ntds2\ntds2.c(689): warning C4047: 'function' : 'HCRYPTHASH' differs in levels of indirection from 'void *'
-c:\ntds\ntds2\ntds2\ntds2.c(689): warning C4024: 'CryptEncrypt' : different types for formal and actual parameter 2
-c:\ntds\ntds2\ntds2\ntds2.c(689): warning C4047: 'function' : 'BYTE *' differs in levels of indirection from 'unsigned char (*)[52]'
-c:\ntds\ntds2\ntds2\ntds2.c(689): warning C4024: 'CryptEncrypt' : different types for formal and actual parameter 5
-c:\ntds\ntds2\ntds2\ntds2.c(701): warning C4047: 'function' : 'unsigned char **' differs in levels of indirection from 'unsigned char (*)[17]'
-c:\ntds\ntds2\ntds2\ntds2.c(701): warning C4024: 'get_syskey' : different types for formal and actual parameter 1
-c:\ntds\ntds2\ntds2\ntds2.c(722): warning C4996: '_tcsncat': This function or variable may be unsafe. Consider using _tcsncat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\ntds\ntds2\ntds2\ntds2.c(600): warning C4047: 'function' : 'char **' differs in levels of indirection from 'char (*)[32]'
+c:\ntds\ntds2\ntds2\ntds2.c(600): warning C4024: 'decrypt_hash' : different types for formal and actual parameter 3
+c:\ntds\ntds2\ntds2\ntds2.c(603): warning C4047: 'function' : 'JET_GRBIT' differs in levels of indirection from 'void *'
+c:\ntds\ntds2\ntds2\ntds2.c(603): warning C4024: 'JetMove' : different types for formal and actual parameter 4
+c:\ntds\ntds2\ntds2\ntds2.c(629): warning C4047: 'function' : 'const BYTE *' differs in levels of indirection from 'unsigned char **'
+c:\ntds\ntds2\ntds2\ntds2.c(629): warning C4024: 'CryptHashData' : different types for formal and actual parameter 2
+c:\ntds\ntds2\ntds2\ntds2.c(635): warning C4047: 'function' : 'const BYTE *' differs in levels of indirection from 'unsigned char (*)[16]'
+c:\ntds\ntds2\ntds2\ntds2.c(635): warning C4024: 'CryptHashData' : different types for formal and actual parameter 2
+c:\ntds\ntds2\ntds2\ntds2.c(641): warning C4047: 'function' : 'BYTE *' differs in levels of indirection from 'unsigned char (*)[16]'
+c:\ntds\ntds2\ntds2\ntds2.c(641): warning C4024: 'CryptGetHashParam' : different types for formal and actual parameter 3
+c:\ntds\ntds2\ntds2\ntds2.c(654): warning C4047: 'function' : 'HCRYPTHASH' differs in levels of indirection from 'void *'
+c:\ntds\ntds2\ntds2\ntds2.c(654): warning C4024: 'CryptEncrypt' : different types for formal and actual parameter 2
+c:\ntds\ntds2\ntds2\ntds2.c(654): warning C4047: 'function' : 'BYTE *' differs in levels of indirection from 'unsigned char (*)[52]'
+c:\ntds\ntds2\ntds2\ntds2.c(654): warning C4024: 'CryptEncrypt' : different types for formal and actual parameter 5
+c:\ntds\ntds2\ntds2\ntds2.c(666): warning C4047: 'function' : 'unsigned char **' differs in levels of indirection from 'unsigned char (*)[17]'
+c:\ntds\ntds2\ntds2\ntds2.c(666): warning C4024: 'get_syskey' : different types for formal and actual parameter 1
+c:\ntds\ntds2\ntds2\ntds2.c(687): warning C4996: '_tcsncat': This function or variable may be unsafe. Consider using _tcsncat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
           c:\program files (x86)\microsoft visual studio 12.0\vc\include\tchar.h(1553) : see declaration of '_tcsncat'
-c:\ntds\ntds2\ntds2\ntds2.c(771): warning C4047: 'function' : 'unsigned char **' differs in levels of indirection from 'unsigned char (*)[17]'
-c:\ntds\ntds2\ntds2\ntds2.c(771): warning C4024: 'decrypt_PEK' : different types for formal and actual parameter 1
+c:\ntds\ntds2\ntds2\ntds2.c(736): warning C4047: 'function' : 'unsigned char **' differs in levels of indirection from 'unsigned char (*)[17]'
+c:\ntds\ntds2\ntds2\ntds2.c(736): warning C4024: 'decrypt_PEK' : different types for formal and actual parameter 1
 c:\ntds\ntds2\ntds2\ntds2.c(104): warning C4715: 'get_syskey_component' : not all control paths return a value
-c:\ntds\ntds2\ntds2\ntds2.c(644): warning C4715: 'read_table' : not all control paths return a value
+c:\ntds\ntds2\ntds2\ntds2.c(609): warning C4715: 'read_table' : not all control paths return a value
 Link:
   C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\ntds\ntds2\Debug\ntds2.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\ntds\ntds2\Debug\ntds2.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\ntds\ntds2\Debug\ntds2.lib" /MACHINE:X86 Debug\ntds2.obj
   Debug\stdafx.obj
@@ -113,4 +105,4 @@ Done Building Project "C:\ntds\ntds2\ntds2\ntds2.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.54
+Time Elapsed 00:00:01.13

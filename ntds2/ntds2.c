@@ -352,7 +352,7 @@ BOOL decrypt_hash(encryptedHash *encryptedNTLM, decryptedPEK *pekDecrypted, char
 		puts("Failed to derive RC4 key");
 		return FALSE;
 	}
-
+	
 	unsigned char encHashData[16];
 	memcpy(&encHashData, &encryptedNTLM->encryptedHash, 16);
 	cryptOK = CryptEncrypt(rc4KeyFinal, NULL, TRUE, 0, &encHashData, &md5Len, md5Len);
@@ -362,28 +362,34 @@ BOOL decrypt_hash(encryptedHash *encryptedNTLM, decryptedPEK *pekDecrypted, char
 	memcpy(&hashFirst, &encHashData[0], 8);
 	memcpy(&hashSecond, &encHashData[8], 8);
 
-	BYTE DesKeyBlob[] = {
-		0x08, 0x02, 0x00, 0x00, 0x01, 0x66, 0x00, 0x00, // BLOB header 
-		0x08, 0x00, 0x00, 0x00                          // Key Length in Bytes
-	};
-	BYTE DesKey1Blob[20];
-	BYTE DesKey2Blob[20];
+	DWORD hashHalf = 8;
 
 	BYTE desKey1[8];
 	BYTE desKey2[8];
 	get_DES_keys(rid, &desKey1,&desKey2);
 
+	BYTE blobDes1[20] = { 0 };
+	BLOBHEADER *pBlob1 = (BLOBHEADER *) blobDes1;
+	pBlob1->bType = PLAINTEXTKEYBLOB;
+	pBlob1->bVersion = 2;
+	pBlob1->reserved = 0;
+	pBlob1->aiKeyAlg = CALG_DES;
+	memcpy(blobDes1 + sizeof(BLOBHEADER), &hashHalf, sizeof(DWORD));
+	memcpy(blobDes1 + sizeof(BLOBHEADER) + sizeof(DWORD), &desKey1, sizeof(desKey1));
+
+	BYTE blobDes2[20] = { 0 };
+	BLOBHEADER *pBlob2 = (BLOBHEADER *)blobDes2;
+	pBlob2->bType = PLAINTEXTKEYBLOB;
+	pBlob2->bVersion = 2;
+	pBlob2->reserved = 0;
+	pBlob2->aiKeyAlg = CALG_DES;
+	memcpy(blobDes2 + sizeof(BLOBHEADER), &hashHalf, sizeof(DWORD));
+	memcpy(blobDes2 + sizeof(BLOBHEADER) + sizeof(DWORD), &desKey2, sizeof(desKey2));
+
 	HCRYPTKEY hDes1;
 	HCRYPTKEY hDes2;
 
-	//Convert our DES keys into Des Key Blobs that WinCrypt can import.
-	// This is kinda cheaty
-	memcpy(&DesKey1Blob[0], &DesKeyBlob, sizeof(DesKeyBlob));
-	memcpy(&DesKey1Blob[sizeof(DesKeyBlob)], &desKey1, sizeof(desKey1));
-	memcpy(&DesKey2Blob[0], &DesKeyBlob, sizeof(DesKeyBlob));
-	memcpy(&DesKey2Blob[sizeof(DesKeyBlob)], &desKey2, sizeof(desKey2));
-
-	cryptOK = CryptImportKey(hProv, DesKey1Blob, sizeof(DesKey1Blob), 0, CRYPT_EXPORTABLE, &hDes1);
+	cryptOK = CryptImportKey(hProv, blobDes1,sizeof(blobDes1), 0, CRYPT_EXPORTABLE, &hDes1);
 	if (!cryptOK){
 		LPVOID lpMsgBuf;
 		LPVOID lpDisplayBuf;
@@ -400,7 +406,7 @@ BOOL decrypt_hash(encryptedHash *encryptedNTLM, decryptedPEK *pekDecrypted, char
 		puts("There was an error importing Des Key 1");
 		return FALSE;
 	}
-	cryptOK = CryptImportKey(hProv, DesKey2Blob, sizeof(DesKey1Blob), 0, CRYPT_EXPORTABLE, &hDes2);
+	cryptOK = CryptImportKey(hProv, blobDes2, sizeof(blobDes2), 0, CRYPT_EXPORTABLE, &hDes2);
 	if (!cryptOK){
 		puts("There was an error importing Des Key 2");
 		return FALSE;
@@ -418,9 +424,7 @@ BOOL decrypt_hash(encryptedHash *encryptedNTLM, decryptedPEK *pekDecrypted, char
 		return FALSE;
 	}
 
-	DWORD hashHalf = 8;
-
-	cryptOK = CryptDecrypt(hDes1, 0, TRUE, 0, hashFirst, &hashHalf);
+	cryptOK = CryptDecrypt(hDes1, 0, TRUE, CRYPT_DECRYPT_RSA_NO_PADDING_CHECK, hashFirst, &hashHalf);
 	if (!cryptOK){
 		puts("There was an error decrypting the hash");
 		LPVOID lpMsgBuf;
