@@ -12,6 +12,9 @@
 #pragma comment(lib, "esent")
 #pragma comment(lib, "Ws2_32.lib")
 
+#define RtlDecryptDES2blocks1DWORD	SystemFunction025
+extern NTSTATUS WINAPI RtlEncryptDES2blocks1DWORD(IN LPCBYTE data, IN LPDWORD key, OUT LPBYTE output);
+
 typedef struct {
 	TCHAR ntdsPath[255];
 	JET_INSTANCE jetEngine;
@@ -364,76 +367,12 @@ BOOL decrypt_hash(encryptedHash *encryptedNTLM, decryptedPEK *pekDecrypted, char
 
 	DWORD hashHalf = 8;
 
-	BYTE desKey1[8];
-	BYTE desKey2[8];
-	get_DES_keys(rid, &desKey1,&desKey2);
+	BYTE decHash[16] = { 0 };
 
-	BYTE blobDes1[20] = { 0 };
-	BLOBHEADER *pBlob1 = (BLOBHEADER *) blobDes1;
-	pBlob1->bType = PLAINTEXTKEYBLOB;
-	pBlob1->bVersion = 2;
-	pBlob1->reserved = 0;
-	pBlob1->aiKeyAlg = CALG_DES;
-	memcpy(blobDes1 + sizeof(BLOBHEADER), &hashHalf, sizeof(DWORD));
-	memcpy(blobDes1 + sizeof(BLOBHEADER) + sizeof(DWORD), &desKey1, sizeof(desKey1));
-
-	BYTE blobDes2[20] = { 0 };
-	BLOBHEADER *pBlob2 = (BLOBHEADER *)blobDes2;
-	pBlob2->bType = PLAINTEXTKEYBLOB;
-	pBlob2->bVersion = 2;
-	pBlob2->reserved = 0;
-	pBlob2->aiKeyAlg = CALG_DES;
-	memcpy(blobDes2 + sizeof(BLOBHEADER), &hashHalf, sizeof(DWORD));
-	memcpy(blobDes2 + sizeof(BLOBHEADER) + sizeof(DWORD), &desKey2, sizeof(desKey2));
-
-	HCRYPTKEY hDes1;
-	HCRYPTKEY hDes2;
-
-	cryptOK = CryptImportKey(hProv, blobDes1,sizeof(blobDes1), 0, CRYPT_EXPORTABLE, &hDes1);
-	if (!cryptOK){
-		puts("There was an error importing Des Key 1");
-		return FALSE;
-	}
-	cryptOK = CryptImportKey(hProv, blobDes2, sizeof(blobDes2), 0, CRYPT_EXPORTABLE, &hDes2);
-	if (!cryptOK){
-		puts("There was an error importing Des Key 2");
-		return FALSE;
-	}
-	
-	DWORD cryptMode = CRYPT_MODE_ECB;
-	cryptOK = CryptSetKeyParam(hDes1, KP_MODE, &cryptMode, 0);
-	if (!cryptOK){
-		puts("There was an error setting ECB mode");
-		return FALSE;
-	}
-	cryptOK = CryptSetKeyParam(hDes2, KP_MODE, &cryptMode, 0);
-	if (!cryptOK){
-		puts("There was an error setting ECB mode");
-		return FALSE;
-	}
-
-	cryptOK = CryptDecrypt(hDes1, 0, TRUE, CRYPT_DECRYPT_RSA_NO_PADDING_CHECK, hashFirst, &hashHalf);
-	if (!cryptOK){
-		puts("There was an error decrypting the hash");
-		LPVOID lpMsgBuf;
-		LPVOID lpDisplayBuf;
-		DWORD dw = GetLastError();
-		FormatMessage(
-			FORMAT_MESSAGE_ALLOCATE_BUFFER |
-			FORMAT_MESSAGE_FROM_SYSTEM |
-			FORMAT_MESSAGE_IGNORE_INSERTS,
-			NULL,
-			dw,
-			MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-			(LPTSTR)&lpMsgBuf,
-			0, NULL);
-		return FALSE;
-	}
-	cryptOK = CryptDecrypt(hDes2, 0, TRUE, 0, hashSecond, &hashHalf);
-	if (!cryptOK){
-		puts("There was an error decrypting the hash");
-		return FALSE;
-	}
+	typedef NTSTATUS(__stdcall *PSYS25)(IN LPCBYTE data, IN LPDWORD key, OUT LPBYTE output);
+	HMODULE hAdvapi = LoadLibrary("advapi32.dll");
+	PSYS25 decryptFromRID = (PSYS25)GetProcAddress(hAdvapi, "SystemFunction025");
+	decryptFromRID(&encHashData, &rid, &decHash);
 
 	return TRUE;
 
