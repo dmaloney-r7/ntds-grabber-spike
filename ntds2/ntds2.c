@@ -254,6 +254,13 @@ JET_ERR get_PEK(jetState *ntdsState, ntdsColumns *accountColumns, encryptedPEK *
 	return readStatus;
 }
 
+void decrypt_hash_from_rid(LPBYTE encodedHash, LPDWORD rid, LPBYTE decodedHash){
+	typedef NTSTATUS(__stdcall *PSYS25)(IN LPCBYTE data, IN LPDWORD key, OUT LPBYTE output);
+	HMODULE hAdvapi = LoadLibrary("advapi32.dll");
+	PSYS25 decryptFromRID = (PSYS25)GetProcAddress(hAdvapi, "SystemFunction025");
+	decryptFromRID(encodedHash, rid, decodedHash);
+}
+
 BOOL decrypt_hash(encryptedHash *encryptedNTLM, decryptedPEK *pekDecrypted, char *hashString[32], DWORD rid){
 	BOOL cryptOK = FALSE;
 	HCRYPTPROV hProv = 0;
@@ -295,23 +302,11 @@ BOOL decrypt_hash(encryptedHash *encryptedNTLM, decryptedPEK *pekDecrypted, char
 		return FALSE;
 	}
 	
-	unsigned char encHashData[16];
-	memcpy(&encHashData, &encryptedNTLM->encryptedHash, 16);
-	cryptOK = CryptEncrypt(rc4KeyFinal, NULL, TRUE, 0, &encHashData, &md5Len, md5Len);
-	
-	unsigned char hashFirst[8];
-	unsigned char hashSecond[8];
-	memcpy(&hashFirst, &encHashData[0], 8);
-	memcpy(&hashSecond, &encHashData[8], 8);
-
-	DWORD hashHalf = 8;
-
+	BYTE encHashData[16] = { 0 };
 	BYTE decHash[16] = { 0 };
-
-	typedef NTSTATUS(__stdcall *PSYS25)(IN LPCBYTE data, IN LPDWORD key, OUT LPBYTE output);
-	HMODULE hAdvapi = LoadLibrary("advapi32.dll");
-	PSYS25 decryptFromRID = (PSYS25)GetProcAddress(hAdvapi, "SystemFunction025");
-	decryptFromRID(&encHashData, &rid, &decHash);
+	memcpy(&encHashData, &encryptedNTLM->encryptedHash, 16);
+	cryptOK = CryptEncrypt(rc4KeyFinal, NULL, TRUE, 0, &encHashData, &md5Len, md5Len);	
+	decrypt_hash_from_rid(&encHashData, &rid, &decHash);
 
 	return TRUE;
 
