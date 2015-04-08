@@ -264,7 +264,7 @@ BOOL decrypt_hash_from_rid(LPBYTE encodedHash, LPDWORD rid, LPBYTE decodedHash){
 	return TRUE;
 }
 
-BOOL decrypt_rc4(unsigned char *key1, unsigned char *key2, LPBYTE decrypted, int hashIterations ){
+BOOL decrypt_rc4(unsigned char *key1, unsigned char *key2, LPBYTE encrypted, int hashIterations, DWORD lenBuffer ){
 	BOOL cryptOK = FALSE;
 	HCRYPTPROV hProv = 0;
 	HCRYPTHASH hHash = 0;
@@ -304,7 +304,7 @@ BOOL decrypt_rc4(unsigned char *key1, unsigned char *key2, LPBYTE decrypted, int
 		puts("Failed to derive RC4 key");
 		return FALSE;
 	}
-	cryptOK = CryptEncrypt(rc4KeyFinal, NULL, TRUE, 0, decrypted, &md5Len, md5Len);
+	cryptOK = CryptEncrypt(rc4KeyFinal, NULL, TRUE, 0, encrypted, &lenBuffer, lenBuffer);
 		if (!cryptOK){
 			puts("There was an error with the final RC4 decryption");
 			return FALSE;
@@ -318,7 +318,7 @@ BOOL decrypt_hash(encryptedHash *encryptedNTLM, decryptedPEK *pekDecrypted, char
 	BYTE decHash[16] = { 0 };
 
 	memcpy(&encHashData, &encryptedNTLM->encryptedHash, 16);
-	cryptOK = decrypt_rc4(&pekDecrypted->pekKey, &encryptedNTLM->keyMaterial, &encHashData, 1);
+	cryptOK = decrypt_rc4(&pekDecrypted->pekKey, &encryptedNTLM->keyMaterial, &encHashData, 1, 16);
 	if (!cryptOK){
 		puts("There was an error decrypting the Hash");
 		return FALSE;
@@ -490,50 +490,13 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns, decryptedPE
 
 BOOL decrypt_PEK(unsigned char *sysKey[17], encryptedPEK *pekEncrypted, decryptedPEK *pekDecrypted){
 	BOOL cryptOK = FALSE;
-	HCRYPTPROV hProv = 0;
-	HCRYPTHASH hHash = 0;
-	DWORD md5Len = 16;
-	unsigned char rc4Key[16];
-	HCRYPTKEY rc4KeyFinal;
-
-	cryptOK = CryptAcquireContext(&hProv, NULL, NULL, PROV_RSA_FULL, CRYPT_VERIFYCONTEXT);
-	if (!cryptOK){
-		puts("Failed to aquire cryptographic context");
-		return FALSE;
-	}
-	cryptOK = CryptCreateHash(hProv, CALG_MD5, 0, 0, &hHash);
-	if (!cryptOK){
-		puts("Failed to initialize MD5 Hash");
-		return FALSE;
-	}
-	cryptOK = CryptHashData(hHash, sysKey, 16, 0);
-	if (!cryptOK){
-		puts("Failed to hash the sysKey");
-		return FALSE;
-	}
-	for (int i = 0; i < 1000; i++){
-		cryptOK = CryptHashData(hHash, &pekEncrypted->keyMaterial, 16, 0);
-		if (!cryptOK){
-			puts("Failed to hash the PEK key");
-			return FALSE;
-		}
-	}
-	cryptOK = CryptGetHashParam(hHash, HP_HASHVAL, &rc4Key, &md5Len, 0);
-	if (!cryptOK){
-		puts("Failed to get final hash value");
-		return FALSE;
-	}
-	cryptOK = CryptDeriveKey(hProv, CALG_RC4, hHash,0, &rc4KeyFinal);
-	if (!cryptOK){
-		puts("Failed to derive RC4 key");
-		return FALSE;
-	}
-	unsigned char pekData[52];
+	BYTE pekData[52] = { 0 };
 	DWORD pekLength = 52;
 	memcpy(&pekData, &pekEncrypted->pekData, pekLength);
-	cryptOK = CryptEncrypt(rc4KeyFinal, NULL, TRUE, 0, &pekData, &pekLength, pekLength);
+
+	cryptOK = decrypt_rc4(sysKey, &pekEncrypted->keyMaterial,&pekData,1000, pekLength);
 	if (!cryptOK){
-		puts("Failed to decrypt PEK");
+		puts("There was an error decrypting the PEK");
 		return FALSE;
 	}
 	memcpy(pekDecrypted, &pekData, pekLength);
