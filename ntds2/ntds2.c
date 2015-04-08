@@ -254,21 +254,24 @@ JET_ERR get_PEK(jetState *ntdsState, ntdsColumns *accountColumns, encryptedPEK *
 	return readStatus;
 }
 
-void decrypt_hash_from_rid(LPBYTE encodedHash, LPDWORD rid, LPBYTE decodedHash){
+BOOL decrypt_hash_from_rid(LPBYTE encodedHash, LPDWORD rid, LPBYTE decodedHash){
 	typedef NTSTATUS(__stdcall *PSYS25)(IN LPCBYTE data, IN LPDWORD key, OUT LPBYTE output);
 	HMODULE hAdvapi = LoadLibrary("advapi32.dll");
 	PSYS25 decryptFromRID = (PSYS25)GetProcAddress(hAdvapi, "SystemFunction025");
-	decryptFromRID(encodedHash, rid, decodedHash);
+	if (decryptFromRID(encodedHash, rid, decodedHash) != 0){
+		return FALSE;
+	}
+	return TRUE;
 }
 
-BOOL decrypt_hash(encryptedHash *encryptedNTLM, decryptedPEK *pekDecrypted, char *hashString[32], DWORD rid){
+BOOL decrypt_rc4(unsigned char *key1, unsigned char *key2, LPBYTE decrypted, int hashIterations ){
 	BOOL cryptOK = FALSE;
 	HCRYPTPROV hProv = 0;
 	HCRYPTHASH hHash = 0;
 	DWORD md5Len = 16;
 	unsigned char rc4Key[16];
 	HCRYPTKEY rc4KeyFinal;
-	
+
 	cryptOK = CryptAcquireContext(&hProv, 0, MS_ENHANCED_PROV, PROV_RSA_FULL, 0);
 	if (!cryptOK){
 		puts("Failed to aquire cryptographic context");
@@ -279,17 +282,17 @@ BOOL decrypt_hash(encryptedHash *encryptedNTLM, decryptedPEK *pekDecrypted, char
 		puts("Failed to initialize MD5 Hash");
 		return FALSE;
 	}
-
-	cryptOK = CryptHashData(hHash, pekDecrypted->pekKey, 16, 0);
+	cryptOK = CryptHashData(hHash, key1, 16, 0);
 	if (!cryptOK){
-		puts("Failed to hash the PEK");
+		puts("Failed to hash the first key");
 		return FALSE;
 	}
-
-	cryptOK = CryptHashData(hHash, encryptedNTLM->keyMaterial, 16, 0);
-	if (!cryptOK){
-		puts("Failed to hash the key material");
-		return FALSE;
+	for (int i = 0; i < hashIterations; i++){
+		cryptOK = CryptHashData(hHash, key2, 16, 0);
+		if (!cryptOK){
+			puts("Failed to hash the second key");
+			return FALSE;
+		}
 	}
 	cryptOK = CryptGetHashParam(hHash, HP_HASHVAL, &rc4Key, &md5Len, 0);
 	if (!cryptOK){
@@ -301,15 +304,31 @@ BOOL decrypt_hash(encryptedHash *encryptedNTLM, decryptedPEK *pekDecrypted, char
 		puts("Failed to derive RC4 key");
 		return FALSE;
 	}
-	
+	cryptOK = CryptEncrypt(rc4KeyFinal, NULL, TRUE, 0, decrypted, &md5Len, md5Len);
+		if (!cryptOK){
+			puts("There was an error with the final RC4 decryption");
+			return FALSE;
+		}
+	return TRUE;
+}
+
+BOOL decrypt_hash(encryptedHash *encryptedNTLM, decryptedPEK *pekDecrypted, char *hashString[32], DWORD rid){
+	BOOL cryptOK = FALSE;
 	BYTE encHashData[16] = { 0 };
 	BYTE decHash[16] = { 0 };
+
 	memcpy(&encHashData, &encryptedNTLM->encryptedHash, 16);
-	cryptOK = CryptEncrypt(rc4KeyFinal, NULL, TRUE, 0, &encHashData, &md5Len, md5Len);	
-	decrypt_hash_from_rid(&encHashData, &rid, &decHash);
-
+	cryptOK = decrypt_rc4(&pekDecrypted->pekKey, &encryptedNTLM->keyMaterial, &encHashData, 1);
+	if (!cryptOK){
+		puts("There was an error decrypting the Hash");
+		return FALSE;
+	}
+	cryptOK = decrypt_hash_from_rid(&encHashData, &rid, &decHash);
+	if (!cryptOK){
+		puts("Failed to decrypt hash!");
+		return FALSE;
+	}
 	return TRUE;
-
 }
 
 JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns, decryptedPEK *pekDecrypted){
