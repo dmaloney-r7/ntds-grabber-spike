@@ -12,9 +12,6 @@
 #pragma comment(lib, "esent")
 #pragma comment(lib, "Ws2_32.lib")
 
-#define RtlDecryptDES2blocks1DWORD	SystemFunction025
-extern NTSTATUS WINAPI RtlEncryptDES2blocks1DWORD(IN LPCBYTE data, IN LPDWORD key, OUT LPBYTE output);
-
 typedef struct {
 	TCHAR ntdsPath[255];
 	JET_INSTANCE jetEngine;
@@ -86,6 +83,15 @@ typedef struct{
 #define NTDS_ACCOUNT_NO_PASS          0x00000020
 #define NTDS_ACCOUNT_PASS_NO_EXPIRE   0x00010000
 #define NTDS_ACCOUNT_PASS_EXPIRED     0x00800000
+
+#define BLANK_LM_HASH "aad3b435b51404eeaad3b435b51404ee"
+#define BLANK_NT_HASH "31d6cfe0d16ae931b73c59d7e0c089c0"
+
+void bytes_to_string(LPBYTE data, int length, LPSTR output){
+	for (int i = 0; i < length; i++){
+		sprintf(output + (i << 1), "%02X", ((LPBYTE)data)[i]);
+	}
+}
 
 BOOL get_syskey_component(HKEY lsaHandle, char subkeyName[255], unsigned char *tmpSysKey[17]){
 	DWORD sizeData = 9;
@@ -328,6 +334,7 @@ BOOL decrypt_hash(encryptedHash *encryptedNTLM, decryptedPEK *pekDecrypted, char
 		puts("Failed to decrypt hash!");
 		return FALSE;
 	}
+	bytes_to_string(&decHash, 16, hashString);
 	return TRUE;
 }
 
@@ -473,8 +480,13 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns, decryptedPE
 		// Grab the NT Hash
 		readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->ntHash.columnid, encryptedNT, sizeof(encryptedHash), &columnSize, 0, NULL);
 		if (readStatus != JET_errSuccess){
-			puts("An error has occured reading the column");
-			exit(readStatus);
+			if (readStatus == JET_wrnColumnNull){
+				memcpy(&userAccount->ntHash, &BLANK_NT_HASH, 32);
+			}
+			else{
+				puts("An error has occured reading the column");
+				exit(readStatus);
+			}
 		}
 		else{
 			decrypt_hash(encryptedNT, pekDecrypted, &userAccount->ntHash, userAccount->accountRID);
