@@ -491,6 +491,20 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns, decryptedPE
 		else{
 			decrypt_hash(encryptedNT, pekDecrypted, &userAccount->ntHash, userAccount->accountRID);
 		}
+		// Grab the LM Hash
+		readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->lmHash.columnid, encryptedLM, sizeof(encryptedHash), &columnSize, 0, NULL);
+		if (readStatus != JET_errSuccess){
+			if (readStatus == JET_wrnColumnNull){
+				memcpy(&userAccount->lmHash, &BLANK_LM_HASH, 32);
+			}
+			else{
+				puts("An error has occured reading the column");
+				exit(readStatus);
+			}
+		}
+		else{
+			decrypt_hash(encryptedLM, pekDecrypted, &userAccount->lmHash, userAccount->accountRID);
+		}
 		
 		cursorStatus = JetMove(ntdsState->jetSession, ntdsState->jetTable, JET_MoveNext, NULL);
 	} while (cursorStatus == JET_errSuccess);
