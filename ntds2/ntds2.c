@@ -25,7 +25,7 @@ BOOL get_syskey_component(HKEY lsaHandle, char subkeyName[255], unsigned char *t
 		return FALSE;
 	}
 	byteComponent = strtoimax(tmpVal, NULL, 16);
-	strncat(tmpSysKey, &byteComponent, 4);
+	strncat(tmpSysKey, (char *)&byteComponent, 4);
 	return TRUE;
 }
 
@@ -255,7 +255,7 @@ BOOL decrypt_hash(encryptedHash *encryptedNTLM, decryptedPEK *pekDecrypted, char
 	return TRUE;
 }
 
-BOOL decrypt_hash_history(LPBYTE encHashHistory, size_t sizeHistory, decryptedPEK *pekDecrypted, DWORD rid, LPBYTE accountHistory, int *historyCount){
+BOOL decrypt_hash_history(LPBYTE encHashHistory, size_t sizeHistory, decryptedPEK *pekDecrypted, DWORD rid, LPBYTE *accountHistory, int *historyCount){
 	BOOL cryptOK = FALSE;
 	size_t sizeHistoryData = sizeHistory - 24;
 	int numHashes = (sizeHistoryData / 16);
@@ -382,7 +382,7 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns, decryptedPE
 		}
 		// Derive the RID from the SID
 		int ridIndex = columnSize - sizeof(DWORD);
-		DWORD *ridLoc = &userAccount->accountSID[ridIndex];
+		DWORD *ridLoc = (DWORD *)&userAccount->accountSID[ridIndex];
 		userAccount->accountRID = htonl(*ridLoc);
 
 		// Grab the samAccountName here

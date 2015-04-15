@@ -1,4 +1,4 @@
-﻿Build started 4/15/2015 3:11:59 PM.
+﻿Build started 4/15/2015 3:24:44 PM.
 Project "C:\ntds\ntds2\ntds2\ntds2.vcxproj" on node 2 (Rebuild target(s)).
 ClCompile:
   C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt ntds2.c stdafx.c
@@ -7,7 +7,6 @@ ClCompile:
 c:\ntds\ntds2\ntds2\ntds2.c(8): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
           c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(356) : see declaration of 'sprintf'
 c:\ntds\ntds2\ntds2\ntds2.c(27): warning C4013: 'strtoimax' undefined; assuming extern returning int
-c:\ntds\ntds2\ntds2\ntds2.c(28): warning C4133: 'function' : incompatible types - from 'int *' to 'const char *'
 c:\ntds\ntds2\ntds2\ntds2.c(28): warning C4996: 'strncat': This function or variable may be unsafe. Consider using strncat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
           c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(186) : see declaration of 'strncat'
 c:\ntds\ntds2\ntds2\ntds2.c(70): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
@@ -20,7 +19,6 @@ c:\ntds\ntds2\ntds2\ntds2.c(323): warning C4996: 'strncpy': This function or var
           c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(195) : see declaration of 'strncpy'
 c:\ntds\ntds2\ntds2\ntds2.c(326): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
           c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(195) : see declaration of 'strncpy'
-c:\ntds\ntds2\ntds2\ntds2.c(385): warning C4133: 'initializing' : incompatible types - from 'unsigned char *' to 'DWORD *'
 c:\ntds\ntds2\ntds2\ntds2.c(405): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
           c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(112) : see declaration of 'strcpy'
 c:\ntds\ntds2\ntds2\ntds2.c(418): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
@@ -31,10 +29,6 @@ c:\ntds\ntds2\ntds2\ntds2.c(435): warning C4996: 'strcpy': This function or vari
           c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(112) : see declaration of 'strcpy'
 c:\ntds\ntds2\ntds2\ntds2.c(439): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
           c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(112) : see declaration of 'strcpy'
-c:\ntds\ntds2\ntds2\ntds2.c(511): warning C4047: 'function' : 'LPBYTE' differs in levels of indirection from 'LPBYTE *'
-c:\ntds\ntds2\ntds2\ntds2.c(511): warning C4024: 'decrypt_hash_history' : different types for formal and actual parameter 5
-c:\ntds\ntds2\ntds2\ntds2.c(518): warning C4047: 'function' : 'LPBYTE' differs in levels of indirection from 'LPBYTE *'
-c:\ntds\ntds2\ntds2\ntds2.c(518): warning C4024: 'decrypt_hash_history' : different types for formal and actual parameter 5
 c:\ntds\ntds2\ntds2\ntds2.c(577): warning C4996: '_tcsncat': This function or variable may be unsafe. Consider using _tcsncat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
           c:\program files (x86)\microsoft visual studio 12.0\vc\include\tchar.h(1553) : see declaration of '_tcsncat'
   Generating Code...
@@ -46,4 +40,4 @@ Done Building Project "C:\ntds\ntds2\ntds2\ntds2.vcxproj" (Rebuild target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.63
+Time Elapsed 00:00:00.60
