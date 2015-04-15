@@ -237,8 +237,8 @@ BOOL decrypt_rc4(unsigned char *key1, unsigned char *key2, LPBYTE encrypted, int
 
 BOOL decrypt_hash(encryptedHash *encryptedNTLM, decryptedPEK *pekDecrypted, char *hashString, DWORD rid){
 	BOOL cryptOK = FALSE;
-	BYTE encHashData[16] = { 0 };
-	BYTE decHash[16] = { 0 };
+	BYTE encHashData[17] = { 0 };
+	BYTE decHash[17] = { 0 };
 
 	memcpy(&encHashData, &encryptedNTLM->encryptedHash, 16);
 	cryptOK = decrypt_rc4(pekDecrypted->pekKey, encryptedNTLM->keyMaterial, encHashData, 1, 16);
@@ -251,7 +251,7 @@ BOOL decrypt_hash(encryptedHash *encryptedNTLM, decryptedPEK *pekDecrypted, char
 		puts("Failed to decrypt hash!");
 		return FALSE;
 	}
-	bytes_to_string(decHash, 16, hashString);
+	bytes_to_string(decHash, 17, hashString);
 	return TRUE;
 }
 
