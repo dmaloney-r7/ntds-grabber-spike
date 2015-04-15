@@ -141,7 +141,7 @@ JET_ERR get_column_info(jetState *ntdsState, ntdsColumns *accountColumns){
 		&accountColumns->accountDescription,
 		&accountColumns->accountControl,
 		&accountColumns->lastPasswordChange,
-		&accountColumns->accountSID
+		&accountColumns->accountSID,
 	};	
 	for (int i = 0; i < 14; i++){
 		columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, attributeNames[i], columnDefs[i], sizeof(JET_COLUMNDEF), JET_ColInfo);
@@ -254,6 +254,84 @@ BOOL decrypt_hash(encryptedHash *encryptedNTLM, decryptedPEK *pekDecrypted, char
 	return TRUE;
 }
 
+BOOL decrypt_hash_history(LPBYTE encHashHistory, size_t sizeHistory, decryptedPEK *pekDecrypted, DWORD rid, LPBYTE accountHistory, int *historyCount){
+	BOOL cryptOK = FALSE;
+	size_t sizeHistoryData = sizeHistory - 24;
+	int numHashes = (sizeHistoryData / 16);
+	memcpy(historyCount, &numHashes, sizeof(historyCount));
+	LPBYTE encHistoryData = (LPBYTE)malloc(sizeHistoryData);
+	LPBYTE decHistoryData = (LPBYTE)malloc((sizeHistoryData * 2));
+	memcpy(encHistoryData, encHashHistory + 24, sizeHistoryData);
+	cryptOK = decrypt_rc4(&pekDecrypted->pekKey, encHashHistory + 8, encHistoryData, 1, sizeHistoryData);
+	if (!cryptOK){
+		puts("There was an error decrypting the hash history with the PEK");
+		return FALSE;
+	}
+	LPBYTE historicalHash = encHistoryData;
+	LPBYTE writeMarker = decHistoryData;
+	for (int i = 0; i < numHashes; i++){
+		BYTE decHash[16];
+		char hashString[33];
+		cryptOK = decrypt_hash_from_rid(historicalHash, &rid, &decHash);
+		if (!cryptOK){
+			puts("Error decrypting with RID");
+			return FALSE;
+		}
+		bytes_to_string(&decHash, 16, &hashString);
+		strncpy(writeMarker, &hashString, 33);
+		historicalHash = historicalHash + 16;
+		writeMarker = writeMarker + 33;
+	}
+	memcpy(accountHistory, &decHistoryData, 4);
+	return TRUE;
+}
+
+void dump_account(ntdsAccount *userAccount){
+	puts("=============================================");
+	wprintf(L"%s\n",userAccount->accountDescription);
+	wprintf(L"%s:%d:", userAccount->accountName, userAccount->accountRID);
+	printf("%s:%s\n",userAccount->lmHash,userAccount->ntHash);
+	printf("Account Has Logged on %d time(s)\n", userAccount->logonCount);
+	printf("Last Logon Time: %s on %s\n", userAccount->logonTime, userAccount->logonDate);
+	printf("Account Expires: %s\n", userAccount->expiryDate);
+	printf("Password was last changed: %s on %s\n", userAccount->passChangeTime, userAccount->passChangeDate);
+	if (userAccount->noPassword){
+		puts(" * Account does not require a password to logon!");
+	}
+	if (userAccount->passExpired){
+		puts(" * Account password expired");
+	}
+	if (userAccount->accountDisabled){
+		puts(" * Account is disabled");
+	}
+	if (userAccount->accountLocked){
+		puts(" * Account is locked out");
+	}
+	if (userAccount->passNoExpire){
+		puts(" * Account password never expires");
+	}
+	if (userAccount->ntHistory != NULL){
+		puts("Historical Hashes:\n");
+		LPBYTE ntReadMarker = userAccount->ntHistory;
+		LPBYTE lmReadMarker = userAccount->lmHistory;
+		for (int i = 0; i < userAccount->numNTHistory; i++){
+			char ntHistHash[33];
+			char lmHistHash[33];
+			strncpy(&ntHistHash, ntReadMarker, 33);
+			if (lmReadMarker == NULL){
+				strncpy(&lmHistHash, &BLANK_LM_HASH, 33);
+			}
+			else {
+				strncpy(&lmHistHash, lmReadMarker, 33);
+			}
+			wprintf(L"%s:%d:", userAccount->accountName, userAccount->accountRID);
+			printf("%s:%s\n", lmHistHash, ntHistHash);
+			ntReadMarker = ntReadMarker + 33;
+			lmReadMarker = lmReadMarker + 33;
+		}
+	}
+}
+
 JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns, decryptedPEK *pekDecrypted){
 	JET_ERR cursorStatus;
 	JET_ERR readStatus;	
@@ -361,7 +439,10 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns, decryptedPE
 		}
 		// Grab the Account Description here
 		readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->accountDescription.columnid, &userAccount->accountDescription, sizeof(userAccount->accountDescription), &columnSize, 0, NULL);
-		if (readStatus != JET_errSuccess){
+		if (readStatus == JET_wrnColumnNull){
+			memset(&userAccount->accountDescription, 0, sizeof(userAccount->accountDescription));
+		}
+		else if (readStatus != JET_errSuccess){
 			puts("An error has occured reading the column");
 			exit(readStatus);
 		}
@@ -421,7 +502,29 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns, decryptedPE
 		else{
 			decrypt_hash(encryptedLM, pekDecrypted, &userAccount->lmHash, userAccount->accountRID);
 		}
-		
+		// Grab the NT Hash History
+		readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->ntHistory.columnid, NULL, 0, &columnSize, 0, NULL);
+		if (readStatus == JET_wrnBufferTruncated){
+			LPBYTE encNTHist = (LPBYTE)malloc(columnSize);
+			readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->ntHistory.columnid, encNTHist, columnSize, &columnSize, 0, NULL);
+			decrypt_hash_history(encNTHist, columnSize, pekDecrypted, userAccount->accountRID, &userAccount->ntHistory, &userAccount->numNTHistory);
+			// If there's no NT history, there's no LM history
+			// Grab the LM History
+			readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->lmHistory.columnid, NULL, 0, &columnSize, 0, NULL);
+			if (readStatus = JET_wrnBufferTruncated){
+				LPBYTE encLMHist = (LPBYTE)malloc(columnSize);
+				readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->lmHistory.columnid, encLMHist, columnSize, &columnSize, 0, NULL);
+				decrypt_hash_history(encLMHist, columnSize, pekDecrypted, userAccount->accountRID, &userAccount->lmHistory, &userAccount->numLMHistory);
+			}
+			else {
+				puts("There was an error decrypting the history");
+				return readStatus;
+			}
+		}
+		else if (readStatus == JET_wrnColumnNull){
+			puts("No NT Hash History Stored");
+		}
+		dump_account(userAccount);
 		cursorStatus = JetMove(ntdsState->jetSession, ntdsState->jetTable, JET_MoveNext, NULL);
 	} while (cursorStatus == JET_errSuccess);
 	if (cursorStatus != JET_errNoCurrentRecord){
