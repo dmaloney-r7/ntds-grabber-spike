@@ -43,11 +43,9 @@ BOOL get_syskey(unsigned char *sysKey){
 
 	regStatus = RegCreateKeyEx(HKEY_LOCAL_MACHINE, "SYSTEM\\CurrentControlSet\\Control\\Lsa", 0, NULL, REG_OPTION_NON_VOLATILE, KEY_READ, NULL, &lsaHandle, &disposition);
 	if (regStatus != ERROR_SUCCESS){
-		puts("Could not open Lsa Registry Key");
 		return FALSE;
 	}
 	if (disposition == REG_CREATED_NEW_KEY){
-		puts("The Lsa key did not exist");
 		RegCloseKey(lsaHandle);
 		return FALSE;
 	}
@@ -99,12 +97,10 @@ JET_ERR engine_startup(jetState *ntdsState){
 JET_ERR open_database(jetState *ntdsState){
 	JET_ERR attachStatus = JetAttachDatabase(ntdsState->jetSession, ntdsState->ntdsPath, JET_bitDbReadOnly);
 	if (attachStatus != JET_errSuccess){
-		puts("Unable to attach to the NTDS.dit database!");
 		return attachStatus;
 	}
 	JET_ERR openStatus = JetOpenDatabase(ntdsState->jetSession, ntdsState->ntdsPath, NULL, &ntdsState->jetDatabase, JET_bitDbReadOnly);
 	if (openStatus != JET_errSuccess){
-		puts("Unable to open the NTDS.dit database for reading");
 		return openStatus;
 	}
 	return JET_errSuccess;
@@ -160,7 +156,6 @@ JET_ERR get_PEK(jetState *ntdsState, ntdsColumns *accountColumns, encryptedPEK *
 
 	cursorStatus = JetMove(ntdsState->jetSession, ntdsState->jetTable, JET_MoveFirst, (JET_GRBIT)NULL);
 	if (cursorStatus != JET_errSuccess){
-		puts("Unable to set the cursor to the first index!");
 		return cursorStatus;
 	}
 	do{
@@ -180,6 +175,9 @@ JET_ERR get_PEK(jetState *ntdsState, ntdsColumns *accountColumns, encryptedPEK *
 BOOL decrypt_hash_from_rid(LPBYTE encodedHash, LPDWORD rid, LPBYTE decodedHash){
 	typedef NTSTATUS(__stdcall *PSYS25)(IN LPCBYTE data, IN LPDWORD key, OUT LPBYTE output);
 	HMODULE hAdvapi = LoadLibrary("advapi32.dll");
+	if (hAdvapi == NULL){
+		return FALSE;
+	}
 	PSYS25 decryptFromRID = (PSYS25)GetProcAddress(hAdvapi, "SystemFunction025");
 	if (decryptFromRID(encodedHash, rid, decodedHash) != 0){
 		return FALSE;
@@ -197,39 +195,32 @@ BOOL decrypt_rc4(unsigned char *key1, unsigned char *key2, LPBYTE encrypted, int
 
 	cryptOK = CryptAcquireContext(&hProv, 0, MS_ENHANCED_PROV, PROV_RSA_FULL, 0);
 	if (!cryptOK){
-		puts("Failed to aquire cryptographic context");
 		return FALSE;
 	}
 	cryptOK = CryptCreateHash(hProv, CALG_MD5, 0, 0, &hHash);
 	if (!cryptOK){
-		puts("Failed to initialize MD5 Hash");
 		return FALSE;
 	}
 	cryptOK = CryptHashData(hHash, key1, 16, 0);
 	if (!cryptOK){
-		puts("Failed to hash the first key");
 		return FALSE;
 	}
 	for (int i = 0; i < hashIterations; i++){
 		cryptOK = CryptHashData(hHash, key2, 16, 0);
 		if (!cryptOK){
-			puts("Failed to hash the second key");
 			return FALSE;
 		}
 	}
 	cryptOK = CryptGetHashParam(hHash, HP_HASHVAL, rc4Key, &md5Len, 0);
 	if (!cryptOK){
-		puts("Failed to get final hash value");
 		return FALSE;
 	}
 	cryptOK = CryptDeriveKey(hProv, CALG_RC4, hHash, 0, &rc4KeyFinal);
 	if (!cryptOK){
-		puts("Failed to derive RC4 key");
 		return FALSE;
 	}
 	cryptOK = CryptEncrypt(rc4KeyFinal, (HCRYPTHASH)NULL, TRUE, 0, encrypted, &lenBuffer, lenBuffer);
 		if (!cryptOK){
-			puts("There was an error with the final RC4 decryption");
 			return FALSE;
 		}
 	return TRUE;
@@ -243,12 +234,10 @@ BOOL decrypt_hash(encryptedHash *encryptedNTLM, decryptedPEK *pekDecrypted, char
 	memcpy(&encHashData, &encryptedNTLM->encryptedHash, 16);
 	cryptOK = decrypt_rc4(pekDecrypted->pekKey, encryptedNTLM->keyMaterial, encHashData, 1, 16);
 	if (!cryptOK){
-		puts("There was an error decrypting the Hash");
 		return FALSE;
 	}
 	cryptOK = decrypt_hash_from_rid(encHashData, &rid, decHash);
 	if (!cryptOK){
-		puts("Failed to decrypt hash!");
 		return FALSE;
 	}
 	bytes_to_string(decHash, 17, hashString);
@@ -265,7 +254,6 @@ BOOL decrypt_hash_history(LPBYTE encHashHistory, size_t sizeHistory, decryptedPE
 	memcpy(encHistoryData, encHashHistory + 24, sizeHistoryData);
 	cryptOK = decrypt_rc4(pekDecrypted->pekKey, encHashHistory + 8, encHistoryData, 1, sizeHistoryData);
 	if (!cryptOK){
-		puts("There was an error decrypting the hash history with the PEK");
 		return FALSE;
 	}
 	LPBYTE historicalHash = encHistoryData;
@@ -275,7 +263,6 @@ BOOL decrypt_hash_history(LPBYTE encHashHistory, size_t sizeHistory, decryptedPE
 		char hashString[33];
 		cryptOK = decrypt_hash_from_rid(historicalHash, &rid, decHash);
 		if (!cryptOK){
-			puts("Error decrypting with RID");
 			return FALSE;
 		}
 		bytes_to_string(decHash, 16, hashString);
@@ -339,7 +326,6 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns, decryptedPE
 
 	cursorStatus = JetMove(ntdsState->jetSession, ntdsState->jetTable, JET_MoveFirst, (JET_GRBIT)NULL);
 	if (cursorStatus != JET_errSuccess){
-		puts("Unable to set the cursor to the first index!");
 		return cursorStatus;
 	}
 	do{
@@ -371,13 +357,11 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns, decryptedPE
 		}
 		// If any other error has occured we've screwed up and need to fix it for now
 		if (readStatus != JET_errSuccess){
-			puts("An error has occured reading the column");
 			exit(readStatus);
 		}
 		// Grab the SID here
 		readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->accountSID.columnid, &userAccount->accountSID, sizeof(userAccount->accountName), &columnSize, 0, NULL);
 		if (readStatus != JET_errSuccess){
-			puts("An error has occured reading the column");
 			exit(readStatus);
 		}
 		// Derive the RID from the SID
@@ -388,13 +372,11 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns, decryptedPE
 		// Grab the samAccountName here
 		readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->accountName.columnid, &userAccount->accountName, sizeof(userAccount->accountName), &columnSize, 0, NULL);
 		if (readStatus != JET_errSuccess){
-			puts("An error has occured reading the column");
 			exit(readStatus);
 		}
 		// Grab the account expiration date/time here
 		readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->accountExpiry.columnid, &accountExpiry, sizeof(accountExpiry), &columnSize, 0, NULL);
 		if (readStatus != JET_errSuccess){
-			puts("An error has occured reading the column");
 			exit(readStatus);
 		}
 		//Convert the FILETIME to a SYSTEMTIME so we can get a human readable date
@@ -402,12 +384,11 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns, decryptedPE
 		int dateResult = GetDateFormat(LOCALE_SYSTEM_DEFAULT, DATE_LONGDATE, &accountExpiry2, NULL, userAccount->expiryDate, 255);
 		// Getting Human Readable will fail if account never expires. Just set the expiryDate string to 'never'
 		if (dateResult == 0){
-			strcpy(userAccount->expiryDate, "Never");
+			strncpy(userAccount->expiryDate, "Never", 6);
 		}
 		// Grab the last logon date and time
 		readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->lastLogon.columnid, &lastLogon, sizeof(lastLogon), &columnSize, 0, NULL);
 		if (readStatus != JET_errSuccess){
-			puts("An error has occured reading the column");
 			exit(readStatus);
 		}
 		//Convert the FILETIME to a SYSTEMTIME so we can get a human readable date
@@ -415,16 +396,15 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns, decryptedPE
 		dateResult = GetDateFormat(LOCALE_SYSTEM_DEFAULT, DATE_LONGDATE, &lastLogon2, NULL, userAccount->logonDate, 255);
 		// Getting Human Readable will fail if account has never logged in, much like the expiry date
 		if (dateResult == 0){
-			strcpy(userAccount->logonDate, "Never");
+			strncpy(userAccount->logonDate, "Never", 6);
 		}
 		dateResult = GetTimeFormat(LOCALE_SYSTEM_DEFAULT, 0, &lastLogon2, NULL, userAccount->logonTime, 255);
 		if (dateResult == 0){
-			strcpy(userAccount->logonTime, "Never");
+			strncpy(userAccount->logonTime, "Never", 6);
 		}
 		// Grab the last password change date and time
 		readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->lastPasswordChange.columnid, &lastPass, sizeof(lastPass), &columnSize, 0, NULL);
 		if (readStatus != JET_errSuccess){
-			puts("An error has occured reading the column");
 			exit(readStatus);
 		}
 		//Convert the FILETIME to a SYSTEMTIME so we can get a human readable date
@@ -432,11 +412,11 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns, decryptedPE
 		dateResult = GetDateFormat(LOCALE_SYSTEM_DEFAULT, DATE_LONGDATE, &lastPass2, NULL, userAccount->passChangeDate, 255);
 		// Getting Human Readable will fail if account has never logged in, much like the expiry date
 		if (dateResult == 0){
-			strcpy(userAccount->passChangeDate, "Never");
+			strncpy(userAccount->passChangeDate, "Never", 6);
 		}
 		dateResult = GetTimeFormat(LOCALE_SYSTEM_DEFAULT, 0, &lastPass2, NULL, userAccount->passChangeTime, 255);
 		if (dateResult == 0){
-			strcpy(userAccount->passChangeTime, "Never");
+			strncpy(userAccount->passChangeTime, "Never", 6);
 		}
 		// Grab the Account Description here
 		readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->accountDescription.columnid, &userAccount->accountDescription, sizeof(userAccount->accountDescription), &columnSize, 0, NULL);
@@ -444,14 +424,11 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns, decryptedPE
 			memset(userAccount->accountDescription, 0, sizeof(userAccount->accountDescription));
 		}
 		else if (readStatus != JET_errSuccess){
-			puts("An error has occured reading the column");
 			exit(readStatus);
 		}
-
 		// Grab the UserAccountControl flags here
 		readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->accountControl.columnid, &accountControl, sizeof(accountControl), &columnSize, 0, NULL);
 		if (readStatus != JET_errSuccess){
-			puts("An error has occured reading the column");
 			exit(readStatus);
 		}
 		if (accountControl & NTDS_ACCOUNT_DISABLED){
@@ -472,7 +449,6 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns, decryptedPE
 		// Grab the Logon Count here
 		readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->logonCount.columnid, &userAccount->logonCount, sizeof(userAccount->logonCount), &columnSize, 0, NULL);
 		if (readStatus != JET_errSuccess){
-			puts("An error has occured reading the column");
 			exit(readStatus);
 		}
 		// Grab the NT Hash
@@ -482,7 +458,6 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns, decryptedPE
 				memcpy(&userAccount->ntHash, &BLANK_NT_HASH, 32);
 			}
 			else{
-				puts("An error has occured reading the column");
 				exit(readStatus);
 			}
 		}
@@ -496,7 +471,6 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns, decryptedPE
 				memcpy(&userAccount->lmHash, &BLANK_LM_HASH, 32);
 			}
 			else{
-				puts("An error has occured reading the column");
 				exit(readStatus);
 			}
 		}
@@ -518,18 +492,13 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns, decryptedPE
 				decrypt_hash_history(encLMHist, columnSize, pekDecrypted, userAccount->accountRID, &userAccount->lmHistory, &userAccount->numLMHistory);
 			}
 			else {
-				puts("There was an error decrypting the history");
 				return readStatus;
 			}
-		}
-		else if (readStatus == JET_wrnColumnNull){
-			puts("No NT Hash History Stored");
 		}
 		dump_account(userAccount);
 		cursorStatus = JetMove(ntdsState->jetSession, ntdsState->jetTable, JET_MoveNext, (JET_GRBIT)NULL);
 	} while (cursorStatus == JET_errSuccess);
 	if (cursorStatus != JET_errNoCurrentRecord){
-		puts("An error occured while moving the database cursor");
 		return cursorStatus;
 	}
 	return JET_errSuccess;
@@ -543,7 +512,6 @@ BOOL decrypt_PEK(unsigned char *sysKey, encryptedPEK *pekEncrypted, decryptedPEK
 
 	cryptOK = decrypt_rc4(sysKey, pekEncrypted->keyMaterial,pekData,1000, pekLength);
 	if (!cryptOK){
-		puts("There was an error decrypting the PEK");
 		return FALSE;
 	}
 	memcpy(pekDecrypted, &pekData, pekLength);
@@ -571,7 +539,6 @@ int _tmain(int argc, TCHAR* argv[])
 	lstrcpyn(ntdsState->ntdsPath, argv[1], 255);
 	// Check that the path to the NTDS.dit file actually exists
 	if (0xffffffff == GetFileAttributes(ntdsState->ntdsPath)){
-		puts("Cannot access the specified file!");
 		exit(2);
 	}
 	_tcsncat(commandString, ntdsState->ntdsPath, 255);
@@ -580,34 +547,25 @@ int _tmain(int argc, TCHAR* argv[])
 	_tsystem(commandString);
 	JET_ERR startupStatus = engine_startup(ntdsState);
 	if (startupStatus != JET_errSuccess){
-		puts("Error Starting up the Jet Engine!");
 		exit(startupStatus);
 	}
-
 	// Start a Session in the Jet Instance
 	JET_ERR sessionStatus = JetBeginSession(ntdsState->jetEngine, &ntdsState->jetSession, NULL, NULL);
 	if (sessionStatus != JET_errSuccess){
-		puts("Unable to establish a JET Session!");
 		exit(sessionStatus);
 	}
 	JET_ERR openStatus = open_database(ntdsState);
 	if (openStatus != JET_errSuccess){
-		puts("Unable to work with this database file. Exiting..");
 		exit(openStatus);
 	}
-
 	JET_ERR tableStatus = JetOpenTable(ntdsState->jetSession, ntdsState->jetDatabase, "datatable", NULL, 0, JET_bitTableReadOnly | JET_bitTableSequential, &ntdsState->jetTable);
 	if (tableStatus != JET_errSuccess){
-		puts("Unable to access the 'datatable' table!");
 		exit(tableStatus);
 	}
-
 	JET_ERR columnStatus = get_column_info(ntdsState, accountColumns);
 	if (columnStatus != JET_errSuccess){
-		puts("could not retrieve data on one or more columns!");
 		exit(columnStatus);
 	}
-
 	JET_ERR pekStatus;
 	encryptedPEK *pekEncrypted = malloc(sizeof(encryptedPEK));
 	decryptedPEK *pekDecrypted = malloc(sizeof(decryptedPEK));
@@ -615,14 +573,9 @@ int _tmain(int argc, TCHAR* argv[])
 	memset(pekDecrypted, 0, sizeof(decryptedPEK));
 
 	pekStatus = get_PEK(ntdsState, accountColumns,pekEncrypted);
-	if (pekStatus == JET_errSuccess){
-		puts("Found the PEK");
-	}
-	else{
-		puts("Uh-oh didn't find the PEK");
+	if (pekStatus != JET_errSuccess){
 		exit(pekStatus);
 	}
-
 	decrypt_PEK(sysKey, pekEncrypted, pekDecrypted);
 	read_table(ntdsState, accountColumns, pekDecrypted);
 
