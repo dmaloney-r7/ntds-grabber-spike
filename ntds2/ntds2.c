@@ -9,7 +9,7 @@ void bytes_to_string(LPBYTE data, int length, LPSTR output){
 	}
 }
 
-BOOL get_syskey_component(HKEY lsaHandle, char subkeyName[255], unsigned char *tmpSysKey[17]){
+BOOL get_syskey_component(HKEY lsaHandle, char subkeyName[255], unsigned char *tmpSysKey){
 	DWORD sizeData = 9;
 	long regStatus;
 	HKEY subkeyHandle;
@@ -29,7 +29,7 @@ BOOL get_syskey_component(HKEY lsaHandle, char subkeyName[255], unsigned char *t
 	return TRUE;
 }
 
-BOOL get_syskey(unsigned char *sysKey[17]){
+BOOL get_syskey(unsigned char *sysKey){
 	unsigned char tmpSysKey[17];
 	unsigned char interimSysKey[17];
 	long regStatus;
@@ -51,23 +51,23 @@ BOOL get_syskey(unsigned char *sysKey[17]){
 		RegCloseKey(lsaHandle);
 		return FALSE;
 	}
-	if (!get_syskey_component(lsaHandle, "JD", &tmpSysKey)){
+	if (!get_syskey_component(lsaHandle, "JD", tmpSysKey)){
 		return FALSE;
 	}
-	if (!get_syskey_component(lsaHandle, "Skew1", &tmpSysKey)){
+	if (!get_syskey_component(lsaHandle, "Skew1", tmpSysKey)){
 		return FALSE;
 	}
-	if (!get_syskey_component(lsaHandle, "GBG", &tmpSysKey)){
+	if (!get_syskey_component(lsaHandle, "GBG", tmpSysKey)){
 		return FALSE;
 	}
-	if (!get_syskey_component(lsaHandle, "Data", &tmpSysKey)){
+	if (!get_syskey_component(lsaHandle, "Data", tmpSysKey)){
 		return FALSE;
 	}
 	
 	for (int i = 0; i < 16; i++) {
 		interimSysKey[i] = tmpSysKey[syskeyDescrambler[i]];
 	}
-	strncpy(sysKey, &interimSysKey, 17);
+	strncpy(sysKey, interimSysKey, 17);
 	return TRUE;
 }
 
@@ -217,7 +217,7 @@ BOOL decrypt_rc4(unsigned char *key1, unsigned char *key2, LPBYTE encrypted, int
 			return FALSE;
 		}
 	}
-	cryptOK = CryptGetHashParam(hHash, HP_HASHVAL, &rc4Key, &md5Len, 0);
+	cryptOK = CryptGetHashParam(hHash, HP_HASHVAL, rc4Key, &md5Len, 0);
 	if (!cryptOK){
 		puts("Failed to get final hash value");
 		return FALSE;
@@ -235,18 +235,18 @@ BOOL decrypt_rc4(unsigned char *key1, unsigned char *key2, LPBYTE encrypted, int
 	return TRUE;
 }
 
-BOOL decrypt_hash(encryptedHash *encryptedNTLM, decryptedPEK *pekDecrypted, char *hashString[32], DWORD rid){
+BOOL decrypt_hash(encryptedHash *encryptedNTLM, decryptedPEK *pekDecrypted, char *hashString, DWORD rid){
 	BOOL cryptOK = FALSE;
 	BYTE encHashData[16] = { 0 };
 	BYTE decHash[16] = { 0 };
 
 	memcpy(&encHashData, &encryptedNTLM->encryptedHash, 16);
-	cryptOK = decrypt_rc4(&pekDecrypted->pekKey, &encryptedNTLM->keyMaterial, &encHashData, 1, 16);
+	cryptOK = decrypt_rc4(pekDecrypted->pekKey, encryptedNTLM->keyMaterial, encHashData, 1, 16);
 	if (!cryptOK){
 		puts("There was an error decrypting the Hash");
 		return FALSE;
 	}
-	cryptOK = decrypt_hash_from_rid(&encHashData, &rid, &decHash);
+	cryptOK = decrypt_hash_from_rid(encHashData, &rid, decHash);
 	if (!cryptOK){
 		puts("Failed to decrypt hash!");
 		return FALSE;
@@ -535,7 +535,7 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns, decryptedPE
 	return JET_errSuccess;
 }
 
-BOOL decrypt_PEK(unsigned char *sysKey[17], encryptedPEK *pekEncrypted, decryptedPEK *pekDecrypted){
+BOOL decrypt_PEK(unsigned char *sysKey, encryptedPEK *pekEncrypted, decryptedPEK *pekDecrypted){
 	BOOL cryptOK = FALSE;
 	BYTE pekData[52] = { 0 };
 	DWORD pekLength = 52;
@@ -553,7 +553,7 @@ BOOL decrypt_PEK(unsigned char *sysKey[17], encryptedPEK *pekEncrypted, decrypte
 int _tmain(int argc, TCHAR* argv[])
 {
 	unsigned char sysKey[17];
-	get_syskey(&sysKey);
+	get_syskey(sysKey);
 
 	// Create our state structure to track the various info we need
 	jetState *ntdsState = malloc(sizeof(jetState));
@@ -623,7 +623,7 @@ int _tmain(int argc, TCHAR* argv[])
 		exit(pekStatus);
 	}
 
-	decrypt_PEK(&sysKey, pekEncrypted, pekDecrypted);
+	decrypt_PEK(sysKey, pekEncrypted, pekDecrypted);
 	read_table(ntdsState, accountColumns, pekDecrypted);
 
 	return 0;
