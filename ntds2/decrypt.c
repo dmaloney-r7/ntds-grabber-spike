@@ -113,5 +113,9 @@ BOOL decrypt_rc4(unsigned char *key1, unsigned char *key2, LPBYTE encrypted, int
 	if (!cryptOK){
 		return FALSE;
 	}
+	// Clean up after ourselves
+	CryptDestroyKey(rc4KeyFinal);
+	CryptDestroyHash(hHash);
+	CryptReleaseContext(hProv, NULL);
 	return TRUE;
 }
