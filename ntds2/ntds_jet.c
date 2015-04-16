@@ -1,5 +1,23 @@
 #include "ntds_jet.h"
 
+JET_ERR engine_shutdown(jetState *ntdsState){
+	JET_ERR shutdownStatus;
+	shutdownStatus = JetCloseDatabase(ntdsState->jetSession, ntdsState->jetDatabase, (JET_GRBIT)NULL);
+	if (shutdownStatus != JET_errSuccess){
+		return shutdownStatus;
+	}
+	shutdownStatus = JetDetachDatabase(ntdsState->jetSession, ntdsState->ntdsPath);
+	if (shutdownStatus != JET_errSuccess){
+		return shutdownStatus;
+	}
+	shutdownStatus = JetEndSession(ntdsState->jetSession, (JET_GRBIT)NULL);
+	if (shutdownStatus != JET_errSuccess){
+		return shutdownStatus;
+	}
+	shutdownStatus = JetTerm(ntdsState->jetEngine);
+	return shutdownStatus;
+}
+
 JET_ERR engine_startup(jetState *ntdsState){
 	JET_ERR jetError;
 	// Set the Page Size to the highest possibile limit

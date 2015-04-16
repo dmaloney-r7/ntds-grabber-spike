@@ -1,5 +1,5 @@
-﻿Build started 4/16/2015 12:45:48 PM.
-Project "C:\ntds\ntds2\ntds2\ntds2.vcxproj" on node 2 (Rebuild target(s)).
+﻿Build started 4/16/2015 1:51:18 PM.
+Project "C:\ntds\ntds2\ntds2\ntds2.vcxproj" on node 2 (Build target(s)).
 ClCompile:
   C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt decrypt.c ntds2.c ntds_jet.c stdafx.c syskey.c
   syskey.c
@@ -10,17 +10,17 @@ c:\ntds\ntds2\ntds2\syskey.c(59): warning C4996: 'strncpy': This function or var
           c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(195) : see declaration of 'strncpy'
   stdafx.c
   ntds_jet.c
-c:\ntds\ntds2\ntds2\ntds_jet.c(170): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\ntds\ntds2\ntds2\ntds_jet.c(188): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
           c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(195) : see declaration of 'strncpy'
-c:\ntds\ntds2\ntds2\ntds_jet.c(182): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\ntds\ntds2\ntds2\ntds_jet.c(200): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
           c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(195) : see declaration of 'strncpy'
-c:\ntds\ntds2\ntds2\ntds_jet.c(186): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\ntds\ntds2\ntds2\ntds_jet.c(204): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
           c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(195) : see declaration of 'strncpy'
-c:\ntds\ntds2\ntds2\ntds_jet.c(198): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\ntds\ntds2\ntds2\ntds_jet.c(216): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
           c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(195) : see declaration of 'strncpy'
-c:\ntds\ntds2\ntds2\ntds_jet.c(202): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\ntds\ntds2\ntds2\ntds_jet.c(220): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
           c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(195) : see declaration of 'strncpy'
-c:\ntds\ntds2\ntds2\ntds_jet.c(281): warning C4013: 'dump_account' undefined; assuming extern returning int
+c:\ntds\ntds2\ntds2\ntds_jet.c(299): warning C4013: 'dump_account' undefined; assuming extern returning int
   ntds2.c
 c:\ntds\ntds2\ntds2\ntds2.c(8): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
           c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(356) : see declaration of 'sprintf'
@@ -44,8 +44,8 @@ Link:
   Debug\stdafx.obj
   Debug\syskey.obj
   ntds2.vcxproj -> C:\ntds\ntds2\Debug\ntds2.exe
-Done Building Project "C:\ntds\ntds2\ntds2\ntds2.vcxproj" (Rebuild target(s)).
+Done Building Project "C:\ntds\ntds2\ntds2\ntds2.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.22
+Time Elapsed 00:00:01.71

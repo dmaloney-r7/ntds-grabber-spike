@@ -115,7 +115,7 @@ int _tmain(int argc, TCHAR* argv[])
 	}
 	decrypt_PEK(sysKey, pekEncrypted, pekDecrypted);
 	read_table(ntdsState, accountColumns, pekDecrypted);
-
+	engine_shutdown(ntdsState);
 	return 0;
 }
 
