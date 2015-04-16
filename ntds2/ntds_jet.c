@@ -286,4 +286,3 @@ JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns, decryptedPE
 	}
 	return JET_errSuccess;
 }
-

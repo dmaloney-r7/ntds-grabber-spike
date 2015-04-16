@@ -59,3 +59,9 @@ typedef struct{
 #define NTDS_ACCOUNT_NO_PASS          0x00000020
 #define NTDS_ACCOUNT_PASS_NO_EXPIRE   0x00010000
 #define NTDS_ACCOUNT_PASS_EXPIRED     0x00800000
+
+JET_ERR engine_startup(jetState *ntdsState);
+JET_ERR get_column_info(jetState *ntdsState, ntdsColumns *accountColumns);
+JET_ERR get_PEK(jetState *ntdsState, ntdsColumns *accountColumns, encryptedPEK *pekEncrypted);
+JET_ERR open_database(jetState *ntdsState);
+JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns, decryptedPEK *pekDecrypted);

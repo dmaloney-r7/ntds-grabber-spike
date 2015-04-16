@@ -1,4 +1,4 @@
-﻿Build started 4/16/2015 12:34:31 PM.
+﻿Build started 4/16/2015 12:45:48 PM.
 Project "C:\ntds\ntds2\ntds2\ntds2.vcxproj" on node 2 (Rebuild target(s)).
 ClCompile:
   C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt decrypt.c ntds2.c ntds_jet.c stdafx.c syskey.c
@@ -20,32 +20,21 @@ c:\ntds\ntds2\ntds2\ntds_jet.c(198): warning C4996: 'strncpy': This function or 
           c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(195) : see declaration of 'strncpy'
 c:\ntds\ntds2\ntds2\ntds_jet.c(202): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
           c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(195) : see declaration of 'strncpy'
-c:\ntds\ntds2\ntds2\ntds_jet.c(248): warning C4013: 'decrypt_hash' undefined; assuming extern returning int
-c:\ntds\ntds2\ntds2\ntds_jet.c(268): warning C4013: 'decrypt_hash_history' undefined; assuming extern returning int
 c:\ntds\ntds2\ntds2\ntds_jet.c(281): warning C4013: 'dump_account' undefined; assuming extern returning int
   ntds2.c
 c:\ntds\ntds2\ntds2\ntds2.c(8): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
           c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(356) : see declaration of 'sprintf'
+c:\ntds\ntds2\ntds2\ntds2.c(43): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(195) : see declaration of 'strncpy'
 c:\ntds\ntds2\ntds2\ntds2.c(45): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
           c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(195) : see declaration of 'strncpy'
-c:\ntds\ntds2\ntds2\ntds2.c(47): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\ntds\ntds2\ntds2\ntds2.c(48): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
           c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(195) : see declaration of 'strncpy'
-c:\ntds\ntds2\ntds2\ntds2.c(50): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-          c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(195) : see declaration of 'strncpy'
-c:\ntds\ntds2\ntds2\ntds2.c(64): warning C4013: 'get_syskey' undefined; assuming extern returning int
-c:\ntds\ntds2\ntds2\ntds2.c(84): warning C4996: '_tcsncat': This function or variable may be unsafe. Consider using _tcsncat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\ntds\ntds2\ntds2\ntds2.c(81): warning C4996: '_tcsncat': This function or variable may be unsafe. Consider using _tcsncat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
           c:\program files (x86)\microsoft visual studio 12.0\vc\include\tchar.h(1553) : see declaration of '_tcsncat'
-c:\ntds\ntds2\ntds2\ntds2.c(88): warning C4013: 'engine_startup' undefined; assuming extern returning int
-c:\ntds\ntds2\ntds2\ntds2.c(97): warning C4013: 'open_database' undefined; assuming extern returning int
-c:\ntds\ntds2\ntds2\ntds2.c(105): warning C4013: 'get_column_info' undefined; assuming extern returning int
-c:\ntds\ntds2\ntds2\ntds2.c(115): warning C4013: 'get_PEK' undefined; assuming extern returning int
-c:\ntds\ntds2\ntds2\ntds2.c(119): warning C4013: 'decrypt_PEK' undefined; assuming extern returning int
-c:\ntds\ntds2\ntds2\ntds2.c(120): warning C4013: 'read_table' undefined; assuming extern returning int
   decrypt.c
-c:\ntds\ntds2\ntds2\decrypt.c(9): warning C4013: 'decrypt_rc4' undefined; assuming extern returning int
-c:\ntds\ntds2\ntds2\decrypt.c(13): warning C4013: 'decrypt_hash_from_rid' undefined; assuming extern returning int
 c:\ntds\ntds2\ntds2\decrypt.c(17): warning C4013: 'bytes_to_string' undefined; assuming extern returning int
-c:\ntds\ntds2\ntds2\decrypt.c(57): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\ntds\ntds2\ntds2\decrypt.c(56): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
           c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(195) : see declaration of 'strncpy'
   Generating Code...
 Link:
@@ -59,4 +48,4 @@ Done Building Project "C:\ntds\ntds2\ntds2\ntds2.vcxproj" (Rebuild target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.27
+Time Elapsed 00:00:01.22
