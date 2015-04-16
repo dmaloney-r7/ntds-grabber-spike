@@ -52,3 +52,10 @@ typedef struct{
 	DWORD accountRID;
 }ntdsAccount;
 
+
+// UserAccountControl Flags
+#define NTDS_ACCOUNT_DISABLED         0x00000002
+#define NTDS_ACCOUNT_LOCKED           0x00000010
+#define NTDS_ACCOUNT_NO_PASS          0x00000020
+#define NTDS_ACCOUNT_PASS_NO_EXPIRE   0x00010000
+#define NTDS_ACCOUNT_PASS_EXPIRED     0x00800000

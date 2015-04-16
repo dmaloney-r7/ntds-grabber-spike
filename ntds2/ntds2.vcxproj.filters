@@ -36,6 +36,9 @@
     <ClInclude Include="ntds_jet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="syskey.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.c">
@@ -48,6 +51,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ntds_jet.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="syskey.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

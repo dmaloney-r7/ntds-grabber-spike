@@ -84,6 +84,7 @@
     <ClInclude Include="ntds_common.h" />
     <ClInclude Include="ntds_jet.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="syskey.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
@@ -91,6 +92,7 @@
     <ClCompile Include="ntds2.c" />
     <ClCompile Include="ntds_jet.c" />
     <ClCompile Include="stdafx.c" />
+    <ClCompile Include="syskey.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
