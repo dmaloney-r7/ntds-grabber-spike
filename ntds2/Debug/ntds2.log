@@ -1,12 +1,12 @@
-﻿Build started 4/16/2015 1:51:18 PM.
-Project "C:\ntds\ntds2\ntds2\ntds2.vcxproj" on node 2 (Build target(s)).
+﻿Build started 4/16/2015 1:56:13 PM.
+Project "C:\ntds\ntds2\ntds2\ntds2.vcxproj" on node 2 (Rebuild target(s)).
 ClCompile:
   C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt decrypt.c ntds2.c ntds_jet.c stdafx.c syskey.c
   syskey.c
 c:\ntds\ntds2\ntds2\syskey.c(18): warning C4013: 'strtoimax' undefined; assuming extern returning int
 c:\ntds\ntds2\ntds2\syskey.c(19): warning C4996: 'strncat': This function or variable may be unsafe. Consider using strncat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
           c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(186) : see declaration of 'strncat'
-c:\ntds\ntds2\ntds2\syskey.c(59): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\ntds\ntds2\ntds2\syskey.c(60): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
           c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(195) : see declaration of 'strncpy'
   stdafx.c
   ntds_jet.c
@@ -44,8 +44,8 @@ Link:
   Debug\stdafx.obj
   Debug\syskey.obj
   ntds2.vcxproj -> C:\ntds\ntds2\Debug\ntds2.exe
-Done Building Project "C:\ntds\ntds2\ntds2\ntds2.vcxproj" (Build target(s)).
+Done Building Project "C:\ntds\ntds2\ntds2\ntds2.vcxproj" (Rebuild target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.71
+Time Elapsed 00:00:01.32

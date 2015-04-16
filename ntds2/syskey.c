@@ -17,6 +17,7 @@ BOOL get_syskey_component(HKEY lsaHandle, char subkeyName[255], unsigned char *t
 	}
 	byteComponent = strtoimax(tmpVal, NULL, 16);
 	strncat(tmpSysKey, (char *)&byteComponent, 4);
+	RegCloseKey(subkeyHandle);
 	return TRUE;
 }
 
@@ -57,5 +58,6 @@ BOOL get_syskey(unsigned char *sysKey){
 		interimSysKey[i] = tmpSysKey[syskeyDescrambler[i]];
 	}
 	strncpy(sysKey, interimSysKey, 17);
+	RegCloseKey(lsaHandle);
 	return TRUE;
 }
