@@ -29,27 +29,27 @@ typedef struct {
 }ntdsColumns;
 
 typedef struct{
-	wchar_t accountName[255];
-	char expiryDate[255];
-	char logonDate[255];
-	char logonTime[255];
-	char passChangeDate[255];
-	char passChangeTime[255];
-	wchar_t accountDescription[255];
+	wchar_t accountName[20];
+	wchar_t accountDescription[1024];
+	DWORD accountRID;
 	BOOL accountDisabled;
 	BOOL accountLocked;
 	BOOL noPassword;
 	BOOL passNoExpire;
 	BOOL passExpired;
-	char lmHash[33];
-	LPBYTE lmHistory;
 	int logonCount;
 	int numNTHistory;
 	int numLMHistory;
+	char expiryDate[30];
+	char logonDate[30];
+	char logonTime[30];
+	char passChangeDate[30];
+	char passChangeTime[30];
+	char lmHash[33];
 	char ntHash[33];
+	LPBYTE lmHistory;
 	LPBYTE ntHistory;
 	unsigned char accountSID[24];
-	DWORD accountRID;
 }ntdsAccount;
 
 
