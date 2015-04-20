@@ -14,7 +14,7 @@ BOOL decrypt_hash(encryptedHash *encryptedNTLM, decryptedPEK *pekDecrypted, char
 	if (!cryptOK){
 		return FALSE;
 	}
-	bytes_to_string(decHash, 17, hashString);
+	bytes_to_string(decHash, 16, hashString);
 	return TRUE;
 }
 

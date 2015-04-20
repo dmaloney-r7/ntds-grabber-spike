@@ -1,40 +1,22 @@
-﻿Build started 4/17/2015 12:27:50 PM.
-Project "C:\ntds\ntds2\ntds2\ntds2.vcxproj" on node 2 (Build target(s)).
+﻿Build started 4/20/2015 5:27:44 PM.
+Project "E:\rapid7\ntds2\ntds2\ntds2.vcxproj" on node 2 (Build target(s)).
 ClCompile:
-  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt ntds2.c ntds_jet.c
-  ntds_jet.c
-c:\ntds\ntds2\ntds2\ntds_jet.c(188): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt decrypt.c
+  decrypt.c
+e:\rapid7\ntds2\ntds2\decrypt.c(17): warning C4013: 'bytes_to_string' undefined; assuming extern returning int
+e:\rapid7\ntds2\ntds2\decrypt.c(56): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
           c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(195) : see declaration of 'strncpy'
-c:\ntds\ntds2\ntds2\ntds_jet.c(200): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-          c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(195) : see declaration of 'strncpy'
-c:\ntds\ntds2\ntds2\ntds_jet.c(204): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-          c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(195) : see declaration of 'strncpy'
-c:\ntds\ntds2\ntds2\ntds_jet.c(216): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-          c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(195) : see declaration of 'strncpy'
-c:\ntds\ntds2\ntds2\ntds_jet.c(220): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-          c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(195) : see declaration of 'strncpy'
-c:\ntds\ntds2\ntds2\ntds_jet.c(299): warning C4013: 'dump_account' undefined; assuming extern returning int
-  ntds2.c
-c:\ntds\ntds2\ntds2\ntds2.c(8): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-          c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(356) : see declaration of 'sprintf'
-c:\ntds\ntds2\ntds2\ntds2.c(43): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-          c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(195) : see declaration of 'strncpy'
-c:\ntds\ntds2\ntds2\ntds2.c(45): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-          c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(195) : see declaration of 'strncpy'
-c:\ntds\ntds2\ntds2\ntds2.c(48): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-          c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(195) : see declaration of 'strncpy'
-c:\ntds\ntds2\ntds2\ntds2.c(81): warning C4996: '_tcsncat': This function or variable may be unsafe. Consider using _tcsncat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-          c:\program files (x86)\microsoft visual studio 12.0\vc\include\tchar.h(1553) : see declaration of '_tcsncat'
-  Generating Code...
+e:\rapid7\ntds2\ntds2\decrypt.c(119): warning C4047: 'function' : 'DWORD' differs in levels of indirection from 'void *'
+e:\rapid7\ntds2\ntds2\decrypt.c(119): warning C4024: 'CryptReleaseContext' : different types for formal and actual parameter 2
 Link:
-  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\ntds\ntds2\Debug\ntds2.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\ntds\ntds2\Debug\ntds2.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\ntds\ntds2\Debug\ntds2.lib" /MACHINE:X86 Debug\decrypt.obj
+  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\rapid7\ntds2\Debug\ntds2.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\rapid7\ntds2\Debug\ntds2.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\rapid7\ntds2\Debug\ntds2.lib" /MACHINE:X86 Debug\decrypt.obj
   Debug\ntds2.obj
   Debug\ntds_jet.obj
   Debug\stdafx.obj
   Debug\syskey.obj
-  ntds2.vcxproj -> C:\ntds\ntds2\Debug\ntds2.exe
-Done Building Project "C:\ntds\ntds2\ntds2\ntds2.vcxproj" (Build target(s)).
+  ntds2.vcxproj -> E:\rapid7\ntds2\Debug\ntds2.exe
+Done Building Project "E:\rapid7\ntds2\ntds2\ntds2.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.19
+Time Elapsed 00:00:01.21
