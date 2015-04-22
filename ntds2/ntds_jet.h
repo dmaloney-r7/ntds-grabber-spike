@@ -47,8 +47,8 @@ typedef struct{
 	char passChangeTime[30];
 	char lmHash[33];
 	char ntHash[33];
-	LPBYTE lmHistory;
-	LPBYTE ntHistory;
+	char lmHistory[792];
+	char ntHistory[792];
 	unsigned char accountSID[24];
 }ntdsAccount;
 

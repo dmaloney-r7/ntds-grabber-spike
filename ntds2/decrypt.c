@@ -31,7 +31,7 @@ BOOL decrypt_hash_from_rid(LPBYTE encodedHash, LPDWORD rid, LPBYTE decodedHash){
 	return TRUE;
 }
 
-BOOL decrypt_hash_history(LPBYTE encHashHistory, size_t sizeHistory, decryptedPEK *pekDecrypted, DWORD rid, LPBYTE *accountHistory, int *historyCount){
+BOOL decrypt_hash_history(LPBYTE encHashHistory, size_t sizeHistory, decryptedPEK *pekDecrypted, DWORD rid, char *accountHistory, int *historyCount){
 	BOOL cryptOK = FALSE;
 	size_t sizeHistoryData = sizeHistory - 24;
 	int numHashes = (sizeHistoryData / 16);
@@ -57,7 +57,8 @@ BOOL decrypt_hash_history(LPBYTE encHashHistory, size_t sizeHistory, decryptedPE
 		historicalHash = historicalHash + 16;
 		writeMarker = writeMarker + 33;
 	}
-	memcpy(accountHistory, &decHistoryData, 4);
+	memcpy(accountHistory, decHistoryData, (numHashes * 33));
+	//memcpy(accountHistory, &decHistoryData, 4);
 	return TRUE;
 }
 

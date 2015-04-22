@@ -1,22 +1,23 @@
-﻿Build started 4/20/2015 5:27:44 PM.
-Project "E:\rapid7\ntds2\ntds2\ntds2.vcxproj" on node 2 (Build target(s)).
-ClCompile:
-  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt decrypt.c
-  decrypt.c
-e:\rapid7\ntds2\ntds2\decrypt.c(17): warning C4013: 'bytes_to_string' undefined; assuming extern returning int
-e:\rapid7\ntds2\ntds2\decrypt.c(56): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-          c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(195) : see declaration of 'strncpy'
-e:\rapid7\ntds2\ntds2\decrypt.c(119): warning C4047: 'function' : 'DWORD' differs in levels of indirection from 'void *'
-e:\rapid7\ntds2\ntds2\decrypt.c(119): warning C4024: 'CryptReleaseContext' : different types for formal and actual parameter 2
-Link:
-  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\rapid7\ntds2\Debug\ntds2.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\rapid7\ntds2\Debug\ntds2.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\rapid7\ntds2\Debug\ntds2.lib" /MACHINE:X86 Debug\decrypt.obj
-  Debug\ntds2.obj
-  Debug\ntds_jet.obj
-  Debug\stdafx.obj
-  Debug\syskey.obj
-  ntds2.vcxproj -> E:\rapid7\ntds2\Debug\ntds2.exe
-Done Building Project "E:\rapid7\ntds2\ntds2\ntds2.vcxproj" (Build target(s)).
+﻿Build started 4/22/2015 11:29:33 AM.
+     1>Project "E:\rapid7\ntds2\ntds2\ntds2.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt decrypt.c
+         decrypt.c
+     1>e:\rapid7\ntds2\ntds2\decrypt.c(17): warning C4013: 'bytes_to_string' undefined; assuming extern returning int
+     1>e:\rapid7\ntds2\ntds2\decrypt.c(34): warning C4028: formal parameter 5 different from declaration
+     1>e:\rapid7\ntds2\ntds2\decrypt.c(56): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(195) : see declaration of 'strncpy'
+     1>e:\rapid7\ntds2\ntds2\decrypt.c(120): warning C4047: 'function' : 'DWORD' differs in levels of indirection from 'void *'
+     1>e:\rapid7\ntds2\ntds2\decrypt.c(120): warning C4024: 'CryptReleaseContext' : different types for formal and actual parameter 2
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\rapid7\ntds2\Debug\ntds2.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\rapid7\ntds2\Debug\ntds2.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\rapid7\ntds2\Debug\ntds2.lib" /MACHINE:X86 Debug\decrypt.obj
+         Debug\ntds2.obj
+         Debug\ntds_jet.obj
+         Debug\stdafx.obj
+         Debug\syskey.obj
+         ntds2.vcxproj -> E:\rapid7\ntds2\Debug\ntds2.exe
+     1>Done Building Project "E:\rapid7\ntds2\ntds2\ntds2.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.21
+Time Elapsed 00:00:00.65
