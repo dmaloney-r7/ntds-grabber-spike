@@ -4,6 +4,7 @@
 #include <wchar.h>
 #include <process.h>
 #include <Windows.h>
+#include <inttypes.h>
 #pragma comment(lib, "Ws2_32.lib")
 
 #define BLANK_LM_HASH "aad3b435b51404eeaad3b435b51404ee"
