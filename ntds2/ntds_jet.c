@@ -1,6 +1,6 @@
 #include "ntds_jet.h"
 
-JET_ERR engine_shutdown(jetState *ntdsState){
+JET_ERR engine_shutdown(struct jetState *ntdsState){
 	JET_ERR shutdownStatus;
 	shutdownStatus = JetCloseDatabase(ntdsState->jetSession, ntdsState->jetDatabase, (JET_GRBIT)NULL);
 	if (shutdownStatus != JET_errSuccess){
@@ -18,7 +18,7 @@ JET_ERR engine_shutdown(jetState *ntdsState){
 	return shutdownStatus;
 }
 
-JET_ERR engine_startup(jetState *ntdsState){
+JET_ERR engine_startup(struct jetState *ntdsState){
 	JET_ERR jetError;
 	// Set the Page Size to the highest possibile limit
 	jetError = JetSetSystemParameter(&ntdsState->jetEngine, JET_sesidNil, JET_paramDatabasePageSize, 8192, NULL);
@@ -43,13 +43,13 @@ JET_ERR engine_startup(jetState *ntdsState){
 	return JET_errSuccess;
 }
 
-JET_ERR find_first(jetState *ntdsState){
+JET_ERR find_first(struct jetState *ntdsState){
 	JET_ERR cursorStatus;
 	cursorStatus = JetMove(ntdsState->jetSession, ntdsState->jetTable, JET_MoveFirst, (JET_GRBIT)NULL);
 	return cursorStatus;
 }
 
-JET_ERR get_column_info(jetState *ntdsState, ntdsColumns *accountColumns){
+JET_ERR get_column_info(struct jetState *ntdsState, struct ntdsColumns *accountColumns){
 	JET_ERR columnError;
 	struct {
 		char *name;
@@ -70,9 +70,7 @@ JET_ERR get_column_info(jetState *ntdsState, ntdsColumns *accountColumns){
 		{ "ATTq589920", &accountColumns->lastPasswordChange },
 		{ "ATTr589970", &accountColumns->accountSID }
 	};
-
 	int countColumns = sizeof(columns) / sizeof(columns[0]);
-
 	for (int i = 0; i < countColumns; i++){
 		columnError = JetGetTableColumnInfo(ntdsState->jetSession, ntdsState->jetTable, columns[i].name, columns[i].column, sizeof(JET_COLUMNDEF), JET_ColInfo);
 		if (columnError != JET_errSuccess){
@@ -82,7 +80,7 @@ JET_ERR get_column_info(jetState *ntdsState, ntdsColumns *accountColumns){
 	return JET_errSuccess;
 }
 
-JET_ERR get_PEK(jetState *ntdsState, ntdsColumns *accountColumns, encryptedPEK *pekEncrypted){
+JET_ERR get_PEK(struct jetState *ntdsState, struct ntdsColumns *accountColumns, struct encryptedPEK *pekEncrypted){
 	JET_ERR cursorStatus;
 	JET_ERR readStatus;
 	unsigned char *encryptionKey[76];
@@ -105,7 +103,7 @@ JET_ERR get_PEK(jetState *ntdsState, ntdsColumns *accountColumns, encryptedPEK *
 	return readStatus;
 }
 
-JET_ERR next_user(jetState *ntdsState, ntdsColumns *accountColumns){
+JET_ERR next_user(struct jetState *ntdsState, struct ntdsColumns *accountColumns){
 	JET_ERR cursorStatus;
 	JET_ERR readStatus;
 	JET_ERR finalStatus = JET_errSuccess;
@@ -131,7 +129,7 @@ JET_ERR next_user(jetState *ntdsState, ntdsColumns *accountColumns){
 	return finalStatus;
 }
 
-JET_ERR open_database(jetState *ntdsState){
+JET_ERR open_database(struct jetState *ntdsState){
 	JET_ERR attachStatus = JetAttachDatabase(ntdsState->jetSession, ntdsState->ntdsPath, JET_bitDbReadOnly);
 	if (attachStatus != JET_errSuccess){
 		return attachStatus;
@@ -143,7 +141,7 @@ JET_ERR open_database(jetState *ntdsState){
 	return JET_errSuccess;
 }
 
-JET_ERR read_user(jetState *ntdsState, ntdsColumns *accountColumns, decryptedPEK *pekDecrypted, ntdsAccount *userAccount){
+JET_ERR read_user(struct jetState *ntdsState, struct ntdsColumns *accountColumns, struct decryptedPEK *pekDecrypted, struct ntdsAccount *userAccount){
 	JET_ERR readStatus = JET_errSuccess;
 	//Define our temp values here
 	FILETIME accountExpiry;
@@ -154,10 +152,10 @@ JET_ERR read_user(jetState *ntdsState, ntdsColumns *accountColumns, decryptedPEK
 	SYSTEMTIME lastPass2;
 	DWORD accountControl = 0;
 	unsigned long columnSize = 0;
-	encryptedHash *encryptedLM = malloc(sizeof(encryptedHash));
-	encryptedHash *encryptedNT = malloc(sizeof(encryptedHash));
-	memset(encryptedLM, 0, sizeof(encryptedHash));
-	memset(encryptedNT, 0, sizeof(encryptedHash));
+	struct encryptedHash *encryptedLM = malloc(sizeof(struct encryptedHash));
+	struct encryptedHash *encryptedNT = malloc(sizeof(struct encryptedHash));
+	memset(encryptedLM, 0, sizeof(struct encryptedHash));
+	memset(encryptedNT, 0, sizeof(struct encryptedHash));
 
 	// Grab the SID here
 	readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->accountSID.columnid, &userAccount->accountSID, sizeof(userAccount->accountName), &columnSize, 0, NULL);
@@ -252,7 +250,7 @@ JET_ERR read_user(jetState *ntdsState, ntdsColumns *accountColumns, decryptedPEK
 		return readStatus;
 	}
 	// Grab the NT Hash
-	readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->ntHash.columnid, encryptedNT, sizeof(encryptedHash), &columnSize, 0, NULL);
+	readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->ntHash.columnid, encryptedNT, sizeof(struct encryptedHash), &columnSize, 0, NULL);
 	if (readStatus != JET_errSuccess){
 		if (readStatus == JET_wrnColumnNull){
 			memcpy(&userAccount->ntHash, &BLANK_NT_HASH, 32);
@@ -265,7 +263,7 @@ JET_ERR read_user(jetState *ntdsState, ntdsColumns *accountColumns, decryptedPEK
 		decrypt_hash(encryptedNT, pekDecrypted, userAccount->ntHash, userAccount->accountRID);
 	}
 	// Grab the LM Hash
-	readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->lmHash.columnid, encryptedLM, sizeof(encryptedHash), &columnSize, 0, NULL);
+	readStatus = JetRetrieveColumn(ntdsState->jetSession, ntdsState->jetTable, accountColumns->lmHash.columnid, encryptedLM, sizeof(struct encryptedHash), &columnSize, 0, NULL);
 	if (readStatus != JET_errSuccess){
 		if (readStatus == JET_wrnColumnNull){
 			memcpy(&userAccount->lmHash, &BLANK_LM_HASH, 32);
@@ -302,15 +300,15 @@ JET_ERR read_user(jetState *ntdsState, ntdsColumns *accountColumns, decryptedPEK
 	return JET_errSuccess;
 }
 
-JET_ERR do_read(jetState *ntdsState, ntdsColumns *accountColumns, decryptedPEK *pekDecrypted){
-	ntdsAccount *userAccount = malloc(sizeof(ntdsAccount));
-	memset(userAccount, 0, sizeof(ntdsAccount));
+JET_ERR do_read(struct jetState *ntdsState, struct ntdsColumns *accountColumns, struct decryptedPEK *pekDecrypted){
+	struct ntdsAccount *userAccount = malloc(sizeof(struct ntdsAccount));
+	memset(userAccount, 0, sizeof(struct ntdsAccount));
 	read_user(ntdsState, accountColumns, pekDecrypted, userAccount);
 	dump_account(userAccount);
 	return next_user(ntdsState, accountColumns);	
 }
 
-JET_ERR read_table(jetState *ntdsState, ntdsColumns *accountColumns, decryptedPEK *pekDecrypted){
+JET_ERR read_table(struct jetState *ntdsState, struct ntdsColumns *accountColumns, struct decryptedPEK *pekDecrypted){
 	JET_ERR cursorStatus;
 	JET_ERR readStatus;
 	

@@ -3,4 +3,4 @@
 #include "syskey.h"
 
 void bytes_to_string(LPBYTE data, int length, LPSTR output);
-void dump_account(ntdsAccount *userAccount);
+void dump_account(struct ntdsAccount *userAccount);

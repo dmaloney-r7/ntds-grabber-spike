@@ -1,6 +1,6 @@
 #include "decrypt.h"
 
-BOOL decrypt_hash(encryptedHash *encryptedNTLM, decryptedPEK *pekDecrypted, char *hashString, DWORD rid){
+BOOL decrypt_hash(struct encryptedHash *encryptedNTLM, struct decryptedPEK *pekDecrypted, char *hashString, DWORD rid){
 	BOOL cryptOK = FALSE;
 	BYTE encHashData[17] = { 0 };
 	BYTE decHash[17] = { 0 };
@@ -31,7 +31,7 @@ BOOL decrypt_hash_from_rid(LPBYTE encodedHash, LPDWORD rid, LPBYTE decodedHash){
 	return TRUE;
 }
 
-BOOL decrypt_hash_history(LPBYTE encHashHistory, size_t sizeHistory, decryptedPEK *pekDecrypted, DWORD rid, char *accountHistory, int *historyCount){
+BOOL decrypt_hash_history(LPBYTE encHashHistory, size_t sizeHistory, struct decryptedPEK *pekDecrypted, DWORD rid, char *accountHistory, int *historyCount){
 	BOOL cryptOK = FALSE;
 	size_t sizeHistoryData = sizeHistory - 24;
 	int numHashes = (sizeHistoryData / 16);
@@ -62,7 +62,7 @@ BOOL decrypt_hash_history(LPBYTE encHashHistory, size_t sizeHistory, decryptedPE
 	return TRUE;
 }
 
-BOOL decrypt_PEK(unsigned char *sysKey, encryptedPEK *pekEncrypted, decryptedPEK *pekDecrypted){
+BOOL decrypt_PEK(unsigned char *sysKey, struct encryptedPEK *pekEncrypted, struct decryptedPEK *pekDecrypted){
 	BOOL cryptOK = FALSE;
 	BYTE pekData[52] = { 0 };
 	DWORD pekLength = 52;

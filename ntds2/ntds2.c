@@ -9,7 +9,7 @@ void bytes_to_string(LPBYTE data, int length, LPSTR output){
 	}
 }
 
-void dump_account(ntdsAccount *userAccount){
+void dump_account(struct ntdsAccount *userAccount){
 	puts("=============================================");
 	wprintf(L"%s\n",userAccount->accountDescription);
 	wprintf(L"%s:%d:", userAccount->accountName, userAccount->accountRID);
@@ -61,11 +61,11 @@ int _tmain(int argc, TCHAR* argv[])
 	get_syskey(sysKey);
 
 	// Create our state structure to track the various info we need
-	jetState *ntdsState = malloc(sizeof(jetState));
-	memset(ntdsState, 0, sizeof(jetState));
+	struct jetState *ntdsState = malloc(sizeof(struct jetState));
+	memset(ntdsState, 0, sizeof(struct jetState));
 	// Create the structure for holding all of the Column Definitions we need
-	ntdsColumns *accountColumns = malloc(sizeof(ntdsColumns));
-	memset(accountColumns, 0, sizeof(ntdsColumns));
+	struct ntdsColumns *accountColumns = malloc(sizeof(struct ntdsColumns));
+	memset(accountColumns, 0, sizeof(struct ntdsColumns));
 
 	// Exit if we weren't given an argument
 	if (argc < 2){
@@ -104,10 +104,10 @@ int _tmain(int argc, TCHAR* argv[])
 		exit(columnStatus);
 	}
 	JET_ERR pekStatus;
-	encryptedPEK *pekEncrypted = malloc(sizeof(encryptedPEK));
-	decryptedPEK *pekDecrypted = malloc(sizeof(decryptedPEK));
-	memset(pekEncrypted, 0, sizeof(encryptedPEK));
-	memset(pekDecrypted, 0, sizeof(decryptedPEK));
+	struct encryptedPEK *pekEncrypted = malloc(sizeof(struct encryptedPEK));
+	struct decryptedPEK *pekDecrypted = malloc(sizeof(struct decryptedPEK));
+	memset(pekEncrypted, 0, sizeof(struct encryptedPEK));
+	memset(pekDecrypted, 0, sizeof(struct decryptedPEK));
 
 	pekStatus = get_PEK(ntdsState, accountColumns,pekEncrypted);
 	if (pekStatus != JET_errSuccess){
