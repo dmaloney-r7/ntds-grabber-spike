@@ -113,7 +113,7 @@ int _tmain(int argc, TCHAR* argv[])
 	if (pekStatus != JET_errSuccess){
 		exit(pekStatus);
 	}
-	decrypt_PEK(sysKey, pekEncrypted, pekDecrypted);
+	BOOL decpekstatus = decrypt_PEK(sysKey, pekEncrypted, pekDecrypted);
 	read_table(ntdsState, accountColumns, pekDecrypted);
 	engine_shutdown(ntdsState);
 	return 0;
