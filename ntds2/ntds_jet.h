@@ -62,7 +62,15 @@ struct ntdsAccount{
 
 JET_ERR engine_shutdown(struct jetState *ntdsState);
 JET_ERR engine_startup(struct jetState *ntdsState);
+JET_ERR find_first(struct jetState *ntdsState);
 JET_ERR get_column_info(struct jetState *ntdsState, struct ntdsColumns *accountColumns);
 JET_ERR get_PEK(struct jetState *ntdsState, struct ntdsColumns *accountColumns, struct encryptedPEK *pekEncrypted);
+JET_ERR next_user(struct jetState *ntdsState, struct ntdsColumns *accountColumns);
 JET_ERR open_database(struct jetState *ntdsState);
+JET_ERR read_user(struct jetState *ntdsState, struct ntdsColumns *accountColumns, struct decryptedPEK *pekDecrypted, struct ntdsAccount *userAccount);
 JET_ERR read_table(struct jetState *ntdsState, struct ntdsColumns *accountColumns, struct decryptedPEK *pekDecrypted);
+JET_ERR read_user_hash_history(struct jetState *ntdsState, struct ntdsColumns *accountColumns, struct decryptedPEK *pekDecrypted, struct ntdsAccount *userAccount);
+JET_ERR read_user_lm_hash(struct jetState *ntdsState, struct ntdsColumns *accountColumns, struct decryptedPEK *pekDecrypted, struct ntdsAccount *userAccount);
+JET_ERR read_user_nt_hash(struct jetState *ntdsState, struct ntdsColumns *accountColumns, struct decryptedPEK *pekDecrypted, struct ntdsAccount *userAccount);
+JET_ERR read_user_dates(struct jetState *ntdsState, struct ntdsColumns *accountColumns, struct decryptedPEK *pekDecrypted, struct ntdsAccount *userAccount);
+void get_instance_name(char *name);

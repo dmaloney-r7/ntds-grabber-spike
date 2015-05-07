@@ -57,6 +57,27 @@ void dump_account(struct ntdsAccount *userAccount){
 
 int _tmain(int argc, TCHAR* argv[])
 {
+	char filePath[255];
+	// Exit if we weren't given an argument
+	if (argc < 2){
+		puts("A path to the NTDS.dit file was not supplied!");
+		exit(2);
+	}
+	TCHAR commandString[300] = "esentutl /p /o ";
+	lstrcpyn(filePath, argv[1], 255);
+	// Check that the path to the NTDS.dit file actually exists
+	if (0xffffffff == GetFileAttributes(filePath)){
+		exit(2);
+	}
+	_tcsncat(commandString, filePath, 255);
+	_putts(commandString);
+	// Call the ESENTUTL utility on our NTDS.dit file
+	_tsystem(commandString);
+	process_ntds(filePath);
+	return 0;
+}
+
+void process_ntds(char *path){
 	unsigned char sysKey[17];
 	get_syskey(sysKey);
 
@@ -67,21 +88,9 @@ int _tmain(int argc, TCHAR* argv[])
 	struct ntdsColumns *accountColumns = malloc(sizeof(struct ntdsColumns));
 	memset(accountColumns, 0, sizeof(struct ntdsColumns));
 
-	// Exit if we weren't given an argument
-	if (argc < 2){
-		puts("A path to the NTDS.dit file was not supplied!");
-		exit(2);
-	}
-	TCHAR commandString[300] = "esentutl /p /o ";
-	lstrcpyn(ntdsState->ntdsPath, argv[1], 255);
-	// Check that the path to the NTDS.dit file actually exists
-	if (0xffffffff == GetFileAttributes(ntdsState->ntdsPath)){
-		exit(2);
-	}
-	_tcsncat(commandString, ntdsState->ntdsPath, 255);
-	_putts(commandString);
-	// Call the ESENTUTL utility on our NTDS.dit file
-	_tsystem(commandString);
+	
+	lstrcpyn(ntdsState->ntdsPath, path, 255);
+	
 	JET_ERR startupStatus = engine_startup(ntdsState);
 	if (startupStatus != JET_errSuccess){
 		exit(startupStatus);
@@ -109,13 +118,27 @@ int _tmain(int argc, TCHAR* argv[])
 	memset(pekEncrypted, 0, sizeof(struct encryptedPEK));
 	memset(pekDecrypted, 0, sizeof(struct decryptedPEK));
 
-	pekStatus = get_PEK(ntdsState, accountColumns,pekEncrypted);
+	pekStatus = get_PEK(ntdsState, accountColumns, pekEncrypted);
 	if (pekStatus != JET_errSuccess){
 		exit(pekStatus);
 	}
 	BOOL decpekstatus = decrypt_PEK(sysKey, pekEncrypted, pekDecrypted);
 	read_table(ntdsState, accountColumns, pekDecrypted);
 	engine_shutdown(ntdsState);
-	return 0;
+	
 }
 
+
+JET_ERR read_table(struct jetState *ntdsState, struct ntdsColumns *accountColumns, struct decryptedPEK *pekDecrypted){
+	JET_ERR readStatus = JET_errSuccess;
+	struct ntdsAccount *userAccount = calloc(1, sizeof(struct ntdsAccount));
+	find_first(ntdsState);
+	do{
+		next_user(ntdsState, accountColumns);
+		readStatus = read_user(ntdsState, accountColumns, pekDecrypted, userAccount);
+		dump_account(userAccount);
+		memset(userAccount, 0, sizeof(struct ntdsAccount));
+	} while (readStatus == JET_errSuccess);
+	free(userAccount);
+	return readStatus;
+}
