@@ -29,8 +29,8 @@ struct ntdsColumns{
 };
 
 struct ntdsAccount{
-	wchar_t accountName[20];
-	wchar_t accountDescription[1024];
+	char accountName[20];
+	char accountDescription[1024];
 	DWORD accountRID;
 	BOOL accountDisabled;
 	BOOL accountLocked;
@@ -49,7 +49,7 @@ struct ntdsAccount{
 	char ntHash[33];
 	char lmHistory[792];
 	char ntHistory[792];
-	unsigned char accountSID[24];
+	unsigned char accountSID[28];
 };
 
 
@@ -74,3 +74,4 @@ JET_ERR read_user_lm_hash(struct jetState *ntdsState, struct ntdsColumns *accoun
 JET_ERR read_user_nt_hash(struct jetState *ntdsState, struct ntdsColumns *accountColumns, struct decryptedPEK *pekDecrypted, struct ntdsAccount *userAccount);
 JET_ERR read_user_dates(struct jetState *ntdsState, struct ntdsColumns *accountColumns, struct decryptedPEK *pekDecrypted, struct ntdsAccount *userAccount);
 void get_instance_name(char *name);
+char *wchar_to_utf8(const wchar_t *in);
